@@ -170,7 +170,7 @@ const swap = async (prism, route, decimals) => {
 					console.log(err)
 				}
 			}
-				  let argh = JSON.parse(fs.readFileSync('./moreanswers.json').toString())
+				  let argh = JSON.parse(fs.readFileSync('./newanswers.json').toString())
 				  console.log(index)
 				  let winner2 
 				  let blargs = []
