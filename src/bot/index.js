@@ -133,7 +133,7 @@ const pingpongStrategy = async (prism, tokenA, tokenB) => {
 			}
 
 			if (cache.tradingEnabled || cache.hotkeys.r) {
-				cache.swappingRightNow = false;
+				cache.swappingRightNow = true;
 				// store trade to the history
 				let tradeEntry = {
 					date: date.toLocaleString(),
@@ -162,46 +162,16 @@ const pingpongStrategy = async (prism, tokenA, tokenB) => {
 					}
 				}, 500);
 
-				[tx, performanceOfTx] = await swap(prism, route, tokenA.decimals);
+				await swap(prism, route, tokenA.decimals);
 
 				// stop refreshing status
 				clearInterval(printTxStatus);
 
-				const profit = calculateProfit(
-					cache.currentBalance[cache.sideBuy ? "tokenB" : "tokenA"],
-					tx.outputAmount
-				);
-
-				tradeEntry = {
-					...tradeEntry,
-					outAmount: tx.outputAmount || 0,
-					profit,
-					performanceOfTx,
-					error: tx.error?.message || null,
-				};
-
-				// handle TX results
-				if (tx.error) failedSwapHandler(tradeEntry);
-				else {
-					if (cache.hotkeys.r) {
-						console.log("[R] - REVERT BACK SWAP - SUCCESS!");
-						cache.tradingEnabled = false;
-						console.log("TRADING DISABLED!");
-						cache.hotkeys.r = false;
-					}
-					successSwapHandler(tx, tradeEntry, tokenA, tokenB);
-				}
 			}
 		}
 
-		if (tx) {
-			if (!tx.error) {
-				// change side
-				cache.sideBuy = !cache.sideBuy;
-			}
 			cache.swappingRightNow = false;
-		}
-
+		
 		printToConsole({
 			date,
 			i,
@@ -350,7 +320,7 @@ console.log(err)
 			}
 
 			if (cache.tradingEnabled || cache.hotkeys.r) {
-				cache.swappingRightNow = false;
+				cache.swappingRightNow = true;
 				// store trade to the history
 				let tradeEntry = {
 					date: date.toLocaleString(),
