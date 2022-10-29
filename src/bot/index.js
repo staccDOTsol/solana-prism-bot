@@ -296,8 +296,30 @@ const arbitrageStrategy = async (prism, tokenA) => {
 		let index = tokenA.address+','+tokenA.address
 		let r = route
 		for (var ehh of Object.values(r.routeData)){
+			try {
+			for (var ehh2 of Object.values(ehh.poolInfo)){
+				try {
+					for (var ehh2 of Object.values(ehh.routeData)){
+					try {
+					index+=','+(ehh2.routeData.exchange.programId.toBase58())
+					} catch (err){
+					try {
+					  index+=','+(ehh2.routeData.poolPublicKey.toBase58())
+					}
+					catch (err){
+					  try {
+					let t = new PublicKey(ehh2.swapAccount)
+						  index+=','+(ehh2.swapAccount)
+					  }
+					  catch (err){
+						  index+=','+(ehh2.stableSwap.config.swapProgramID.toBase58())
+					  }
+					}
+					}
+			}
+		} catch (err){
 		try {
-		for (var ehh2 of Object.values(Object.values(ehh))){
+		for (var ehh2 of Object.values(ehh.routeData)){
 		try {
 		index+=','+(ehh2.routeData.exchange.programId.toBase58())
 		} catch (err){
@@ -330,6 +352,7 @@ const arbitrageStrategy = async (prism, tokenA) => {
 		 }
 		  }
 		}
+	}
 	  }
 		console.log(index)
 		process.exit()
