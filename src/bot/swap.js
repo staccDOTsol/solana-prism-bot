@@ -143,7 +143,7 @@ const swap = async (prism, route, decimals) => {
 				  let r = route
 				  for (var ehh of Object.values(r.routeData)){
 					try {
-						if (Object.keys(ehh).includes(routeData)){
+						if (Object.keys(ehh).includes('routeData')){
 					for (var ehh2 of Object.values(ehh.routeData)){
 					try {
 						
