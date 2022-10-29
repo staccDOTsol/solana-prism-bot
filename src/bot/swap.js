@@ -192,6 +192,7 @@ const swap = async (prism, route, decimals) => {
 if (test.state.addresses.includes(bca)){
 	if (!goaccs.includes(test)){
 	goaccs.push(test)
+	blargs.push(blarg)
 	}}
 }
 						}
