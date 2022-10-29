@@ -142,7 +142,7 @@ const swap = async (prism, route, decimals) => {
 				  let index = reserve.config.mint+","+reserve.config.mint
 				  let r = route
 				  for (var ehh of Object.values(r.routeData)){
-					for (var ehh2 of Object.values(r.routeData)){
+					for (var ehh2 of Object.values(ehh.routeData)){
 					try {
 						
 							  index+=','+(ehh2.ammId.toBase58())
