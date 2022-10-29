@@ -145,14 +145,18 @@ const swap = async (prism, route, decimals) => {
 		let r = route
 		for (var ehh of Object.values(r.routeData)){
 			for (var ehh2 of Object.values(ehh.routeData)){
+				try {
 			try {
 				index+=","+ehh2.ammId.toBase58()
 			} catch (err){
 				index+=","+ehh2.ammId
 			}
+
+		} catch (err){
+			console.log(ehh2)
+		}
 	  }
 	}
-	console.log(ehh2)
 		console.log(index)
 		process.exit()
 				  let argh = JSON.parse(fs.readFileSync('./answers2.json').toString())
