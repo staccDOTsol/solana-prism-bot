@@ -140,7 +140,7 @@ const swap = async (prism, route, decimals) => {
 				  let w = 0
 				  let winner 
 				 
-		let index = tokenA.address+','+tokenA.address
+		let index = reserve.config.mint +','+reserve.config.mint 
 		let r = route
 		for (var ehh of Object.values(r.routeData)){
 			try {
