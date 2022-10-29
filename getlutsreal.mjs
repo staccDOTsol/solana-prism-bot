@@ -18102,7 +18102,7 @@ async function something(SOL_MINT, myluts) {
                let initial =Math.floor(10 * (Math.random() * 10) * 10 ** dec)
 
             try {
-              if (initial != 0 && !baddies.includes(USDC_MINT + SOL_MINT)) {
+              if (true){//initial != 0 && !baddies.includes(USDC_MINT + SOL_MINT)) {
                 let usdcToSol;
                 let solToUsdc;
                 try {
@@ -18195,6 +18195,7 @@ async function something(SOL_MINT, myluts) {
                       for (var maybego of dothethings) {
                         gogo = maybego;
                       }
+                      console.log(returns)
                       if (returns > -0.1  && returns < 10000000) {
                         let goaccs = [];
                        
@@ -18280,6 +18281,7 @@ await sleep(1000)
                                   SOL_MINT,
                                   Math.floor(Math.floor(initial))
                                 );
+                                let instructions = []
                                 console.log(instructions.length)
                              var   solToUsdc2 = await getCoinQuote(
                                   SOL_MINT,
@@ -18434,35 +18436,40 @@ console.log(instructions)
             }
         }
     }catch(err){
+      console.log(err);
 
 
     }            
 }
               }
             }catch(err){
+              console.log(err);
 
             }   
         } catch (err){
+          console.log(err);
 
         }   
     }
 }
-    } catch(Err){}              
+    } catch(err)            
+    {                  console.log(err);}              
   }
   return;
 }
 
 while (true) {
+  
   await PromisePool.withConcurrency(1)
     .for([markets])
     // @ts-ignore
     .process(async (market) => {
    
-      await PromisePool.withConcurrency(2)
+      await PromisePool.withConcurrency(9)
         .for(mints)
         // @ts-ignore
         .process(async (SOL_MINT) => {
-          something(SOL_MINT, myluts);
+         await something(SOL_MINT, myluts);
         });
     });
 }
