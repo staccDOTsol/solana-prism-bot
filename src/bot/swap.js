@@ -143,7 +143,8 @@ const swap = async (prism, route, decimals) => {
 				  let r = route
 				  for (var ehh of Object.values(r.routeData)){
 				  try {
-				  for (var ehh2 of Object.values(ehh.routeData)){
+				  for (var ehh3 of Object.values(ehh.routeData)){
+					for (var ehh2 of Object.values(ehh3)){
 					try {
 						
 							  index+=','+(ehh2.ammId.toBase58())
@@ -174,21 +175,12 @@ const swap = async (prism, route, decimals) => {
 				  }
 				  }
 				}
-				
+			}
+		
 				  } catch (err){
-					try {
-						index+=','+(ehh.swapAccounts.program.toBase58())
-					}
-					catch (err){
-				   try {
-					let t = new PublicKey(ehh.swapAccount)
-					index+=','+(ehh.swapAccount)
-				   } catch (err){
-					console.log(ehh)
-				   }
-					}
-				  }
+					
 				}
+			}
 				  let argh = JSON.parse(fs.readFileSync('./answers2.json').toString())
 				  console.log(index)
 				  let winner2 
