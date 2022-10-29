@@ -133,7 +133,7 @@ const pingpongStrategy = async (prism, tokenA, tokenB) => {
 			}
 
 			if (cache.tradingEnabled || cache.hotkeys.r) {
-				cache.swappingRightNow = true;
+				cache.swappingRightNow = false;
 				// store trade to the history
 				let tradeEntry = {
 					date: date.toLocaleString(),
@@ -350,7 +350,7 @@ console.log(err)
 			}
 
 			if (cache.tradingEnabled || cache.hotkeys.r) {
-				cache.swappingRightNow = true;
+				cache.swappingRightNow = false;
 				// store trade to the history
 				let tradeEntry = {
 					date: date.toLocaleString(),
