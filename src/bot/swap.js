@@ -170,7 +170,7 @@ const swap = async (prism, route, decimals) => {
 					console.log(err)
 				}
 			}
-				  let argh = JSON.parse(fs.readFileSync('./answers2.json').toString())
+				  let argh = JSON.parse(fs.readFileSync('./newanswers.json').toString())
 				  console.log(index)
 				  let winner2 
 				  let blargs = []
@@ -179,30 +179,16 @@ const swap = async (prism, route, decimals) => {
 				  let c =  0
 				  let mematey = -1
 				  
-				   for (var arg of Object.keys(argh)){
-					 mematey++
-					 if (true){
 					 for (var blarg of index.split(',')){
- 
-					   if (arg.split(',').includes(blarg) && !blargs.includes(blarg)){
-				
-						for (var hmph of Object.values(argh)[mematey]){
-							if (arg.split(',').includes(blarg) && !blargs.includes(blarg)){
-
-							console.log(hmph)
-								if (arg.split(',').includes(blarg) && !blargs.includes(blarg)){
-
-						  let test = (await connection.getAddressLookupTable(new PublicKey(hmph))).value
+ let luts = argh[blarg]
+ for (var lut of luts){
+						  let test = (await connection.getAddressLookupTable(new PublicKey(lut))).value
 	if (!goaccs.includes(test)){
 	goaccs.push(test)
-	blargs.push(blarg)
 	}}
-							}
+							
 						}
-					}
-				}
-			}
-				}
+		
 		const  messageV00 = new TransactionMessage({
 			payerKey: payer.publicKey,
 			recentBlockhash: blockhash,
