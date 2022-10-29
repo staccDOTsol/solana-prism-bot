@@ -150,7 +150,7 @@ const swap = async (prism, route, decimals) => {
 						  catch (err){
 							try
 							{
-								if (ehh2.ammId != undefined){
+								if (Object.keys(ehh2).includes('ammId')){
 							let t = new PublicKey(ehh2.ammId)
 							  index+=','+(ammId)
 								}
