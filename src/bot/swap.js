@@ -154,14 +154,14 @@ const swap = async (prism, route, decimals) => {
 							  index+=','+(ammId)
 							} 
 							catch (err){
-								
+
 							}
 							}
 				  try {
-				  index+=','+(ehh2.routeData.exchange.programId.toBase58())
+				  index+=','+(ehh2.exchange.programId.toBase58())
 				  } catch (err){
 				  try {
-					index+=','+(ehh2.routeData.poolPublicKey.toBase58())
+					index+=','+(ehh2.poolPublicKey.toBase58())
 				  }
 				  catch (err){
 					try {
