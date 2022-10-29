@@ -24,37 +24,7 @@ import * as Token from "@solana/spl-token";
 console.log({ dotenv });
 dotenv.config();
 import { PromisePool } from "@supercharge/promise-pool";
-process.on("uncaughtException", (err) => {
-  PromisePool.withConcurrency(2)
-    .for(markets)
-    // @ts-ignore
-    .process(async (market) => {
 
-
-      await PromisePool.withConcurrency(2)
-        .for(mints)
-        // @ts-ignore
-        .process(async (SOL_MINT) => {
-          something(SOL_MINT, myluts);
-        });
-    });
-});
-process.on("unhandledRejection", (reason, promise) => {
-  PromisePool.withConcurrency(2)
-    .for(markets)
-    // @ts-ignore
-    .process(async (market) => {
-      myluts = JSON.parse(fs.readFileSync("./luts.json").toString());
-    
-
-      await PromisePool.withConcurrency(2)
-        .for(mints)
-        // @ts-ignore
-        .process(async (SOL_MINT) => {
-          something(SOL_MINT, myluts);
-        });
-    });
-});
 // This is a free Solana RPC endpoint. It may have ratelimit and sometimes
 // invalid cache. I will recommend using a paid RPC endpoint.
 let connection = new Connection(
