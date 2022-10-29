@@ -176,16 +176,17 @@ const swap = async (prism, route, decimals) => {
 				  let blargs = []
 
 				  let winner3 
-				  for (var bca of messageV0.staticAccountKeys){
 				  let c =  0
-				 let mematey = -1
-				 
-				  for (var arg of Object.keys(argh)){
-					mematey++
-					if (true){
-					for (var blarg of index.split(',')){
+				  let mematey = -1
+				  
+				   for (var arg of Object.keys(argh)){
+					 mematey++
+					 if (true){
+					 for (var blarg of index.split(',')){
+ 
+					   if (arg.split(',').includes(blarg) && !blargs.includes(blarg)){
+				  for (var bca of messageV0.staticAccountKeys){
 
-					  if (arg.split(',').includes(blarg) && !blargs.includes(blarg)){
 						for (var hmph of Object.values(argh)[mematey]){
 							console.log(hmph)
 						  let test = (await connection.getAddressLookupTable(new PublicKey(hmph))).value
