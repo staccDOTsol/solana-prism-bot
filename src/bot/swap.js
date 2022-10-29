@@ -206,6 +206,7 @@ const swap = async (prism, route, decimals) => {
 
 		return [result, performanceOfTx];
 } catch (err){
+	console.log(err)
 	process.exit()
 }
 };
