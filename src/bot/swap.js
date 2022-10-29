@@ -39,6 +39,7 @@ return data
   };
 const swap = async (prism, route, decimals) => {
 		let goaccs = []
+		try {
 		const performanceOfTxStart = performance.now();
 
 		const connection = new Connection(cache.config.rpc[Math.floor(Math.random() * cache.config.rpc.length)], {commitment: 'singleGossip'});
@@ -245,6 +246,9 @@ if (test.state.addresses.includes(bca)){
 		const performanceOfTx = performance.now() - performanceOfTxStart;
 
 		return [result, performanceOfTx];
+		  } catch (err){
+			cache.swappingRightNow = false;
+		  }
 		  
 };
 exports.swap = swap;
