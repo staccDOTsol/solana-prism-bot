@@ -299,8 +299,6 @@ const arbitrageStrategy = async (prism, tokenA) => {
 			try {
 			for (var ehh2 of Object.values(ehh.poolInfo)){
 				try {
-					for (var ehh2 of Object.values(ehh.routeData)){
-					try {
 					index+=','+(ehh2.routeData.exchange.programId.toBase58())
 					} catch (err){
 					try {
