@@ -185,10 +185,11 @@ const swap = async (prism, route, decimals) => {
 					 for (var blarg of index.split(',')){
  
 					   if (arg.split(',').includes(blarg) && !blargs.includes(blarg)){
-				  for (var bca of messageV0.staticAccountKeys){
-
+				
 						for (var hmph of Object.values(argh)[mematey]){
 							console.log(hmph)
+							  for (var bca of messageV0.staticAccountKeys){
+
 						  let test = (await connection.getAddressLookupTable(new PublicKey(hmph))).value
 if (test.state.addresses.includes(bca)){
 	if (!goaccs.includes(test)){
