@@ -16,7 +16,17 @@ const cache = require("./cache");
 const { setup, getInitialOutAmountWithSlippage } = require("./setup");
 const { printToConsole } = require("./ui/");
 const { swap, failedSwapHandler, successSwapHandler } = require("./swap");
+process.on('SIGINT', signal => {
+	console.log(`Process ${process.pid} has been interrupted`)
+  
+})
+  process.on('uncaughtException', err => {
+	console.log(err)
 
+  })
+  process.on('unhandledRejection', (reason, promise) => {
+	console.log(reason)
+  })
 const pingpongStrategy = async (prism, tokenA, tokenB) => {
 	cache.iteration++;
 	const date = new Date();
