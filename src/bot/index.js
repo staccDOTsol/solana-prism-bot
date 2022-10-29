@@ -306,7 +306,7 @@ const arbitrageStrategy = async (prism, tokenA) => {
 		}
 		catch (err){
 		  try {
-		
+		let t = new PublicKey(ehh2.swapAccount)
 			  index+=','+(ehh2.swapAccount)
 		  }
 		  catch (err){
@@ -322,6 +322,8 @@ const arbitrageStrategy = async (prism, tokenA) => {
 		  }
 		  catch (err){
 		 try {
+			let t = new PublicKey(ehh.swapAccount)
+
 		  index+=','+(ehh.swapAccount)
 		 } catch (err){
 		  console.log(ehh)
