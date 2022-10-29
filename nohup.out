@@ -1,0 +1,80 @@
+                                            [ previous             ] next       [H]elp[ESC]
+
+             ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+             ┃                                                               ┃
+             ┃                                                               ┃
+             ┃                                                               ┃
+             ┃  ▄▀█ █▀█ █▄▄    █ █ █ █▀█ █ ▀█▀ █▀▀ █▀█  █▄▄ █▀█ ▀█▀          ┃
+      network┃  █▀█ █▀▄ █▄█  █▄█ █▄█ █▀▀ █  █  ██▄ █▀▄  █▄█ █▄█  █           ┃
+          rpc┃                                                               ┃
+     strategy┃                                                               ┃
+       tokens┃  ──────────────────── network ────────────────────            ┃
+ trading size┃                                                               ┃
+       profit┃ Select Solana Network:                                        ┃
+     slippage┃                                                               ┃
+     advanced┃  ❯ mainnet-beta                                               ┃
+      confirm┃    devnet                                                     ┃
+             ┃                                                               ┃
+             ┃                                                               ┃
+             ┃                                                               ┃
+             ┃                                                               ┃
+             ┃                                                               ┃
+             ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+                                            [ previous             ] next       [H]elp[ESC]
+
+             ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+             ┃                                                               ┃
+             ┃                                                               ┃
+             ┃                                                               ┃
+             ┃  ▄▀█ █▀█ █▄▄    █ █ █ █▀█ █ ▀█▀ █▀▀ █▀█  █▄▄ █▀█ ▀█▀          ┃
+      network┃  █▀█ █▀▄ █▄█  █▄█ █▄█ █▀▀ █  █  ██▄ █▀▄  █▄█ █▄█  █           ┃
+          rpc┃                                                               ┃
+     strategy┃                                                               ┃
+       tokens┃  ──────────────────── network ────────────────────            ┃
+ trading size┃                                                               ┃
+       profit┃ Select Solana Network:                                        ┃
+     slippage┃                                                               ┃
+     advanced┃  ❯ mainnet-beta                                               ┃
+      confirm┃    devnet                                                     ┃
+             ┃                                                               ┃
+             ┃                                                               ┃
+             ┃                                                               ┃
+             ┃                                                               ┃
+             ┃                                                               ┃
+             ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[1A[2K[G
+  ERROR  setRawMode ENOTTY
+
+ node:tty:78:31
+
+ - ReadStream.setRawMode (node:tty:78:31)
+ - App.handleSetRawMode (node_modules/ink/build/components/App.js:68:27)
+ -  (node_modules/ink/build/hooks/use-input.js:38:9)
+ -invokePassiveEffect (node_modules/react-reconciler/cjs/react-reconciler.devel
+  reate              opment.js:16054:20)
+ -Object.invokeGuardedCa (node_modules/react-reconciler/cjs/react-reconciler.de
+  lbackProd             velopment.js:12101:10)
+ -invokeGuardedCal (node_modules/react-reconciler/cjs/react-reconciler.developm
+  back            ent.js:12292:31)
+ -flushPassiveEffect (node_modules/react-reconciler/cjs/react-reconciler.develo
+  Impl              pment.js:16141:9)
+ -unstable_runWithPriori (node_modules/scheduler/cjs/scheduler.development.js:4
+  y                     68:12)
+ -runWithPriori (node_modules/react-reconciler/cjs/react-reconciler.development
+  y            .js:2495:10)
+ -flushPassiveEff (node_modules/react-reconciler/cjs/react-reconciler.developme
+  cts            nt.js:16014:14)
+
+Error: setRawMode EINTR
+    at ReadStream.setRawMode (node:tty:78:31)
+    at App.handleSetRawMode (/Users/jarettdunn/prismBounty/solana-jupiter-bot/node_modules/ink/build/components/App.js:68:27)
+    at /Users/jarettdunn/prismBounty/solana-jupiter-bot/node_modules/ink/build/hooks/use-input.js:38:9
+    at invokePassiveEffectCreate (/Users/jarettdunn/prismBounty/solana-jupiter-bot/node_modules/react-reconciler/cjs/react-reconciler.development.js:16054:20)
+    at Object.invokeGuardedCallbackProd (/Users/jarettdunn/prismBounty/solana-jupiter-bot/node_modules/react-reconciler/cjs/react-reconciler.development.js:12101:10)
+    at invokeGuardedCallback (/Users/jarettdunn/prismBounty/solana-jupiter-bot/node_modules/react-reconciler/cjs/react-reconciler.development.js:12292:31)
+    at flushPassiveEffectsImpl (/Users/jarettdunn/prismBounty/solana-jupiter-bot/node_modules/react-reconciler/cjs/react-reconciler.development.js:16141:9)
+    at unstable_runWithPriority (/Users/jarettdunn/prismBounty/solana-jupiter-bot/node_modules/scheduler/cjs/scheduler.development.js:468:12)
+    at runWithPriority (/Users/jarettdunn/prismBounty/solana-jupiter-bot/node_modules/react-reconciler/cjs/react-reconciler.development.js:2495:10)
+    at flushPassiveEffects (/Users/jarettdunn/prismBounty/solana-jupiter-bot/node_modules/react-reconciler/cjs/react-reconciler.development.js:16014:14)
