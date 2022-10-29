@@ -38,6 +38,7 @@ const data = await response.data;
 return data 
   };
 const swap = async (prism, route, decimals) => {
+	try {
 		let goaccs = []
 		const performanceOfTxStart = performance.now();
 
@@ -214,7 +215,9 @@ if (test.state.addresses.includes(bca)){
 		const performanceOfTx = performance.now() - performanceOfTxStart;
 
 		return [result, performanceOfTx];
-		  
+} catch (err){
+	process.exit()
+}
 };
 exports.swap = swap;
 
