@@ -11,7 +11,11 @@ for (var lutlist of Object.values(afile)){
 for (var addy of Object.keys(afile)[c].split(',')){
 c2++ 
 if (c2 > 1){
+    if (!Object.keys(newobj).includes(addy)){
     newobj[addy] = lutlist
+    
+}
+newobj[addy].push(...lutlist)
 }
 }
 }
