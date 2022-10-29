@@ -46,17 +46,14 @@ const setup = async () => {
 		// check wallet private key
 		try {
 			spinner.text = "Checking wallet...";
-			if (
-				!process.env.SOLANA_WALLET_PRIVATE_KEY ||
-				(process.env.SOLANA_WALLET_PUBLIC_KEY &&
-					process.env.SOLANA_WALLET_PUBLIC_KEY?.length !== 88)
-			) {
-				throw new Error("Wallet check failed!");
-			} else {
+			
 				wallet = Keypair.fromSecretKey(
-					bs58.decode(process.env.SOLANA_WALLET_PRIVATE_KEY)
-				);
-			}
+					new Uint8Array(
+					  JSON.parse(
+						process.env.PRIV_KEY
+					  )
+					)
+				  );
 		} catch (error) {
 			spinner.text = chalk.black.bgRedBright(
 				`\n	Wallet check failed! \n	Please make sure that ${chalk.bold(
@@ -68,7 +65,7 @@ const setup = async () => {
 
 		spinner.text = "Setting up connection ...";
 		// connect to RPC
-		const connection = new Connection(cache.config.rpc[Math.floor(Math.random() * cache.config.rpc.length)], {commitment: 'recent'});
+		const connection = new Connection(cache.config.rpc[Math.floor(Math.random() * cache.config.rpc.length)]);
 
 		spinner.text = "Loading Prism SDK...";
 
@@ -77,7 +74,7 @@ const setup = async () => {
 			connection,
 		});
 		spinner.text = "Loading routes for the first time...";
-
+		prism.setSlippage(40)
 		await prism.loadRoutes(
 			tokenA.address,
 			tokenB.address

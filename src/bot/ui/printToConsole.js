@@ -45,24 +45,10 @@ function printToConsole({
 			let statusPerformance;
 			if (cache.swappingRightNow) {
 				statusPerformance = performance.now() - cache.performanceOfTxStart;
-				statusMessage = chalk.bold[
-					statusPerformance < 45000
-						? "greenBright"
-						: statusPerformance < 60000
-						? "yellowBright"
-						: "redBright"
-				](`SWAPPING ... ${(statusPerformance / 1000).toFixed(2)} s`);
-			} else if (cache.fetchingResultsFromSolscan) {
-				statusPerformance =
-					performance.now() - cache.fetchingResultsFromSolscanStart;
-				statusMessage = chalk.bold[
-					statusPerformance < 45000
-						? "greenBright"
-						: statusPerformance < 90000
-						? "yellowBright"
-						: "redBright"
-				](`FETCHING RESULT ... ${(statusPerformance / 1000).toFixed(2)} s`);
-			}
+				statusPerformance < 1500
+						? cache.swappingRightNow = false : null
+				
+			} 
 
 			// refresh console before print
 			console.clear();

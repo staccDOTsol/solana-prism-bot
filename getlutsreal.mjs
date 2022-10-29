@@ -18105,7 +18105,7 @@ async function ha (){
     //["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "So11111111111111111111111111111111111111112"]){
     try {
       var USDC_MINT = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"//reserve.config.liquidityToken.mint;
-     // console.log(USDC_MINT)
+      console.log(USDC_MINT)
       if (!mints.includes(USDC_MINT)){
      mints.push(USDC_MINT)
       }
@@ -18485,11 +18485,11 @@ console.log(instructions)
 while (true) {
   
   await PromisePool.withConcurrency(1)
-    .for([markets])
+    .for(markets)
     // @ts-ignore
     .process(async (market) => {
    
-      await PromisePool.withConcurrency(4)
+      await PromisePool.withConcurrency(2)
         .for(mints)
         // @ts-ignore
         .process(async (SOL_MINT) => {

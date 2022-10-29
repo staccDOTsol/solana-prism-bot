@@ -17,9 +17,13 @@ const {
   } = require( "../solend-sdk/dist" );
   const { Token } = require('@solana/spl-token');
 
-const payer = Keypair.fromSecretKey(
-	bs58.decode(process.env.SOLANA_WALLET_PRIVATE_KEY)
-);
+  const payer = Keypair.fromSecretKey(
+    new Uint8Array(
+      JSON.parse(
+        process.env.PRIV_KEY
+      )
+    )
+  );
 const getTransaction = async(route, payer) => {
 	
 	let body = {
@@ -68,7 +72,6 @@ const swap = async (prism, route, decimals) => {
 			  ).value[0]
 			  let tokenAccount = arg2.pubkey
 		   let instructions = [
-			 ix,
 			 flashBorrowReserveLiquidityInstruction(
 			   Math.ceil(route.amountIn * 10 ** decimals),
 			   new PublicKey(reserve.config.liquidityAddress),
@@ -89,7 +92,7 @@ const swap = async (prism, route, decimals) => {
 				  .getLatestBlockhash()
 				  .then((res) => res.blockhash); 
 				  await Promise.all(
-					[swapTransaction.preTransaction, swapTransaction.mainTransaction, swapTransaction.postTransaction]
+					[swapTransaction.preTransaction, swapTransaction.mainTransaction]//, swapTransaction.postTransaction]
 					  .filter(Boolean)
 					  .map(async (serializedTransaction) => {
 						instructions.push(...serializedTransaction.instructions)
@@ -98,7 +101,7 @@ const swap = async (prism, route, decimals) => {
 						flashRepayReserveLiquidityInstruction(
 						  
 							Math.ceil(route.amountIn * 10 ** decimals),
-							1,
+							0,
 						  tokenAccount,
 						  new PublicKey(
 							reserve.config.liquidityAddress
@@ -142,35 +145,42 @@ const swap = async (prism, route, decimals) => {
 				  let winner 
 				  let index = reserve.config.mint+","+reserve.config.mint
 				  let r = route
-				  for (var ehh of Object.values(r.routeData)){
-					try {
-						if (Object.keys(ehh).includes('routeData')){
-					for (var ehh2 of Object.values(ehh.routeData)){
-					try {
-						
-							  index+=','+(ehh2.ammId.toBase58())
-						  }
-						  catch (err){
-							try
-							{
-								if (Object.keys(ehh2).includes('ammId')){
-							let t = new PublicKey(ehh2.ammId)
-							  index+=','+(ehh2.ammId)
+				  let ammIdspks = []
+				  let ammIds = []
+
+					for (var rd of Object.values(route.routeData)){
+						try {
+							// @ts-ignore
+							for(var rd2 of Object.values(rd.routeData)){
+								try {
+													// @ts-ignore 
+					
+									if ((rd2.ammId) != undefined){
+										// @ts-ignore
+										let dothedamnthing = new PublicKey(rd2.ammId)
+									// @ts-ignore 
+									if (!ammIdspks.includes(dothedamnthing.toBase58())){
+														// @ts-ignore 
+					
+										ammIdspks.push(dothedamnthing.toBase58())
+										ammIds.push(dothedamnthing)
+									}
+									}
+								} catch (err){
+					
 								}
-							} 
-							catch (err){
-								console.log(ehh2)
-								console.log(err)
 							}
-							}
-						
-				} }}
-				catch (err){
-					console.log(ehh)
-					console.log(err)
-				}
-			}
-				  let argh = JSON.parse(fs.readFileSync('./newanswers.json').toString())
+						}
+						catch (err){
+					
+						}
+					}
+	
+				
+					for (var i of ammIdspks){
+						index= index+","+i
+					}
+				  let argh = JSON.parse(fs.readFileSync('./powerfulluts.json').toString())
 				  console.log(index)
 				  let winner2 
 				  let blargs = []
@@ -180,7 +190,10 @@ const swap = async (prism, route, decimals) => {
 				  let mematey = -1
 				  
 					 for (var blarg of index.split(',')){
+						console.log(blarg)
+						try {
  let luts = argh[blarg]
+ console.log(luts)
  
  for (var lut of luts){
 						  let test = (await connection.getAddressLookupTable(new PublicKey(lut))).value
@@ -188,7 +201,10 @@ const swap = async (prism, route, decimals) => {
 	goaccs.push(test)
 	}}
 							
+						} catch (err){
+							console.log(err)
 						}
+					}
 		
 		const  messageV00 = new TransactionMessage({
 			payerKey: payer.publicKey,
@@ -200,7 +216,7 @@ const swap = async (prism, route, decimals) => {
 		  );
 
 		transaction.sign([payer])
-		const result = await  sendAndConfirmTransaction(connection, transaction)
+		const result =   sendAndConfirmTransaction(connection, transaction)
 		if (process.env.DEBUG) storeItInTempAsJSON("result", result);
 
 		const performanceOfTx = performance.now() - performanceOfTxStart;
@@ -208,7 +224,10 @@ const swap = async (prism, route, decimals) => {
 		return [result, performanceOfTx];
 } catch (err){
 	console.log(err)
-	process.exit()
+	if (err.toString().indexOf('bytes') == -1){
+	//process.exit()
+	}
+	return [0, 0]
 }
 };
 exports.swap = swap;

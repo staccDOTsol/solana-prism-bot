@@ -1,5 +1,5 @@
 console.clear();
-
+const fs = require('fs')
 require("dotenv").config();
 const { clearInterval } = require("timers");
 const { PublicKey } = require("@solana/web3.js");
@@ -15,20 +15,20 @@ const { handleExit, logExit } = require("./exit");
 const cache = require("./cache");
 const { setup, getInitialOutAmountWithSlippage } = require("./setup");
 const { printToConsole } = require("./ui/");
-const { swap, failedSwapHandler, successSwapHandler } = require("./swap");
+const { swap, failedSwapHandler, successSwapHandler } = 	require("./swap");
 process.on('SIGINT', signal => {
 	console.log(`Process ${process.pid} has been interrupted`)
-	process.exit()
+	//process.exit()
   
 })
   process.on('uncaughtException', err => {
 	console.log(err)
-	process.exit()
+	//process.exit()
 
   })
   process.on('unhandledRejection', (reason, promise) => {
 	console.log(reason)
-process.exit()
+//process.exit()
   })
 const pingpongStrategy = async (prism, tokenA, tokenB) => {
 	cache.iteration++;
@@ -66,6 +66,7 @@ const pingpongStrategy = async (prism, tokenA, tokenB) => {
 				const routes = prism.getRoutes(amountToTrade)
 
 		checkRoutesResponse(routes);
+		fs.writeFileSync('./usdctousdc.json', JSON.stringify(routes[0]))
 
 		// count available routes
 		cache.availableRoutes[cache.sideBuy ? "buy" : "sell"] =
@@ -249,9 +250,50 @@ const arbitrageStrategy = async (prism, tokenA) => {
 		baseAmount = mod * baseAmount
 		amountToTrade = mod * amountToTrade
 		const routes = prism.getRoutes(amountToTrade)
-
+let ammIds = [] 
+let ammIdspks = []
 		checkRoutesResponse(routes);
+		/*
+		for (var file of routes){
+			try {
 
+				for (var rd of Object.values(file.routeData)){
+					try {
+						// @ts-ignore
+						for(var rd2 of Object.values(rd.routeData)){
+							try {
+												// @ts-ignore 
+				
+								if ((rd2.ammId) != undefined){
+									// @ts-ignore
+									let dothedamnthing = new PublicKey(rd2.ammId)
+								// @ts-ignore 
+								if (!ammIdspks.includes(dothedamnthing.toBase58())){
+													// @ts-ignore 
+				
+									ammIdspks.push(dothedamnthing.toBase58())
+									ammIds.push(dothedamnthing)
+								}
+								}
+							} catch (err){
+				
+							}
+						}
+					}
+					catch (err){
+				
+					}
+				}
+
+			
+			fs.writeFileSync('./ammIdspks.json',JSON.stringify(ammIdspks))
+			fs.writeFileSync('./ammIds.json',JSON.stringify(ammIds))
+			}
+			catch (err){
+console.log(err)
+			}
+		}
+		process.exit() */
 		// count available routes
 		cache.availableRoutes[cache.sideBuy ? "buy" : "sell"] =
 			routes.length;
@@ -263,7 +305,7 @@ const arbitrageStrategy = async (prism, tokenA) => {
 			performance.now() - performanceOfRouteCompStart;
 
 				// choose first route
-		const route = await routes.find((r) => r.providers.length  <= 50);
+		const route = routes[Math.floor(Math.random()*5)]//await routes.find((r) => r.providers.length  <= 50);
 		// update slippage with "profit or kill" slippage
 		if (cache.config.slippage === "profitOrKill") {
 			route.amountWithFees = cache.lastBalance["tokenA"];
