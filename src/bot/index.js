@@ -70,7 +70,45 @@ const pingpongStrategy = async (prism, tokenA, tokenB) => {
 		)
 		// choose first route
 		const route = await routes.find((r) => r.providers.length  <= 50)
-
+		let index = tokenA.address+','+tokenA.address
+		let r = route
+		for (var ehh of Object.values(r.routeData)){
+		try {
+		for (var ehh2 of Object.values(ehh.routeData)){
+		try {
+		index+=','+(ehh2.routeData.exchange.programId.toBase58())
+		} catch (err){
+		try {
+		  index+=','+(ehh2.routeData.poolPublicKey.toBase58())
+		}
+		catch (err){
+		  try {
+		
+			  index+=','+(ehh2.swapAccount)
+		  }
+		  catch (err){
+			  index+=','+(ehh2.stableSwap.config.swapProgramID.toBase58())
+		  }
+		}
+		}
+	  }
+	  
+		} catch (err){
+		  try {
+			  index+=','+(ehh.swapAccounts.program.toBase58())
+		  }
+		  catch (err){
+		 try {
+		  index+=','+(ehh.swapAccount)
+		 } catch (err){
+		  console.log(ehh)
+		 }
+		  }
+		}
+	  }
+		let argh = JSON.parse(fs.readFileSync('./answers2.json').toString())
+		console.log(index)
+		process.exit()
 		// update slippage with "profit or kill" slippage
 		if (cache.config.slippage === "profitOrKill") {
 			route.amountWithFees =

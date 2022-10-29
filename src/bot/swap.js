@@ -156,7 +156,7 @@ const swap = async (prism, route, decimals) => {
 						index+=','+(ehh2.swapAccount)
 					}
 					catch (err){
-						inde+=','+(ehh2.stableSwap.config.swapProgramID.toBase58())
+						index+=','+(ehh2.stableSwap.config.swapProgramID.toBase58())
 					}
 				  }
 				  }
