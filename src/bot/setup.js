@@ -94,6 +94,7 @@ const setup = async () => {
 			);
 		logExit(1, error);
 		process.exitCode = 1;
+		process.exit()
 	}
 };
 
