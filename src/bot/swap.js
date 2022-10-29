@@ -144,6 +144,7 @@ const swap = async (prism, route, decimals) => {
 				  for (var ehh of Object.values(r.routeData)){
 				  try {
 				  for (var ehh2 of Object.values(ehh.routeData)){
+					
 				  try {
 				  index+=','+(ehh2.routeData.exchange.programId.toBase58())
 				  } catch (err){
@@ -152,7 +153,7 @@ const swap = async (prism, route, decimals) => {
 				  }
 				  catch (err){
 					try {
-				  let t = new PublicKey(ehh2.swapAccoun)
+				  let t = new PublicKey(ehh2.swapAccount)
 						index+=','+(ehh2.swapAccount)
 					}
 					catch (err){
