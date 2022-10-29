@@ -2,7 +2,7 @@ const fs = require('fs')
 
 async function ha (){
 
-var afile = JSON.parse( fs.readFileSync('./answers2.json').toString() )
+var afile = JSON.parse( fs.readFileSync('./answersusdc.json').toString() )
 let c = -1
 var newobj = {}
 for (var lutlist of Object.values(afile)){
