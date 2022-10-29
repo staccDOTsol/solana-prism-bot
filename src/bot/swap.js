@@ -142,7 +142,6 @@ const swap = async (prism, route, decimals) => {
 				  let index = reserve.config.mint+","+reserve.config.mint
 				  let r = route
 				  for (var ehh2 of Object.values(r.routeData)){
-				  try {
 					try {
 						
 							  index+=','+(ehh2.ammId.toBase58())
@@ -153,29 +152,12 @@ const swap = async (prism, route, decimals) => {
 							  index+=','+(ammId)
 							} 
 							catch (err){
-
+								console.log(ehh2)
+								console.log(err)
 							}
 							}
-				  try {
-				 // index+=','+(ehh2.exchange.programId.toBase58())
-				  } catch (err){
-				  try {
-					index+=','+(ehh2.poolPublicKey.toBase58())
-				  }
-				  catch (err){
-					try {
-				//  let t = new PublicKey(ehh2.swapAccount)
-				//		index+=','+(ehh2.swapAccount)
-					}
-					catch (err){
-				//		index+=','+(ehh2.stableSwap.config.swapProgramID.toBase58())
-					}
-				  }
-				  }
+				 
 				
-				  } catch (err){
-					
-				  }
 				}
 				  let argh = JSON.parse(fs.readFileSync('./answers2.json').toString())
 				  console.log(index)
