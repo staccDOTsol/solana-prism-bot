@@ -183,7 +183,25 @@ const swap = async (prism, route, decimals) => {
 		}
 		}
 	  }
-	  
+	  try {
+		let t = new PublicKey(ehh.swapAccount)
+			  index+=','+(ehh.swapAccount)
+		  }
+		  catch (err){
+			  index+=','+(ehh.stableSwap.config.swapProgramID.toBase58())
+		  }
+	  try {
+		index+=','+(ehh.swapAccounts.program.toBase58())
+	}
+	catch (err){
+   try {
+	  let t = new PublicKey(ehh.swapAccount)
+
+	index+=','+(ehh.swapAccount)
+   } catch (err){
+	console.log(ehh)
+   }
+	}
 		} catch (err){
 		  try {
 			  index+=','+(ehh.swapAccounts.program.toBase58())
