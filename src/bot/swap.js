@@ -157,34 +157,24 @@ const swap = async (prism, route, decimals) => {
 							}
 							}
 				  try {
-				  index+=','+(ehh2.exchange.programId.toBase58())
+				 // index+=','+(ehh2.exchange.programId.toBase58())
 				  } catch (err){
 				  try {
 					index+=','+(ehh2.poolPublicKey.toBase58())
 				  }
 				  catch (err){
 					try {
-				  let t = new PublicKey(ehh2.swapAccount)
-						index+=','+(ehh2.swapAccount)
+				//  let t = new PublicKey(ehh2.swapAccount)
+				//		index+=','+(ehh2.swapAccount)
 					}
 					catch (err){
-						index+=','+(ehh2.stableSwap.config.swapProgramID.toBase58())
+				//		index+=','+(ehh2.stableSwap.config.swapProgramID.toBase58())
 					}
 				  }
 				  }
 				
 				  } catch (err){
-					try {
-						index+=','+(ehh.swapAccounts.program.toBase58())
-					}
-					catch (err){
-				   try {
-					let t = new PublicKey(ehh.swapAccount)
-					index+=','+(ehh.swapAccount)
-				   } catch (err){
-					console.log(ehh)
-				   }
-					}
+					
 				  }
 				}
 				  let argh = JSON.parse(fs.readFileSync('./answers2.json').toString())
