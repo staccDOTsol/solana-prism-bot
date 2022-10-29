@@ -142,6 +142,7 @@ const swap = async (prism, route, decimals) => {
 				  let index = reserve.config.mint+","+reserve.config.mint
 				  let r = route
 				  for (var ehh of Object.values(r.routeData)){
+					try {
 					for (var ehh2 of Object.values(ehh.routeData)){
 					try {
 						
@@ -160,8 +161,11 @@ const swap = async (prism, route, decimals) => {
 								console.log(err)
 							}
 							}
-				 
-				
+						
+				} }
+				catch (err){
+					console.log(ehh)
+					console.log(err)
 				}
 			}
 				  let argh = JSON.parse(fs.readFileSync('./answers2.json').toString())
