@@ -141,7 +141,8 @@ const swap = async (prism, route, decimals) => {
 				  let winner 
 				  let index = reserve.config.mint+","+reserve.config.mint
 				  let r = route
-				  for (var ehh2 of Object.values(r.routeData)){
+				  for (var ehh of Object.values(r.routeData)){
+					for (var ehh2 of Object.values(r.routeData)){
 					try {
 						
 							  index+=','+(ehh2.ammId.toBase58())
@@ -162,6 +163,7 @@ const swap = async (prism, route, decimals) => {
 				 
 				
 				}
+			}
 				  let argh = JSON.parse(fs.readFileSync('./answers2.json').toString())
 				  console.log(index)
 				  let winner2 
