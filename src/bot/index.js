@@ -145,23 +145,6 @@ const pingpongStrategy = async (prism, tokenA, tokenB) => {
 					expectedProfit: simulatedProfit,
 				};
 
-				// start refreshing status
-				const printTxStatus = setInterval(() => {
-					if (cache.swappingRightNow) {
-						printToConsole({
-							date,
-							i,
-							performanceOfRouteComp,
-							inputToken,
-							outputToken,
-							tokenA,
-							tokenB,
-							route,
-							simulatedProfit,
-						});
-					}
-				}, 500);
-
 				await swap(prism, route, tokenA.decimals);
 
 				// stop refreshing status
