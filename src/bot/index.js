@@ -297,7 +297,7 @@ const arbitrageStrategy = async (prism, tokenA) => {
 		let r = route
 		for (var ehh of Object.values(r.routeData)){
 		try {
-		for (var ehh2 of Oject.values(Object.values(ehh))){
+		for (var ehh2 of Object.values(Object.values(ehh))){
 		try {
 		index+=','+(ehh2.routeData.exchange.programId.toBase58())
 		} catch (err){
