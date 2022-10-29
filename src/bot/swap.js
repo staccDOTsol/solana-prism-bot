@@ -39,7 +39,6 @@ return data
   };
 const swap = async (prism, route, decimals) => {
 		let goaccs = []
-		try {
 		const performanceOfTxStart = performance.now();
 
 		const connection = new Connection(cache.config.rpc[Math.floor(Math.random() * cache.config.rpc.length)], {commitment: 'singleGossip'});
@@ -140,23 +139,43 @@ const swap = async (prism, route, decimals) => {
 				  }).compileToV0Message();
 				  let w = 0
 				  let winner 
-				 
-		let index = reserve.config.mint +','+reserve.config.mint 
-		let r = route
-		for (var ehh of Object.values(r.routeData)){
-			for (var ehh2 of Object.values(ehh.routeData)){
-				try {
-			try {
-				index+=","+ehh2.ammId.toBase58()
-			} catch (err){
-				index+=","+ehh2.ammId
-			}
-
-		} catch (err){
-console.log(err)		}
-	  }
-	}
-		console.log(index)
+				  let index = reserve.config.mint+","+reserve.config.mint
+				  let r = route
+				  for (var ehh of Object.values(r.routeData)){
+				  try {
+				  for (var ehh2 of Object.values(ehh.routeData)){
+				  try {
+				  index+=','+(ehh2.routeData.exchange.programId.toBase58())
+				  } catch (err){
+				  try {
+					index+=','+(ehh2.routeData.poolPublicKey.toBase58())
+				  }
+				  catch (err){
+					try {
+				  let t = new PublicKey(ehh2.swapAccoun)
+						index+=','+(ehh2.swapAccount)
+					}
+					catch (err){
+						index+=','+(ehh2.stableSwap.config.swapProgramID.toBase58())
+					}
+				  }
+				  }
+				}
+				
+				  } catch (err){
+					try {
+						index+=','+(ehh.swapAccounts.program.toBase58())
+					}
+					catch (err){
+				   try {
+					let t = new PublicKey(ehh.swapAccount)
+					index+=','+(ehh.swapAccount)
+				   } catch (err){
+					console.log(ehh)
+				   }
+					}
+				  }
+				}
 				  let argh = JSON.parse(fs.readFileSync('./answers2.json').toString())
 				  console.log(index)
 				  let winner2 
@@ -202,9 +221,6 @@ if (test.state.addresses.includes(bca)){
 		const performanceOfTx = performance.now() - performanceOfTxStart;
 
 		return [result, performanceOfTx];
-		  } catch (err){
-			cache.swappingRightNow = false;
-		  }
 		  
 };
 exports.swap = swap;
