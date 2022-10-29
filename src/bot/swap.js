@@ -187,8 +187,11 @@ const swap = async (prism, route, decimals) => {
 					   if (arg.split(',').includes(blarg) && !blargs.includes(blarg)){
 				
 						for (var hmph of Object.values(argh)[mematey]){
+							if (arg.split(',').includes(blarg) && !blargs.includes(blarg)){
+
 							console.log(hmph)
 							  for (var bca of messageV0.staticAccountKeys){
+								if (arg.split(',').includes(blarg) && !blargs.includes(blarg)){
 
 						  let test = (await connection.getAddressLookupTable(new PublicKey(hmph))).value
 if (test.state.addresses.includes(bca)){
@@ -197,6 +200,8 @@ if (test.state.addresses.includes(bca)){
 	blargs.push(blarg)
 	}}
 }
+							  }
+							}
 						}
 					}
 				}
