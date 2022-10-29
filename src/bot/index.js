@@ -329,7 +329,6 @@ const arbitrageStrategy = async (prism, tokenA) => {
 		  }
 		}
 	  }
-		let argh = JSON.parse(fs.readFileSync('./answers2.json').toString())
 		console.log(index)
 		process.exit()
 		// calculate profitability
