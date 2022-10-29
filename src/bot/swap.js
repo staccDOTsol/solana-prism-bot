@@ -147,10 +147,10 @@ const swap = async (prism, route, decimals) => {
 			try {
 			for (var ehh2 of Object.values(ehh.poolInfo)){
 				try {
-					index+=','+(ehh2.programId.toBase58())
+					index+=','+(ehh2.programId)
 					} catch (err){
 					try {
-					  index+=','+(ehh2.routeData.poolPublicKey.toBase58())
+					  index+=','+(ehh2.poolPublicKey)
 					}
 					catch (err){
 					  try {
@@ -158,7 +158,7 @@ const swap = async (prism, route, decimals) => {
 						  index+=','+(ehh2.swapAccount)
 					  }
 					  catch (err){
-						  index+=','+(ehh2.stableSwap.config.swapProgramID.toBase58())
+						  index+=','+(ehh2.stableSwap.config.swapProgramID())
 					  }
 					}
 					}
