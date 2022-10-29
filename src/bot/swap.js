@@ -153,8 +153,7 @@ const swap = async (prism, route, decimals) => {
 			}
 
 		} catch (err){
-			console.log(ehh2)
-		}
+console.log(err)		}
 	  }
 	}
 		console.log(index)
