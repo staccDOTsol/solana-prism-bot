@@ -147,6 +147,7 @@ const swap = async (prism, route, decimals) => {
 			try {
 				index+=","+ehh.ammId.toBase58()
 			} catch (err){
+				console.log(ehh)
 				index+=","+ehh.ammId
 			}
 	  }
