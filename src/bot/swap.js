@@ -143,7 +143,7 @@ const swap = async (prism, route, decimals) => {
 				  let r = route
 				  for (var ehh of Object.values(r.routeData)){
 				  try {
-				  for (var ehh2 of Object.values(ehh.routeData)[0]){
+				  for (var ehh2 of Object.values(ehh.routeData)){
 				  try {
 				  index+=','+(ehh2.routeData.exchange.programId.toBase58())
 				  } catch (err){
