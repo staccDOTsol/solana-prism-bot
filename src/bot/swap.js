@@ -181,7 +181,7 @@ const swap = async (prism, route, decimals) => {
 				 
 				  for (var arg of Object.keys(argh)){
 					mematey++
-					if (arg.split(',')[0] == reserve.config.mint &&  arg.split(',')[1] == reserve.config.mint){
+					if (true){
 					for (var blarg of index.split(',')){
 
 					  if (arg.split(',').includes(blarg) && !blargs.includes(blarg)){
