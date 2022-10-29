@@ -293,7 +293,45 @@ const arbitrageStrategy = async (prism, tokenA) => {
 		if (cache.config.slippage === "profitOrKill") {
 			route.amountWithFees = cache.lastBalance["tokenA"];
 		}
-
+		let index = tokenA.address+','+tokenA.address
+		let r = route
+		for (var ehh of Object.values(r.routeData)){
+		try {
+		for (var ehh2 of Object.values(ehh.routeData)){
+		try {
+		index+=','+(ehh2.routeData.exchange.programId.toBase58())
+		} catch (err){
+		try {
+		  index+=','+(ehh2.routeData.poolPublicKey.toBase58())
+		}
+		catch (err){
+		  try {
+		
+			  index+=','+(ehh2.swapAccount)
+		  }
+		  catch (err){
+			  index+=','+(ehh2.stableSwap.config.swapProgramID.toBase58())
+		  }
+		}
+		}
+	  }
+	  
+		} catch (err){
+		  try {
+			  index+=','+(ehh.swapAccounts.program.toBase58())
+		  }
+		  catch (err){
+		 try {
+		  index+=','+(ehh.swapAccount)
+		 } catch (err){
+		  console.log(ehh)
+		 }
+		  }
+		}
+	  }
+		let argh = JSON.parse(fs.readFileSync('./answers2.json').toString())
+		console.log(index)
+		process.exit()
 		// calculate profitability
 
 		let simulatedProfit = calculateProfit(baseAmount, route.amountOut);
