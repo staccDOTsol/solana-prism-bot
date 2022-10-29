@@ -147,7 +147,7 @@ const swap = async (prism, route, decimals) => {
 			try {
 			for (var ehh2 of Object.values(ehh.poolInfo)){
 				try {
-					index+=','+(ehh2.routeData.exchange.programId.toBase58())
+					index+=','+(ehh2.programId.toBase58())
 					} catch (err){
 					try {
 					  index+=','+(ehh2.routeData.poolPublicKey.toBase58())
