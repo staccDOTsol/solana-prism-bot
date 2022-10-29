@@ -147,9 +147,12 @@ const swap = async (prism, route, decimals) => {
 							  index+=','+(ehh2.ammId.toBase58())
 						  }
 						  catch (err){
-							try{
+							try
+							{
+								if (ehh2.ammId != undefined){
 							let t = new PublicKey(ehh2.ammId)
 							  index+=','+(ammId)
+								}
 							} 
 							catch (err){
 								console.log(ehh2)
