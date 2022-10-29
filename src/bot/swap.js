@@ -139,42 +139,67 @@ const swap = async (prism, route, decimals) => {
 				  }).compileToV0Message();
 				  let w = 0
 				  let winner 
-				  let index = reserve.config.mint+","+reserve.config.mint
-				  let r = route
-				  for (var ehh of Object.values(r.routeData)){
-				  try {
-				  for (var ehh2 of Object.values(ehh.routeData)){
-				  try {
-				  index+=','+(ehh2.routeData.exchange.programId.toBase58())
-				  } catch (err){
-				  try {
-					index+=','+(ehh2.routeData.poolPublicKey.toBase58())
-				  }
-				  catch (err){
+				 
+		let index = tokenA.address+','+tokenA.address
+		let r = route
+		for (var ehh of Object.values(r.routeData)){
+			try {
+			for (var ehh2 of Object.values(ehh.poolInfo)){
+				try {
+					index+=','+(ehh2.routeData.exchange.programId.toBase58())
+					} catch (err){
 					try {
-				  
-						index+=','+(ehh2.swapAccount)
+					  index+=','+(ehh2.routeData.poolPublicKey.toBase58())
 					}
 					catch (err){
-						index+=','+(ehh2.stableSwap.config.swapProgramID.toBase58())
+					  try {
+					let t = new PublicKey(ehh2.swapAccount)
+						  index+=','+(ehh2.swapAccount)
+					  }
+					  catch (err){
+						  index+=','+(ehh2.stableSwap.config.swapProgramID.toBase58())
+					  }
 					}
-				  }
-				  }
-				}
-				
-				  } catch (err){
-					try {
-						index+=','+(ehh.swapAccounts.program.toBase58())
 					}
-					catch (err){
-				   try {
-					index+=','+(ehh.swapAccount)
-				   } catch (err){
-					console.log(ehh)
-				   }
-					}
-				  }
-				}
+			}
+		} catch (err){
+		try {
+		for (var ehh2 of Object.values(ehh.routeData)){
+		try {
+		index+=','+(ehh2.routeData.exchange.programId.toBase58())
+		} catch (err){
+		try {
+		  index+=','+(ehh2.routeData.poolPublicKey.toBase58())
+		}
+		catch (err){
+		  try {
+		let t = new PublicKey(ehh2.swapAccount)
+			  index+=','+(ehh2.swapAccount)
+		  }
+		  catch (err){
+			  index+=','+(ehh2.stableSwap.config.swapProgramID.toBase58())
+		  }
+		}
+		}
+	  }
+	  
+		} catch (err){
+		  try {
+			  index+=','+(ehh.swapAccounts.program.toBase58())
+		  }
+		  catch (err){
+		 try {
+			let t = new PublicKey(ehh.swapAccount)
+
+		  index+=','+(ehh.swapAccount)
+		 } catch (err){
+		  console.log(ehh)
+		 }
+		  }
+		}
+	}
+	  }
+		console.log(index)
 				  let argh = JSON.parse(fs.readFileSync('./answers2.json').toString())
 				  console.log(index)
 				  let winner2 
