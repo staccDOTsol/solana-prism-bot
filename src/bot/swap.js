@@ -148,12 +148,13 @@ const swap = async (prism, route, decimals) => {
 			try {
 				index+=","+ehh2.ammId.toBase58()
 			} catch (err){
-				console.log(ehh2)
 				index+=","+ehh2.ammId
 			}
 	  }
 	}
+	console.log(ehh2)
 		console.log(index)
+		process.exit()
 				  let argh = JSON.parse(fs.readFileSync('./answers2.json').toString())
 				  console.log(index)
 				  let winner2 
