@@ -18489,7 +18489,7 @@ while (true) {
     // @ts-ignore
     .process(async (market) => {
    
-      await PromisePool.withConcurrency(9)
+      await PromisePool.withConcurrency(4)
         .for(mints)
         // @ts-ignore
         .process(async (SOL_MINT) => {
