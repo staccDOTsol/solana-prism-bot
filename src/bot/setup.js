@@ -103,7 +103,7 @@ const setup = async () => {
 			.process(async (i) => {		
 				console.log(is)
 					try {
-			const connection = new Connection(cache.config.rpc[Math.floor(Math.random()*cache.config.rpc)]);
+			const connection = new Connection(cache.config.rpc[Math.floor(Math.random()*cache.config.rpc.length)]);
 
 			spinner.text = "Loading Prism SDK..." + is.length.toString();
 			let tok = tokenBs[Math.floor(Math.random()*tokenBs.length)]
