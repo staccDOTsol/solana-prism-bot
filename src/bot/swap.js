@@ -270,9 +270,10 @@ goodluts.push(lut)
 }
 							
 						} catch (err){
+							console.log(err)
 						}
 					}
-		
+		console.log(goaccs.length)
 		const  messageV00 = new TransactionMessage({
 			payerKey: payer.publicKey,
 			recentBlockhash: blockhash,
