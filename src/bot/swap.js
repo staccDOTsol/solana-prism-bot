@@ -55,8 +55,8 @@ const swap = async (prism, route, decimals) => {
 			//"9QxPT2xEHn56kREPF83uAhrMXo1UtPL1hS2FfXS9sdpo"
 		   // market.address
 		  )
-		  var reserve  = market.reserves.find((res) => 
-			 res.config.asset === route.from);
+		  var reserve  = market.reserves.find(res => res.config.liquidityToken.mint ==="EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v");// market.reserves.find((res) => 
+			// res.config.asset === route.from);
 			 const params = {
 				units: 301517 + 301517 + 301517 + 101517 + 101517,
 				additionalFee: 1,
