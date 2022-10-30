@@ -208,7 +208,6 @@ goodluts.push(lut)
 }
 							
 						} catch (err){
-							console.log(err)
 						}
 					}
 		
