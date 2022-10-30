@@ -73,7 +73,7 @@ const swap = async (prism, route, decimals) => {
 			  let tokenAccount = arg2.pubkey
 		   let instructions = [
 			 flashBorrowReserveLiquidityInstruction(
-			   Math.ceil(route.amountIn * 10 ** decimals),
+			   Math.ceil(route.amountIn * 1.02 * 10 ** decimals),
 			   new PublicKey(reserve.config.liquidityAddress),
 			   tokenAccount,
 			   new PublicKey(reserve.config.address),
@@ -100,7 +100,7 @@ const swap = async (prism, route, decimals) => {
 					  instructions.push(
 						flashRepayReserveLiquidityInstruction(
 						  
-							Math.ceil(route.amountIn * 10 ** decimals),
+							Math.ceil(route.amountIn * 1.02 * 10 ** decimals),
 							0,
 						  tokenAccount,
 						  new PublicKey(
