@@ -258,7 +258,7 @@ console.log(err)
 			performance.now() - performanceOfRouteCompStart;
 
 				// choose first route
-		const route = routes[Math.floor(Math.random()*5)]//await routes.find((r) => r.providers.length  <= 50);
+		const route = routes[0]//await routes.find((r) => r.providers.length  <= 50);
 		// update slippage with "profit or kill" slippage
 		if (cache.config.slippage === "profitOrKill") {
 			route.amountWithFees = cache.lastBalance["tokenA"];
@@ -348,7 +348,7 @@ console.log(err)
 		}
 
 			cache.swappingRightNow = false;
-			mod = mod / 1.5
+			mod = mod / 1.05
 		printToConsole({
 			date,
 			i,
