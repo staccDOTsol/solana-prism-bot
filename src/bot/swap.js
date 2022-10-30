@@ -199,6 +199,36 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2) => {
 
 					for (var rd of Object.values(route2.routeData)){
 						try {
+							try {
+								// @ts-ignore 
+
+				if ((rd.ammId) != undefined){
+					// @ts-ignore
+					let dothedamnthing = new PublicKey(rd.ammId)
+				// @ts-ignore 
+				if (!ammIdspks.includes(dothedamnthing.toBase58())){
+									// @ts-ignore 
+
+					ammIdspks.push(dothedamnthing.toBase58())
+					ammIds.push(dothedamnthing)
+				}
+				}
+				if ((rd.amm) != undefined){
+					// @ts-ignore
+					let dothedamnthing = new PublicKey(rd.amm)
+				// @ts-ignore 
+				if (!ammIdspks.includes(dothedamnthing.toBase58())){
+									// @ts-ignore 
+
+					ammIdspks.push(dothedamnthing.toBase58())
+					ammIds.push(dothedamnthing)
+				}
+				
+				}
+			} catch (err){
+				console.log(rd.routeData)
+
+			}
 							// @ts-ignore
 							for(var rd2 of Object.values(rd.routeData)){
 								try {
