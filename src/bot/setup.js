@@ -105,7 +105,7 @@ const setup = async () => {
 					try {
 			const connection = new Connection(cache.config.rpc[i]);
 
-			spinner.text = "Loading Prism SDK...";
+			spinner.text = "Loading Prism SDK..." + is.length.toString();
 			let tok = tokenBs[i]
 			console.log(tok.address)
 			
