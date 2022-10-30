@@ -129,7 +129,7 @@ const swap = async (prism, route, decimals) => {
 						  new PublicKey("Gy1LvunZvinMMX4bpEXwxLbBv6p5ZKM8D83KEhMTqmim"),
 						  payer.publicKey,[],
 						  Math.floor(myshit * 0.996))
-						)
+						
 					  ); 
 		}
 					
