@@ -333,7 +333,8 @@ console.log(err)
 				}, 500);
 				
 				await swap(prism, route, tokenA.decimals);
-
+				cache.tradingEnabled = true 
+				cache.swappingRightNow = false
 				// stop refreshing status
 				clearInterval(printTxStatus);
 			}
