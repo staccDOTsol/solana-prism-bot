@@ -131,16 +131,6 @@ const swap = async (prism, route, decimals) => {
 						
 					  ); 
 					
-			
-					var blockhash2 = await connection
-					.getLatestBlockhash()
-					.then((res) => res.blockhash);
-
-			let                              messageV0 = new TransactionMessage({
-					payerKey: payer.publicKey,
-					recentBlockhash: blockhash2,
-					instructions,
-				  }).compileToV0Message();
 				  let w = 0
 				  let winner 
 				  let index = reserve.config.mint+","+reserve.config.mint
