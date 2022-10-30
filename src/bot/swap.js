@@ -274,7 +274,7 @@ goodluts.push(lut)
 						}
 					}
 					if (index.split(',').length == 2){
-						console.log(...(Object.values(route.routeData)))
+						console.log((Object.values(route.routeData)))
 					}
 		console.log(goaccs.length)
 		const  messageV00 = new TransactionMessage({
