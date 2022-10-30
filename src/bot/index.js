@@ -212,9 +212,7 @@ const arbitrageStrategy = async (prisms, prisms2, tokenA) => {
 		baseAmount = Math.floor(baseAmount * 10 ** tokenA.decimals) / 10 ** tokenA.decimals
 		const routes = prism.getRoutes(amountToTrade)
 		
-let ammIds =  JSON.parse(fs.readFileSync('./ammIds.json').toString())
-let ammIdspks = JSON.parse(fs.readFileSync('./ammIdspks.json').toString())
-		checkRoutesResponse(routes);
+checkRoutesResponse(routes);
 
 
 		// update status as OK
@@ -230,7 +228,13 @@ let ammIdspks = JSON.parse(fs.readFileSync('./ammIdspks.json').toString())
 		// count available routes
 		cache.availableRoutes[cache.sideBuy ? "buy" : "sell"] =
 			routes.length + routes2.length;
-
+			let ammIds = [ ]
+			let ammIdspks = []
+			try {
+			ammIds =  JSON.parse(fs.readFileSync('./ammIds.json').toString())
+			
+			ammIdspks = JSON.parse(fs.readFileSync('./ammIdspks.json').toString())
+					
 		for (var file of [...routes,...routes2]){
 			try {
 
@@ -270,6 +274,7 @@ let ammIdspks = JSON.parse(fs.readFileSync('./ammIdspks.json').toString())
 console.log(err)
 			}
 		}
+	}  catch (Err){}
 		checkRoutesResponse(routes2);
 		const route2 = await routes2.find((r) => r.providers.length  <= 50);
 		// update slippage with "profit or kill" slippage
