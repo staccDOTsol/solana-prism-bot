@@ -38,7 +38,7 @@ let myluts: any = {}
       // @ts-ignore
       let maybemine = await connection2.getAddressLookupTable(lut.pubkey)
       
-if(maybemine.value?.state.addresses.length as number > 100){
+if(maybemine.value?.state.addresses.length as number > 25){
     // @ts-ignore
     for (var addy of maybemine.value?.state.addresses){
 let addypk = addy.toBase58()
