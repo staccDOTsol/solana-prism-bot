@@ -180,8 +180,42 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2) => {
 					}
 	
 				
-					for (var i of ammIdspks){
-						index= index+","+i
+					for (var i2 of ammIdspks){
+						index= index+","+i2
+					}
+
+					for (var rd of Object.values(route2.routeData)){
+						try {
+							// @ts-ignore
+							for(var rd2 of Object.values(rd.routeData)){
+								try {
+													// @ts-ignore 
+					
+									if ((rd2.ammId) != undefined){
+										// @ts-ignore
+										let dothedamnthing = new PublicKey(rd2.ammId)
+									// @ts-ignore 
+									if (!ammIdspks.includes(dothedamnthing.toBase58())){
+														// @ts-ignore 
+					
+										ammIdspks.push(dothedamnthing.toBase58())
+										ammIds.push(dothedamnthing)
+									}
+									}
+								} catch (err){
+									console.log(rd.routeData)
+					
+								}
+							}
+						}
+						catch (err){
+					
+						}
+					}
+	
+				
+					for (var i2 of ammIdspks){
+						index= index+","+i2
 					}
 				  let argh = JSON.parse(fs.readFileSync('./powerfulluts.json').toString())
 				  console.log(index)
