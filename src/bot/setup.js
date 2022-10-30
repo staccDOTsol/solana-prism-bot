@@ -74,7 +74,7 @@ const setup = async () => {
 			connection,
 		});
 		spinner.text = "Loading routes for the first time...";
-		prism.setSlippage(40)
+		prism.setSlippage(9999)
 		await prism.loadRoutes(
 			tokenA.address,
 			tokenB.address
