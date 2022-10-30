@@ -276,7 +276,7 @@ console.log(err)
 		
 		// calculate profitability
 
-		let simulatedProfit = calculateProfit(baseAmount, route2.amountOut);
+		let simulatedProfit = calculateProfit(amountToTrade, route2.amountOut);
 
 		// store max profit spotted
 		if (simulatedProfit > cache.maxProfitSpotted["buy"]) {
