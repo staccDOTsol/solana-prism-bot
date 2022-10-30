@@ -21,6 +21,8 @@ process.on('SIGINT', signal => {
 	//process.exit()
   
 })
+
+let mod = 255
   process.on('uncaughtException', err => {
 	console.log(err)
 	//process.exit()
@@ -60,7 +62,6 @@ const pingpongStrategy = async (prism, tokenA, tokenB) => {
 		// check current routes
 		const performanceOfRouteCompStart = performance.now();
 
-		let mod = Math.random()
 		baseAmount = mod * baseAmount
 		amountToTrade = mod * amountToTrade
 				const routes = prism.getRoutes(amountToTrade)
@@ -332,7 +333,14 @@ console.log(err)
 					}
 				}, 500);
 				
-				await swap(prism, route, tokenA.decimals);
+				let result = await swap(prism, route, tokenA.decimals);
+				if (result){
+					cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].success++
+					mod = mod * 1.25
+				}
+				else {
+					mod = mod / 1.5
+				}
 				cache.tradingEnabled = true 
 				cache.swappingRightNow = false
 				// stop refreshing status

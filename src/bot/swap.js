@@ -221,13 +221,13 @@ const swap = async (prism, route, decimals) => {
 
 		const performanceOfTx = performance.now() - performanceOfTxStart;
 
-		return [result, performanceOfTx];
+		return true
 } catch (err){
 	console.log(err)
 	if (err.toString().indexOf('bytes') == -1){
 	//process.exit()
 	}
-	return [0, 0]
+	return false
 }
 };
 exports.swap = swap;
