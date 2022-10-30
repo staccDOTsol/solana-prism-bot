@@ -107,11 +107,12 @@ const swap = async (prism, route, decimals) => {
 							reserve.config.liquidityAddress
 						  ),
 						  new PublicKey(
-							reserve.config.liquidityAddress
+							reserve.config.liquidityFeeReceiverAddress
 						  ),
 						  tokenAccount,
 						  new PublicKey(reserve.config.address),
-						  new PublicKey("F8dCQofhBuspm1sVsrfr8NReJvGn1JfiR9xARnUBQgo1"),
+						  new PublicKey(market.config.address),
+
 						  payer.publicKey,
 						  SOLEND_PRODUCTION_PROGRAM_ID
 						)
