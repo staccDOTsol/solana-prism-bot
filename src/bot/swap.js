@@ -189,10 +189,10 @@ const swap = async (prism, route, decimals) => {
 				  let c =  0
 				  let mematey = -1
 				  
+				  let goodluts = []
 					 for (var blarg of index.split(',')){
 						console.log(blarg)
 						try {
-							let goodluts = []
  let luts = argh[blarg]
  console.log(luts)
  
