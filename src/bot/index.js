@@ -34,9 +34,6 @@ let mod = 255
   process.on('unhandledRejection', (reason, promise) => {
 	console.log(reason)
 //process.exit()
-
-cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].success--
-cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].fail++
   })
 const pingpongStrategy = async (prism, tokenA, tokenB) => {
 	cache.iteration++;
@@ -339,26 +336,22 @@ console.log(err)
 				}, 500);
 				
 				let result = await swap(prism, route, tokenA.decimals);
-				if (!result){
-					
-				cache.tradingEnabled = true 
-				cache.swappingRightNow = false
-				}
-				else {
-
-				cache.tradingEnabled = true 
-				cache.swappingRightNow = false
+				if (result){
 					cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].success++
 					mod = mod * 10
-					successSwapHandler(result, null, tokenA, tokenB)
 				}
+				else {
+					
+				}
+				cache.tradingEnabled = true 
+				cache.swappingRightNow = false
 				// stop refreshing status
 				clearInterval(printTxStatus);
 			}
 		}
 
 			cache.swappingRightNow = false;
-			mod = mod / 1.5
+			mod = mod / 1.1
 		printToConsole({
 			date,
 			i,
