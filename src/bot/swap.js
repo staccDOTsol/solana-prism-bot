@@ -151,7 +151,6 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2) => {
 				  let ammIds = []
 
 					for (var rd of Object.values(route.routeData)){
-						console.log(rd)
 						try {
 							// @ts-ignore
 							for(var rd2 of Object.values(rd.routeData)){
@@ -168,6 +167,19 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2) => {
 										ammIdspks.push(dothedamnthing.toBase58())
 										ammIds.push(dothedamnthing)
 									}
+									
+									}
+									if ((rd2.amm) != undefined){
+										// @ts-ignore
+										let dothedamnthing = new PublicKey(rd2.amm)
+									// @ts-ignore 
+									if (!ammIdspks.includes(dothedamnthing.toBase58())){
+														// @ts-ignore 
+					
+										ammIdspks.push(dothedamnthing.toBase58())
+										ammIds.push(dothedamnthing)
+									}
+									
 									}
 								} catch (err){
 									console.log(rd.routeData)
@@ -202,6 +214,18 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2) => {
 										ammIdspks.push(dothedamnthing.toBase58())
 										ammIds.push(dothedamnthing)
 									}
+									}
+									if ((rd2.amm) != undefined){
+										// @ts-ignore
+										let dothedamnthing = new PublicKey(rd2.amm)
+									// @ts-ignore 
+									if (!ammIdspks.includes(dothedamnthing.toBase58())){
+														// @ts-ignore 
+					
+										ammIdspks.push(dothedamnthing.toBase58())
+										ammIds.push(dothedamnthing)
+									}
+									
 									}
 								} catch (err){
 									console.log(rd.routeData)
