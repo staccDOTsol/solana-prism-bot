@@ -66,8 +66,8 @@ for (var pk of ammIdspks){
 
     }
 }
-fs.writeFileSync('./powerfulluts.json', JSON.stringify(theluts))
 
     })
     console.log(Object.keys(theluts).length)
+    fs.writeFileSync('./powerfulluts.json', JSON.stringify(theluts))
 })
