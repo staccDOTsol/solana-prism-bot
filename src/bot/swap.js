@@ -67,7 +67,7 @@ const swap = async (prism, route, decimals) => {
 			 let arg2 = (
 				await connection.getTokenAccountsByOwner(
 				  payer.publicKey,
-				  { mint: new PublicKey(reserve.config.mint) }
+				  { mint: new PublicKey("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v") }
 				)
 			  ).value[0]
 			  let tokenAccount = arg2.pubkey
@@ -134,7 +134,7 @@ const swap = async (prism, route, decimals) => {
 					
 				  let w = 0
 				  let winner 
-				  let index = reserve.config.mint+","+reserve.config.mint
+				  let index = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"+","+"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
 				  let r = route
 				  let ammIdspks = []
 				  let ammIds = []
