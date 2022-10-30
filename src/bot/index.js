@@ -332,41 +332,14 @@ console.log(err)
 					}
 				}, 500);
 				
-				[tx, performanceOfTx] = await swap(prism, route, tokenA.decimals);
+				await swap(prism, route, tokenA.decimals);
 
 				// stop refreshing status
 				clearInterval(printTxStatus);
-
-				const profit = calculateProfit(
-					cache.currentBalance[cache.sideBuy ? "tokenB" : "tokenA"],
-					tx.outputAmount
-				);
-
-				tradeEntry = {
-					...tradeEntry,
-					outAmount: tx.outputAmount || 0,
-					profit,
-					performanceOfTx,
-					error: tx.error?.message || null,
-				};
-
-				// handle TX results
-				if (tx.error) failedSwapHandler(tradeEntry);
-				else {
-					if (cache.hotkeys.r) {
-						console.log("[R] - REVERT BACK SWAP - SUCCESS!");
-						cache.tradingEnabled = false;
-						console.log("TRADING DISABLED!");
-						cache.hotkeys.r = false;
-					}
-					successSwapHandler(tx, tradeEntry, tokenA, tokenA);
-				}
 			}
 		}
 
-		if (tx) {
 			cache.swappingRightNow = false;
-		}
 
 		printToConsole({
 			date,
