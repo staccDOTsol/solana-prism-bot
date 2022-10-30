@@ -234,7 +234,10 @@ checkRoutesResponse(routes);
 			ammIds =  JSON.parse(fs.readFileSync('./ammIds.json').toString())
 			
 			ammIdspks = JSON.parse(fs.readFileSync('./ammIdspks.json').toString())
-					
+					ammIds.push(tokenA.address)
+					ammIds.push(tokenB.address)
+					ammIdspks.push(tokenA.address)
+					ammIdspks.push(tokenB.address)
 		for (var file of [...routes,...routes2]){
 			try {
 
