@@ -151,6 +151,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2) => {
 				  let ammIds = []
 
 					for (var rd of Object.values(route.routeData)){
+						console.log(rd)
 						try {
 							// @ts-ignore
 							for(var rd2 of Object.values(rd.routeData)){
