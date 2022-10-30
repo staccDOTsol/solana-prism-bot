@@ -86,8 +86,11 @@ const setup = async () => {
 
 		spinner.text = "Setting up connection ...";
 		// connect to RPC
-	
+	let i = 0
 		for (var tok of tokenBs){
+			i++
+			setTimeout(async function(){
+			try {
 			const connection = new Connection(cache.config.rpc[Math.floor(Math.random() * cache.config.rpc.length)]);
 
 			spinner.text = "Loading Prism SDK...";
@@ -123,6 +126,10 @@ const setup = async () => {
 				tok.address,
 				tokenA.address
 			)
+			} catch (err){
+				console.log(err)
+			}
+		}, Math.random () * 1000 * i)
 		}
 		spinner.text = "Loading routes for the first time...";
 
