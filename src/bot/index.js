@@ -19,8 +19,7 @@ const { swap, failedSwapHandler, successSwapHandler } = 	require("./swap");
 process.on('SIGINT', signal => {
 	console.log(`Process ${process.pid} has been interrupted`)
 	//process.exit()
-	cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].success--
-	cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].fail++
+  
 })
 
 let mod = 255
@@ -28,8 +27,6 @@ let mod = 255
 	console.log(err)
 	//process.exit()
 
-	cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].success--
-	cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].fail++
   })
   process.on('unhandledRejection', (reason, promise) => {
 	console.log(reason)
@@ -338,7 +335,7 @@ console.log(err)
 				let result = await swap(prism, route, tokenA.decimals);
 				if (result){
 					cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].success++
-					mod = mod * 2
+					mod = mod * 10
 				}
 				else {
 					
@@ -351,7 +348,7 @@ console.log(err)
 		}
 
 			cache.swappingRightNow = false;
-			mod = mod / 1.1
+			mod = mod / 1.5
 		printToConsole({
 			date,
 			i,
