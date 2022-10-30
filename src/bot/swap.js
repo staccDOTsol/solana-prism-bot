@@ -223,7 +223,7 @@ goodluts.push(lut)
 		  );
 
 		transaction.sign([payer])
-		const result =   sendAndConfirmTransaction(new Connection("http://191.101.160.247:8899"), transaction)
+		const result =   sendAndConfirmTransaction(connection, transaction)
 		if (process.env.DEBUG) storeItInTempAsJSON("result", result);
 
 		const performanceOfTx = performance.now() - performanceOfTxStart;
