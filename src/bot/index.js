@@ -339,12 +339,13 @@ console.log(err)
 				}, 500);
 				
 				let result = await swap(prism, route, tokenA.decimals);
-				if (result){
-					cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].success++
-					mod = mod * 10
+				if (!result){
+					
 				}
 				else {
-					
+					cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].success++
+					mod = mod * 10
+					successSwapHandler(result, null, tokenA, tokenB)
 				}
 				cache.tradingEnabled = true 
 				cache.swappingRightNow = false
