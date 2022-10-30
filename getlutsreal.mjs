@@ -18493,7 +18493,7 @@ while (true) {
         .for(mints)
         // @ts-ignore
         .process(async (SOL_MINT) => {
-         await something(SOL_MINT, myluts);
+         await something(SOL_MINT, []);
         });
     });
 }
