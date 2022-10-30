@@ -219,7 +219,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2) => {
 				// @ts-ignore 
 				if (!ammIdspks.includes(dothedamnthing.toBase58())){
 									// @ts-ignore 
-
+   
 					ammIdspks.push(dothedamnthing.toBase58())
 					ammIds.push(dothedamnthing)
 				}
@@ -304,7 +304,7 @@ goodluts.push(lut)
 						}
 					}
 					if (index.split(',').length == 2){
-						console.log((Object.values(route.routeData)))
+						console.log((Object.values(route.routeData))[0])
 					}
 		console.log(goaccs.length)
 		const  messageV00 = new TransactionMessage({
