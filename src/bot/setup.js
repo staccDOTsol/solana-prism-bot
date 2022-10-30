@@ -88,7 +88,7 @@ const setup = async () => {
 		spinner.text = "Setting up connection ...";
 		// connect to RPC
 	let is = [] 
-	for (var i = 0; i <= cache.config.rpc.length; i++){
+	for (var i = 0; i < 5; i++){
 		is.push(i)
 	}
 	console.log(is)
