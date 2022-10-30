@@ -12,6 +12,9 @@ const cache = require("./cache");
 
 const setup = async () => {
 	let spinner, tokens, tokenA, tokenB, wallet;
+	let tokenBs = []
+	let prisms = {}
+	let prisms2 = {}
 	try {
 		// listen for hotkeys
 		//listenHotkeys();
@@ -31,7 +34,25 @@ const setup = async () => {
 			tokens = JSON.parse(fs.readFileSync("./temp/tokens.json"));
 			// find tokens full Object
 			tokenA = tokens.find((t) => t.address === cache.config.tokenA.address);
-			tokenB = tokenA
+			//tokenB = tokenA
+			let tbsa = []
+			cache.config.tokenBs ? tbsa = cache.config.tokenBs : tbsa = 
+			["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+			"9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i", 
+			"MangoCzJ36AjZyKwVj3VnYU4GTonjfVEnJmvvWaxLac","7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj",
+			"mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So", 
+		"JET6zMJWkCN9tpRT2v2jfAmm5VnQFDpUBCyaKojmGtz",
+	"7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU","LFNTYraetVioAPnGJht4yNg2aUZFXR776cMeN9VMjXp",
+"E5ndSkaB17Dm7CsD22dvcjfrYSDLCxFcMd6z8ddCk5wp",
+"C98A4nkJXhpVZNAZdHUA95RpTF3T4whtQubL3YobiUX9",
+"9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6",
+"PRSMNsEPqhGVCH1TtWiJqPjJyh2cKrLostPZTNy1o5x",
+"DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ",
+"METAewgxyPbgwsseH8T16a39CQ5VyVxZi9zXiDPY18m",
+			"MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey"]//todo:more
+			for (var addy of tbsa){
+				tokenBs.push(tokens.find((t) => t.address === addy));
+			}
 			if (cache.config.tradingStrategy !== "arbitrage") 
 				tokenB = tokens.find((t) => t.address === cache.config.tokenB.address);
 		} catch (error) {
@@ -69,35 +90,54 @@ const setup = async () => {
 
 		spinner.text = "Loading Prism SDK...";
 
-		const prism = await Prism.init({
-			user: wallet,
-			connection,
-			slippage:99,
-			host: {                                          // optional
-				// host platform fee account publickey base58
-				publicKey: "EDfPVAZmGLq1XhKgjpTby1byXMS2HcRqRf5j7zuQYcUg",
-				// fee bps e.g 5 => 0.05%
-				fee: 138,
-			  },
-		});
+		for (var tok of tokenBs){
+			console.log(tok.address)
+			prisms[tok.address]= await Prism.init({
+				user: wallet,
+				connection,
+				slippage:99,
+				host: {                                          // optional
+					// host platform fee account publickey base58
+					publicKey: "EDfPVAZmGLq1XhKgjpTby1byXMS2HcRqRf5j7zuQYcUg",
+					// fee bps e.g 5 => 0.05%
+					fee: 138,
+				  },
+			})
+			await prisms[tok.address].loadRoutes(
+				tokenA.address,
+				tok.address
+			)
+			prisms2[tok.address]= await Prism.init({
+				user: wallet,
+				connection,
+				slippage:99,
+				host: {                                          // optional
+					// host platform fee account publickey base58
+					publicKey: "EDfPVAZmGLq1XhKgjpTby1byXMS2HcRqRf5j7zuQYcUg",
+					// fee bps e.g 5 => 0.05%
+					fee: 138,
+				  },
+			})
+			await prisms2[tok.address].loadRoutes(
+				tok.address,
+				tokenA.address
+			)
+		}
 		spinner.text = "Loading routes for the first time...";
-		await prism.loadRoutes(
-			tokenA.address,
-			tokenB.address
-		)
+
 		
 		cache.isSetupDone = true;
 		spinner.succeed("Setup done!");
 
-		return { prism, tokenA, tokenB };
+		return { prisms, prisms2,tokenA, tokenB };
 	} catch (error) {
 		if (spinner)
 			spinner.fail(
 				chalk.bold.redBright(`Setting up failed!\n 	${spinner.text}`)
 			);
 		logExit(1, error);
-		process.exitCode = 1;
-		process.exit()
+		//process.exitCode = 1;
+		//process.exit()
 	}
 };
 
@@ -127,7 +167,7 @@ const getInitialOutAmountWithSlippage = async (
 		if (spinner)
 			spinner.fail(chalk.bold.redBright("Computing routes failed!\n"));
 		logExit(1, error);
-		process.exitCode = 1;
+		//process.exitCode = 1;
 	}
 };
 

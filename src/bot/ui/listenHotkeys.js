@@ -14,9 +14,9 @@ const listenHotkeys = () => {
 			// eslint-disable-next-line no-undef
 			if (global.botInterval) clearInterval(botInterval);
 			logExit(0, { message: "[CTRL]+[C] exiting by user " });
-			process.exitCode = 0;
+			//process.exitCode = 0;
 			process.stdin.setRawMode(false);
-			process.exit(0);
+			//process.exit(0);
 		}
 
 		// [E] - forced execution

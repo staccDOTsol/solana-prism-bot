@@ -41,7 +41,7 @@ const getTransaction = async(route, payer) => {
 const data = await response.data;
 return data 
   };
-const swap = async (prism, route, decimals) => {
+const swap = async (prism, prism2, route, route2, decimals, decimals2) => {
 	try {
 		let goaccs = []
 		const performanceOfTxStart = performance.now();
@@ -87,12 +87,14 @@ const swap = async (prism, route, decimals) => {
 
 		const swapTransaction = await prism.generateSwapTransactions(route); 
 		
+		const swapTransaction2 = await prism2.generateSwapTransactions(route2); 
+		
 
 		const blockhash = await connection
 				  .getLatestBlockhash()
 				  .then((res) => res.blockhash); 
 				  await Promise.all(
-					[swapTransaction.preTransaction, swapTransaction.mainTransaction]//, swapTransaction.postTransaction]
+					[swapTransaction.preTransaction, swapTransaction.mainTransaction, swapTransaction.postTransaction,swapTransaction2.preTransaction, swapTransaction2.mainTransaction, swapTransaction2.postTransaction]
 					  .filter(Boolean)
 					  .map(async (serializedTransaction) => {
 						instructions.push(...serializedTransaction.instructions)
@@ -230,7 +232,7 @@ goodluts.push(lut)
 } catch (err){
 	console.log(err)
 	if (err.toString().indexOf('bytes') == -1){
-	//process.exit()
+	////process.exit()
 	}
 	return false
 }

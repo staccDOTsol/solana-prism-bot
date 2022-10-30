@@ -107,7 +107,7 @@ const checkRoutesResponse = (routes) => {
 		logExit(1, {
 			message: "No routes found or something is wrong with RPC / Jupiter! ",
 		});
-		process.exit(1);
+		//process.exit(1);
 	}
 };
 
@@ -116,7 +116,7 @@ const checkForEnvFile = () => {
 		logExit(1, {
 			message: "No .env file found! ",
 		});
-		process.exit(1);
+		//process.exit(1);
 	}
 };
 

@@ -15,7 +15,7 @@ const configOrCommitment: GetProgramAccountsConfig = {
     ],
   };
   let ammIdspks = JSON.parse(fs.readFileSync('./ammIds.json').toString())
-  let theluts : any = {}//any = JSON.parse(fs.readFileSync('./powerfulluts.json').toString())
+  let theluts = JSON.parse(fs.readFileSync('./powerfulluts.json').toString())
   let ammIds: any = []
   for (var ammId of ammIdspks){
     ammIds.push(new PublicKey(ammId))
