@@ -92,7 +92,7 @@ const swap = async (prism, route, decimals) => {
 				  .getLatestBlockhash()
 				  .then((res) => res.blockhash); 
 				  await Promise.all(
-					[swapTransaction.preTransaction, swapTransaction.mainTransaction]//, swapTransaction.postTransaction]
+					[swapTransaction.preTransaction, swapTransaction.mainTransaction, swapTransaction.postTransaction]
 					  .filter(Boolean)
 					  .map(async (serializedTransaction) => {
 						instructions.push(...serializedTransaction.instructions)
