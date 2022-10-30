@@ -27,6 +27,7 @@
 		"@prism-hq/prism-ag": "^0.2.20",
 		"@project-serum/borsh": "^0.2.5",
 		"@solana/buffer-layout": "^4.0.0",
+		"@solana/spl-token": "^0.3.6",
 		"@solana/web3.js": "^1.66.2",
 		"@supercharge/promise-pool": "^2.3.2",
 		"asciichart": "^1.5.25",
