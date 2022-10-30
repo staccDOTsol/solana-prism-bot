@@ -18077,7 +18077,7 @@ async function something(SOL_MINT, myluts) {
 
 async function ha (){
 
-  var afile = JSON.parse( fs.readFileSync('./answersusdc.json').toString() )
+  var afile = JSON.parse( fs.readFileSync('./answerssol.json').toString() )
   let c = -1
   var newobj = {}
   for (var lutlist of Object.values(afile)){
@@ -18240,7 +18240,7 @@ index+=","+mi.id
 
                             // get routes based on from Token amount 10 USDC -> ? PRISM
                             try {
-                                var tanswers = JSON.parse(fs.readFileSync('./answersusdc.json').toString())
+                                var tanswers = JSON.parse(fs.readFileSync('./answerssol.json').toString())
 
                               if (!Object.keys(tanswers).includes(index)) {
                                 jares = [];
@@ -18292,12 +18292,12 @@ await sleep(1000)
                                       );
                                     }
                                   )
-                                );  var tanswers = JSON.parse(fs.readFileSync('./answersusdc.json').toString())
+                                );  var tanswers = JSON.parse(fs.readFileSync('./answerssol.json').toString())
 
                                 tanswers[index] = goaccs 
                               }
                             
-                              fs.writeFileSync("./answersusdc.json", JSON.stringify(tanswers))
+                              fs.writeFileSync("./answerssol.json", JSON.stringify(tanswers))
                               if (true) {
                                 jares = [];
                                var usdcToSol2 = await getCoinQuote(
