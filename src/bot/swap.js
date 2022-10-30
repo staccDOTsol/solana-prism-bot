@@ -87,14 +87,14 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2) => {
 
 		const swapTransaction = await prism.generateSwapTransactions(route); 
 		
-		const swapTransaction2 = await prism2.generateSwapTransactions(route2); 
+	//	const swapTransaction2 = await prism2.generateSwapTransactions(route2); 
 		
 
 		const blockhash = await connection
 				  .getLatestBlockhash()
 				  .then((res) => res.blockhash); 
 				  await Promise.all(
-					[swapTransaction.preTransaction, swapTransaction.mainTransaction, swapTransaction.postTransaction,swapTransaction2.preTransaction, swapTransaction2.mainTransaction, swapTransaction2.postTransaction]
+					[swapTransaction.preTransaction, swapTransaction.mainTransaction, swapTransaction.postTransaction/*,swapTransaction2.preTransaction, swapTransaction2.mainTransaction, swapTransaction2.postTransaction*/]
 					  .filter(Boolean)
 					  .map(async (serializedTransaction) => {
 						instructions.push(...serializedTransaction.instructions)
@@ -356,11 +356,6 @@ goodluts.push(lut)
 		console.log(goaccs.length)
 		let goaccst = [] 
 		
-		for (var goacc in  goaccs){
-			if (parseInt(goacc) % 3 == 0){
-				goaccst.push(goaccs[goacc])
-			}
-		}
 		console.log(goaccst)
 		const  messageV00 = new TransactionMessage({
 			payerKey: payer.publicKey,

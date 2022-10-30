@@ -38,7 +38,7 @@ const setup = async () => {
 			//tokenB = tokenA
 			let tbsa = []
 			cache.config.tokenBs ? tbsa = cache.config.tokenBs : tbsa = 
-			["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+			["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"]/*,
 			"9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i", 
 			"MangoCzJ36AjZyKwVj3VnYU4GTonjfVEnJmvvWaxLac","7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj",
 			"mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So", 
@@ -50,7 +50,7 @@ const setup = async () => {
 "PRSMNsEPqhGVCH1TtWiJqPjJyh2cKrLostPZTNy1o5x",
 "DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ",
 "METAewgxyPbgwsseH8T16a39CQ5VyVxZi9zXiDPY18m",
-			"MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey"]//todo:more
+			"MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey"]//todo:more */
 			for (var addy of tbsa){
 				tokenBs.push(tokens.find((t) => t.address === addy));
 			}
