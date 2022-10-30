@@ -46,7 +46,7 @@ const swap = async (prism, route, decimals) => {
 		let goaccs = []
 		const performanceOfTxStart = performance.now();
 
-		const connection = new Connection(cache.config.rpc[Math.floor(Math.random() * cache.config.rpc.length)]);
+		const connection = new Connection(cache.config.rpc[Math.floor(Math.random() * cache.config.rpc.length)], {commitment: 'singleGossip'});
 
 		const market = await SolendMarket.initialize(
 			connection,
@@ -73,7 +73,7 @@ const swap = async (prism, route, decimals) => {
 			  let tokenAccount = arg2.pubkey
 		   let instructions = [
 			 flashBorrowReserveLiquidityInstruction(
-			   Math.ceil(route.amountIn * 1.02 * 10 ** decimals),
+			   Math.ceil(route.amountIn * 10 ** decimals),
 			   new PublicKey(reserve.config.liquidityAddress),
 			   tokenAccount,
 			   new PublicKey(reserve.config.address),
@@ -92,7 +92,7 @@ const swap = async (prism, route, decimals) => {
 				  .getLatestBlockhash()
 				  .then((res) => res.blockhash); 
 				  await Promise.all(
-					[swapTransaction.preTransaction, swapTransaction.mainTransaction, swapTransaction.postTransaction]
+					[swapTransaction.preTransaction, swapTransaction.mainTransaction]//, swapTransaction.postTransaction]
 					  .filter(Boolean)
 					  .map(async (serializedTransaction) => {
 						instructions.push(...serializedTransaction.instructions)
@@ -100,7 +100,7 @@ const swap = async (prism, route, decimals) => {
 					  instructions.push(
 						flashRepayReserveLiquidityInstruction(
 						  
-							Math.ceil(route.amountIn * 1.02 * 10 ** decimals),
+							Math.ceil(route.amountIn * 10 ** decimals),
 							0,
 						  tokenAccount,
 						  new PublicKey(
@@ -127,10 +127,20 @@ const swap = async (prism, route, decimals) => {
 						  tokenAccount,
 						  tokenAccount,
 						  payer.publicKey,[],
-						  Math.floor(myshit * 1))
-						
+						  Math.floor(myshit * 1.0000)
+						)
 					  ); 
 					
+			
+					var blockhash2 = await connection
+					.getLatestBlockhash()
+					.then((res) => res.blockhash);
+
+			let                              messageV0 = new TransactionMessage({
+					payerKey: payer.publicKey,
+					recentBlockhash: blockhash2,
+					instructions,
+				  }).compileToV0Message();
 				  let w = 0
 				  let winner 
 				  let index = reserve.config.mint+","+reserve.config.mint
