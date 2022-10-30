@@ -192,14 +192,18 @@ const swap = async (prism, route, decimals) => {
 					 for (var blarg of index.split(',')){
 						console.log(blarg)
 						try {
+							let goodluts = []
  let luts = argh[blarg]
  console.log(luts)
  
  for (var lut of luts){
 						  let test = (await connection.getAddressLookupTable(new PublicKey(lut))).value
-	if (!goaccs.includes(test)){
+						  if (!goodluts.includes(lut)){
+goodluts.push(lut)
+							if (!goaccs.includes(test)){
 	goaccs.push(test)
 	}}
+}
 							
 						} catch (err){
 							console.log(err)
