@@ -19,7 +19,8 @@ const { swap, failedSwapHandler, successSwapHandler } = 	require("./swap");
 process.on('SIGINT', signal => {
 	console.log(`Process ${process.pid} has been interrupted`)
 	//process.exit()
-  
+	cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].success--
+	cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].fail++
 })
 
 let mod = 255
@@ -27,10 +28,15 @@ let mod = 255
 	console.log(err)
 	//process.exit()
 
+	cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].success--
+	cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].fail++
   })
   process.on('unhandledRejection', (reason, promise) => {
 	console.log(reason)
 //process.exit()
+
+cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].success--
+cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].fail++
   })
 const pingpongStrategy = async (prism, tokenA, tokenB) => {
 	cache.iteration++;
