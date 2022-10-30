@@ -200,7 +200,6 @@ const arbitrageStrategy = async (prism, tokenA) => {
 
 		// check current routes
 		const performanceOfRouteCompStart = performance.now();
-		let mod = Math.random()
 		baseAmount = mod * baseAmount
 		amountToTrade = mod * amountToTrade
 		const routes = prism.getRoutes(amountToTrade)
