@@ -335,7 +335,7 @@ console.log(err)
 				let result = await swap(prism, route, tokenA.decimals);
 				if (result){
 					cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].success++
-					mod = mod * 33.3
+					mod = mod * 10
 				}
 				else {
 					
@@ -348,7 +348,7 @@ console.log(err)
 		}
 
 			cache.swappingRightNow = false;
-			mod = mod / 3
+			mod = mod / 1.1
 		printToConsole({
 			date,
 			i,
