@@ -10,7 +10,7 @@ for (var lutlist of Object.values(afile)){
     let c2 = -1
 for (var addy of Object.keys(afile)[c].split(',')){
 c2++ 
-if (c2 > 1){
+if (c2 > 0){
     if (!Object.keys(newobj).includes(addy)){
     newobj[addy] = lutlist
     
