@@ -18,7 +18,7 @@ const configOrCommitment: GetProgramAccountsConfig = {
   let theluts : any = {}
   
   try {
-  theluts = JSON.parse(fs.readFileSync('./powerfulluts.json').toString())
+//  theluts = JSON.parse(fs.readFileSync('./powerfulluts.json').toString())
 
   } catch(err){
 
