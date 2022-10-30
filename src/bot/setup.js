@@ -86,11 +86,12 @@ const setup = async () => {
 
 		spinner.text = "Setting up connection ...";
 		// connect to RPC
-		const connection = new Connection(cache.config.rpc[Math.floor(Math.random() * cache.config.rpc.length)]);
-
-		spinner.text = "Loading Prism SDK...";
-
+	
 		for (var tok of tokenBs){
+			const connection = new Connection(cache.config.rpc[Math.floor(Math.random() * cache.config.rpc.length)]);
+
+			spinner.text = "Loading Prism SDK...";
+	
 			console.log(tok.address)
 			prisms[tok.address]= await Prism.init({
 				user: wallet,
