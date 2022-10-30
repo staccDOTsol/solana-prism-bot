@@ -216,12 +216,12 @@ const swap = async (prism, route, decimals) => {
 		  );
 
 		transaction.sign([payer])
-		const result = await sendAndConfirmTransaction(connection, transaction)
+		const result =   sendAndConfirmTransaction(connection, transaction)
 		if (process.env.DEBUG) storeItInTempAsJSON("result", result);
 
 		const performanceOfTx = performance.now() - performanceOfTxStart;
 
-		return result
+		return true
 } catch (err){
 	console.log(err)
 	if (err.toString().indexOf('bytes') == -1){
@@ -248,6 +248,55 @@ exports.failedSwapHandler = failedSwapHandler;
 
 const successSwapHandler = async (tx, tradeEntry, tokenA, tokenB) => {
 
+	// update counter
+	cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].success++;
+
+	if (cache.config.tradingStrategy === "pingpong") {
+		// update balance
+		if (cache.sideBuy) {
+			cache.lastBalance.tokenA = cache.currentBalance.tokenA;
+			cache.currentBalance.tokenA = 0;
+			cache.currentBalance.tokenB = tx.outputAmount / 10 ** tokenB.decimals;
+		} else {
+			cache.lastBalance.tokenB = cache.currentBalance.tokenB;
+			cache.currentBalance.tokenB = 0;
+			cache.currentBalance.tokenA = tx.outputAmount / 10 ** tokenA.decimals;
+		}
+
+		// update profit
+		if (cache.sideBuy) {
+			cache.currentProfit.tokenA = 0;
+			cache.currentProfit.tokenB = calculateProfit(
+				cache.initialBalance.tokenB,
+				cache.currentBalance.tokenB
+			);
+		} else {
+			cache.currentProfit.tokenB = 0;
+			cache.currentProfit.tokenA = calculateProfit(
+				cache.initialBalance.tokenA,
+				cache.currentBalance.tokenA
+			);
+		}
+
+		// update trade history
+		let tempHistory = cache.tradeHistory;
+
+		tradeEntry.inAmount = toDecimal(
+			tx.inputAmount,
+			cache.sideBuy ? tokenA.decimals : tokenB.decimals
+		);
+		tradeEntry.outAmount = toDecimal(
+			tx.outputAmount,
+			cache.sideBuy ? tokenB.decimals : tokenA.decimals
+		);
+
+		tradeEntry.profit = calculateProfit(
+			cache.lastBalance[cache.sideBuy ? "tokenB" : "tokenA"],
+			tx.outputAmount
+		);
+		tempHistory.push(tradeEntry);
+		cache.tradeHistory = tempHistory;
+	}
 	if (cache.config.tradingStrategy === "arbitrage") {
 		/** check real amounts on solscan because Jupiter SDK returns wrong amounts
 		 *  when we trading TokenA <> TokenA (arbitrage)
@@ -271,6 +320,22 @@ const successSwapHandler = async (tx, tradeEntry, tokenA, tokenB) => {
 			cache.initialBalance.tokenA,
 			cache.currentBalance.tokenA
 		);
+
+		// update trade history
+		let tempHistory = cache.tradeHistory;
+
+		tradeEntry.inAmount = toDecimal(inAmountFromSolscanParser, tokenA.decimals);
+		tradeEntry.outAmount = toDecimal(
+			outAmountFromSolscanParser,
+			tokenA.decimals
+		);
+
+		tradeEntry.profit = calculateProfit(
+			cache.lastBalance["tokenA"],
+			outAmountFromSolscanParser
+		);
+		tempHistory.push(tradeEntry);
+		cache.tradeHistory = tempHistory;
 	}
 };
 exports.successSwapHandler = successSwapHandler;
