@@ -14,7 +14,7 @@ const {
 
 	SolendMarket,
 	SOLEND_PRODUCTION_PROGRAM_ID
-  } = require( "@solendprotocol/solend-sdk" );
+  } = require( "../solend-sdk/dist" );
   const { Token } = require('@solana/spl-token');
 
   const payer = Keypair.fromSecretKey(
@@ -55,8 +55,8 @@ const swap = async (prism, route, decimals) => {
 			//"9QxPT2xEHn56kREPF83uAhrMXo1UtPL1hS2FfXS9sdpo"
 		   // market.address
 		  )
-		  var reserve  = market.reserves.find(res => res.config.liquidityToken.mint ==="EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v");// market.reserves.find((res) => 
-			// res.config.asset === route.from);
+		  var reserve  = market.reserves.find((res) => 
+			 res.config.asset === route.from);
 			 const params = {
 				units: 301517 + 301517 + 301517 + 101517 + 101517,
 				additionalFee: 1,
@@ -67,7 +67,7 @@ const swap = async (prism, route, decimals) => {
 			 let arg2 = (
 				await connection.getTokenAccountsByOwner(
 				  payer.publicKey,
-				  { mint: new PublicKey("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v") }
+				  { mint: new PublicKey(reserve.config.mint) }
 				)
 			  ).value[0]
 			  let tokenAccount = arg2.pubkey
@@ -107,12 +107,11 @@ const swap = async (prism, route, decimals) => {
 							reserve.config.liquidityAddress
 						  ),
 						  new PublicKey(
-							reserve.config.liquidityFeeReceiverAddress
+							reserve.config.liquidityAddress
 						  ),
 						  tokenAccount,
 						  new PublicKey(reserve.config.address),
-						  new PublicKey(market.config.address),
-
+						  new PublicKey("F8dCQofhBuspm1sVsrfr8NReJvGn1JfiR9xARnUBQgo1"),
 						  payer.publicKey,
 						  SOLEND_PRODUCTION_PROGRAM_ID
 						)
@@ -134,7 +133,7 @@ const swap = async (prism, route, decimals) => {
 					
 				  let w = 0
 				  let winner 
-				  let index = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"+","+"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+				  let index = reserve.config.mint+","+reserve.config.mint
 				  let r = route
 				  let ammIdspks = []
 				  let ammIds = []
