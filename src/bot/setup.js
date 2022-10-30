@@ -72,6 +72,7 @@ const setup = async () => {
 		const prism = await Prism.init({
 			user: wallet,
 			connection,
+			slippage:99,
 			host: {                                          // optional
 				// host platform fee account publickey base58
 				publicKey: "EDfPVAZmGLq1XhKgjpTby1byXMS2HcRqRf5j7zuQYcUg",
