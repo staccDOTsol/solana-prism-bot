@@ -279,7 +279,7 @@ console.log(err)
 		}
 	}  catch (Err){}
 		checkRoutesResponse(routes2);
-		const route2 = await routes2.find((r) => r.providers.length  <= 50);
+		const route2 = await routes2.find((r) => r.providers.length  <= 2);
 		// update slippage with "profit or kill" slippage
 		
 		// calculate profitability
