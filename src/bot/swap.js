@@ -46,7 +46,7 @@ const swap = async (prism, route, decimals) => {
 		let goaccs = []
 		const performanceOfTxStart = performance.now();
 
-		const connection = new Connection(cache.config.rpc[Math.floor(Math.random() * cache.config.rpc.length)], {commitment: 'singleGossip'});
+		const connection = new Connection(cache.config.rpc[Math.floor(Math.random() * cache.config.rpc.length)]);
 
 		const market = await SolendMarket.initialize(
 			connection,
