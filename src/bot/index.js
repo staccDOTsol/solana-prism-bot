@@ -190,7 +190,6 @@ const arbitrageStrategy = async (prisms, prisms2, tokenA) => {
 		tokens = JSON.parse(fs.readFileSync("./temp/tokens.json"));
 		// find tokens full Object
 		tokenB = tokens.find((t) => t.address === tokenB);
-		console.log(tokenB)
 		// Calculate amount that will be used for trade
 		let amountToTrade =
 			cache.config.tradeSize.strategy === "cumulative"
