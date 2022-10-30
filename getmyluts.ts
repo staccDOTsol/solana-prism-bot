@@ -15,7 +15,7 @@ const configOrCommitment: GetProgramAccountsConfig = {
     ],
   };
   let ammIdspks = JSON.parse(fs.readFileSync('./ammIds.json').toString())
-  let theluts  = {}
+  let theluts : any = {}
   
   try {
   theluts = JSON.parse(fs.readFileSync('./powerfulluts.json').toString())
