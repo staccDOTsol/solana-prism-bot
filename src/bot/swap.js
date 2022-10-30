@@ -169,6 +169,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2) => {
 									}
 									}
 								} catch (err){
+									console.log(rd.routeData)
 					
 								}
 							}
