@@ -260,7 +260,7 @@ console.log(err)
 			performance.now() - performanceOfRouteCompStart;
 
 				// choose first route
-		const route = routes[Math.floor(Math.random()*10)]//await routes.find((r) => r.providers.length  <= 50);
+		const route = await routes.find((r) => r.providers.length  <= 50);
 		// update slippage with "profit or kill" slippage
 		if (cache.config.slippage === "profitOrKill") {
 			route.amountWithFees = cache.lastBalance["tokenA"];
