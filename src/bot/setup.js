@@ -91,6 +91,7 @@ const setup = async () => {
 	for (var i = 0; i <= cache.config.rpc.length; i++){
 		is.push(i)
 	}
+	console.log(is)
 			await PromisePool.withConcurrency(cache.config.rpc.length)
 			.for(is)
 			// @ts-ignore
@@ -99,7 +100,8 @@ const setup = async () => {
 			  console.log(err);
 			})
 			// @ts-ignore
-			.process(async (i) => {			try {
+			.process(async (i) => {		
+					try {
 			const connection = new Connection(cache.config.rpc[i]);
 
 			spinner.text = "Loading Prism SDK...";
