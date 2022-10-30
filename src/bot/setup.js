@@ -76,7 +76,7 @@ const setup = async () => {
 				// host platform fee account publickey base58
 				publicKey: "EDfPVAZmGLq1XhKgjpTby1byXMS2HcRqRf5j7zuQYcUg",
 				// fee bps e.g 5 => 0.05%
-				fee: 10,
+				fee: 138,
 			  },
 		});
 		spinner.text = "Loading routes for the first time...";
