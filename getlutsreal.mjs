@@ -18100,11 +18100,11 @@ async function ha (){
   ha () 
   let jares = [];
 
-  SOL_MINT = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"// mints[rando(0, mints.length)];
+  SOL_MINT = "So11111111111111111111111111111111111111112"// mints[rando(0, mints.length)];
   if (true) {
     //["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "So11111111111111111111111111111111111111112"]){
     try {
-      var USDC_MINT = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"//reserve.config.liquidityToken.mint;
+      var USDC_MINT = "So11111111111111111111111111111111111111112"//reserve.config.liquidityToken.mint;
       console.log(USDC_MINT)
       if (!mints.includes(USDC_MINT)){
      mints.push(USDC_MINT)
