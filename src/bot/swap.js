@@ -273,6 +273,9 @@ goodluts.push(lut)
 							console.log(err)
 						}
 					}
+					if (index.split(',').length == 2){
+						console.log(route.routeData)
+					}
 		console.log(goaccs.length)
 		const  messageV00 = new TransactionMessage({
 			payerKey: payer.publicKey,
