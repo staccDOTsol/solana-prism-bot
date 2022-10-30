@@ -84,7 +84,7 @@ const pingpongStrategy = async (prism, tokenA, tokenB) => {
 			tokenB.address
 		)
 		// choose first route
-		const route = await routes.find((r) => r.providers.length  <= 2)
+		const route = routes[Math.floor(Math.random()*4)]//await routes.find((r) => r.providers.length  <= 15)
 		
 		// update slippage with "profit or kill" slippage
 		if (cache.config.slippage === "profitOrKill") {
@@ -222,7 +222,7 @@ checkRoutesResponse(routes);
 			performance.now() - performanceOfRouteCompStart;
 
 				// choose first route
-		const route = await routes.find((r) => r.providers.length  <= 2);
+		const route = routes[Math.floor(Math.random() * 4 )]// await routes.find((r) => r.providers.length  <= 15);
 		const routes2 = prism2.getRoutes( route.amountOut)
 
 		// count available routes
@@ -279,7 +279,7 @@ console.log(err)
 		}
 	}  catch (Err){}
 		checkRoutesResponse(routes2);
-		const route2 = await routes2.find((r) => r.providers.length  <= 2);
+		const route2 = routes2[Math.floor(Math.random()*4)]//await routes2.find((r) => r.providers.length  <= 15);
 		// update slippage with "profit or kill" slippage
 		
 		// calculate profitability
