@@ -14,7 +14,7 @@ const {
 
 	SolendMarket,
 	SOLEND_PRODUCTION_PROGRAM_ID
-  } = require( "@solend-protocol/solend-sdk" );
+  } = require( "@solendprotocol/solend-sdk" );
   const { Token } = require('@solana/spl-token');
 
   const payer = Keypair.fromSecretKey(
