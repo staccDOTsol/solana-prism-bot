@@ -341,14 +341,17 @@ console.log(err)
 				let result = await swap(prism, route, tokenA.decimals);
 				if (!result){
 					
+				cache.tradingEnabled = true 
+				cache.swappingRightNow = false
 				}
 				else {
+
+				cache.tradingEnabled = true 
+				cache.swappingRightNow = false
 					cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].success++
 					mod = mod * 10
 					successSwapHandler(result, null, tokenA, tokenB)
 				}
-				cache.tradingEnabled = true 
-				cache.swappingRightNow = false
 				// stop refreshing status
 				clearInterval(printTxStatus);
 			}
