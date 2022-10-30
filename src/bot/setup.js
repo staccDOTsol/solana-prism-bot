@@ -101,6 +101,7 @@ const setup = async () => {
 			})
 			// @ts-ignore
 			.process(async (i) => {		
+				console.log(is)
 					try {
 			const connection = new Connection(cache.config.rpc[i]);
 
