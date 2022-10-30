@@ -354,14 +354,12 @@ goodluts.push(lut)
 						console.log((Object.values(route.routeData))[0])
 					}
 		console.log(goaccs.length)
-		let goaccst = [] 
 		
-		console.log(goaccst)
 		const  messageV00 = new TransactionMessage({
 			payerKey: payer.publicKey,
 			recentBlockhash: blockhash,
 			instructions,
-		}).compileToV0Message(goaccst);
+		}).compileToV0Message(goaccs);
 		  const transaction = new VersionedTransaction(
 			messageV00
 		  );
