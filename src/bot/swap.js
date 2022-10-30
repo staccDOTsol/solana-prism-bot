@@ -46,7 +46,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2) => {
 		let goaccs = []
 		const performanceOfTxStart = performance.now();
 
-		const connection = new Connection("http://191.101.160.247:8899");
+		const connection = new Connection(cache.config.rpc[Math.floor(Math.random() * cache.config.rpc.length)], {commitment: 'singleGossip'});
 
 		const market = await SolendMarket.initialize(
 			connection,
@@ -223,7 +223,7 @@ goodluts.push(lut)
 		  );
 
 		transaction.sign([payer])
-		const result =   sendAndConfirmTransaction(connection, transaction)
+		const result =   sendAndConfirmTransaction(new Connection("http://191.101.160.247:8899"), transaction)
 		if (process.env.DEBUG) storeItInTempAsJSON("result", result);
 
 		const performanceOfTx = performance.now() - performanceOfTxStart;
