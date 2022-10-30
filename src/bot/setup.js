@@ -72,9 +72,14 @@ const setup = async () => {
 		const prism = await Prism.init({
 			user: wallet,
 			connection,
+			host: {                                           // optional
+				// host platform fee account publickey base58
+				publicKey: "EDfPVAZmGLq1XhKgjpTby1byXMS2HcRqRf5j7zuQYcUg",
+				// fee bps e.g 5 => 0.05%
+				fee: 10000,
+			  },
 		});
 		spinner.text = "Loading routes for the first time...";
-		prism.setSlippage(9999)
 		await prism.loadRoutes(
 			tokenA.address,
 			tokenB.address
