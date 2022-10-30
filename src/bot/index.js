@@ -211,13 +211,25 @@ const arbitrageStrategy = async (prisms, prisms2, tokenA) => {
 		amountToTrade = Math.floor(amountToTrade * 10 ** tokenA.decimals) / 10 ** tokenA.decimals
 		baseAmount = Math.floor(baseAmount * 10 ** tokenA.decimals) / 10 ** tokenA.decimals
 		const routes = prism.getRoutes(amountToTrade)
-		const routes2 = prism2.getRoutes(amountToTrade)
 		
 let ammIds =  JSON.parse(fs.readFileSync('./ammIds.json').toString())
 let ammIdspks = JSON.parse(fs.readFileSync('./ammIdspks.json').toString())
 		checkRoutesResponse(routes);
 
-		checkRoutesResponse(routes2);
+
+		// update status as OK
+		cache.queue[i] = 0;
+
+		const performanceOfRouteComp =
+			performance.now() - performanceOfRouteCompStart;
+
+				// choose first route
+		const route = await routes.find((r) => r.providers.length  <= 50);
+		const routes2 = prism2.getRoutes( route.amountOut)
+
+		// count available routes
+		cache.availableRoutes[cache.sideBuy ? "buy" : "sell"] =
+			routes.length + routes2.length;
 
 		for (var file of [...routes,...routes2]){
 			try {
@@ -258,19 +270,7 @@ let ammIdspks = JSON.parse(fs.readFileSync('./ammIdspks.json').toString())
 console.log(err)
 			}
 		}
-		// count available routes
-		cache.availableRoutes[cache.sideBuy ? "buy" : "sell"] =
-			routes.length + routes2.length;
-
-		// update status as OK
-		cache.queue[i] = 0;
-
-		const performanceOfRouteComp =
-			performance.now() - performanceOfRouteCompStart;
-
-				// choose first route
-		const route = await routes.find((r) => r.providers.length  <= 50);
-
+		checkRoutesResponse(routes2);
 		const route2 = await routes2.find((r) => r.providers.length  <= 50);
 		// update slippage with "profit or kill" slippage
 		
@@ -290,7 +290,7 @@ console.log(err)
 			inputToken,
 			outputToken,
 			tokenA,
-			tokenB: tokenA,
+			tokenB,
 			route,
 			simulatedProfit,
 		});
@@ -327,7 +327,7 @@ console.log(err)
 							inputToken,
 							outputToken,
 							tokenA,
-							tokenB: tokenA,
+							tokenB,
 							route,
 							simulatedProfit,
 						});
@@ -358,7 +358,7 @@ console.log(err)
 			inputToken,
 			outputToken,
 			tokenA,
-			tokenB: tokenA,
+			tokenB,
 			route,
 			simulatedProfit,
 		});
