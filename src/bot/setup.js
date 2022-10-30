@@ -9,6 +9,7 @@ const { logExit } = require("./exit");
 const { loadConfigFile } = require("../utils");
 const { intro, listenHotkeys } = require("./ui");
 const cache = require("./cache");
+const PromisePool = require("@supercharge/promise-pool").default;
 
 const setup = async () => {
 	let spinner, tokens, tokenA, tokenB, wallet;
@@ -86,16 +87,25 @@ const setup = async () => {
 
 		spinner.text = "Setting up connection ...";
 		// connect to RPC
-	let i = 0
-		for (var tok of tokenBs){
-			i++
-			setTimeout(async function(){
-			try {
-			const connection = new Connection(cache.config.rpc[Math.floor(Math.random() * cache.config.rpc.length)]);
+	let is = [] 
+	for (var i = 0; i <= cache.config.rpc.length; i++){
+		is.push(i)
+	}
+			await PromisePool.withConcurrency(cache.config.rpc.length)
+			.for(is)
+			// @ts-ignore
+			.handleError(async (err, asset) => {
+			  console.error(`\nError uploading or whatever`, err.message);
+			  console.log(err);
+			})
+			// @ts-ignore
+			.process(async (i) => {			try {
+			const connection = new Connection(cache.config.rpc[i]);
 
 			spinner.text = "Loading Prism SDK...";
-	
+			let tok = tokenBs[i]
 			console.log(tok.address)
+			
 			prisms[tok.address]= await Prism.init({
 				user: wallet,
 				connection,
@@ -107,10 +117,12 @@ const setup = async () => {
 					fee: 138,
 				  },
 			})
+			console.log(1)
 			await prisms[tok.address].loadRoutes(
 				tokenA.address,
 				tok.address
 			)
+			console.log(2)
 			prisms2[tok.address]= await Prism.init({
 				user: wallet,
 				connection,
@@ -122,6 +134,7 @@ const setup = async () => {
 					fee: 138,
 				  },
 			})
+			console.log(3)
 			await prisms2[tok.address].loadRoutes(
 				tok.address,
 				tokenA.address
@@ -129,8 +142,7 @@ const setup = async () => {
 			} catch (err){
 				console.log(err)
 			}
-		}, Math.random () * 1000 * i)
-		}
+		})
 		spinner.text = "Loading routes for the first time...";
 
 		
