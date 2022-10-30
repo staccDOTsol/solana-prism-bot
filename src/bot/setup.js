@@ -88,7 +88,7 @@ const setup = async () => {
 		spinner.text = "Setting up connection ...";
 		// connect to RPC
 	let is = [] 
-	for (var i = 0; i < cache.config.rpc.length / 2; i++){
+	for (var i = 0; i < 1; i++){
 		is.push(i)
 	}
 	console.log(is)
@@ -103,10 +103,10 @@ const setup = async () => {
 			.process(async (i) => {		
 				console.log(is)
 					try {
-			const connection = new Connection(cache.config.rpc[i]);
+			const connection = new Connection(cache.config.rpc[Math.floor(Math.random()*cache.config.rpc)]);
 
 			spinner.text = "Loading Prism SDK..." + is.length.toString();
-			let tok = tokenBs[i]
+			let tok = tokenBs[Math.floor(Math.random()*tokenBs.length)]
 			console.log(tok.address)
 			
 			prisms[tok.address]= await Prism.init({
