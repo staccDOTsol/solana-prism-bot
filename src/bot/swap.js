@@ -401,11 +401,6 @@ if (ourluts.length > 0){
 				  payer: payer.publicKey,
 				  recentSlot: slot,
 				});
-				let ttt = await connection
-				.getAddressLookupTable(lookupTableAddress)
-				.then((res) => res.value);
-				console.log(lookupTableAddress.toBase58())
-			
 
 ourluts.push(lookupTableAddress)
 tx.add(lookupTableInst)
@@ -428,7 +423,7 @@ tx.add(lookupTableInst)
 		const extendInstruction = AddressLookupTableProgram.extendLookupTable({
 			payer: payer.publicKey,
 			authority: payer.publicKey,
-			lookupTable: lookupTableAddress,
+			lookupTable: ourlut,
 			addresses: ss
 			
 		});
@@ -457,13 +452,13 @@ ourluts.push(lookupTableAddress)
 		  
 fs.writeFileSync('./luts.json',JSON.stringify(ourluts ))
 if (tx.instructions.length > 0){
+	console.log(...tx.instructions)
 await connection.sendTransaction(tx, [payer])
 }		
 const transaction = new VersionedTransaction(
 			messageV00
 		  );
 
-		transaction.sign(payer)
 		const result =   sendAndConfirmTransaction(connection, transaction)
 		if (process.env.DEBUG) storeItInTempAsJSON("result", result);
 
