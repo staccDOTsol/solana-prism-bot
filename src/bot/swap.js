@@ -404,7 +404,7 @@ tx.add(lookupTableInst)
 
 ourluts.push(lookupTableAddress)
 }
-if (ourluts.length != 0){
+if (ourluts.length > 1){
 	let ourlut =new PublicKey( Math.floor(Math.random(ourluts.length)))
 	let lookupTableAccount = await connection
 	.getAddressLookupTable(new PublicKey(ourlut))
