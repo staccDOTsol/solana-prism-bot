@@ -409,7 +409,7 @@ tx.add(lookupTableInst)
 		for (var bca of messageV12.staticAccountKeys){
 		  aaa++
 		  for (var lookupTableAccountaa of lookupTableAccounts){
-		  if (!lookupTableAccountaa.state.addresses.includes(bca.toBase58()) ){
+		  if (!lookupTableAccountaa.state.addresses.includes(bca) ){
 			if (ss.length < 15){
 		  ss.push(bca)  
 			}
