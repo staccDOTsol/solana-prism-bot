@@ -175,7 +175,7 @@ const setup = async () => {
 tokenBs.push(res.mint)
 
 }
-
+tokenBs = ["Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB"]
 console.log(tokenBs)
 	let prisms = {}
 	let prisms2 = {}
