@@ -345,7 +345,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 					for (var i2 of ammIdspks){
 						index= index+","+i2
 					}
-				  let argh = JSON.parse(fs.readFileSync('./powerfulluts.json').toString())
+				  let argh = JSON.parse(fs.readFileSync('./tluts.json').toString())
 				  console.log(index)
 				  let winner2 
 				  let blargs = []
