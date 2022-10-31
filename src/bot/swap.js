@@ -376,7 +376,7 @@ goodluts.push(lut)
 
 		ss = []
 		aaa = 0
-let ourluts = JSON.parse(fs.readFileSync('./powerfulluts.json').toString())
+let ourluts = JSON.parse(fs.readFileSync('./luts.json').toString())
 var lookupTableAccount, lookupTableAddress, lookupTableInst
 var lookupTableAccounts = []
 for (var ourlut of ourluts){
@@ -442,7 +442,7 @@ tx.add(extendInstruction)
 
 		}
 	}
-	fs.writeFileSync('./powerfulluts.json',JSON.stringify(tarr ))
+	fs.writeFileSync('./luts.json',JSON.stringify(tarr ))
 	//goaccs=tarr
 }
 	}
