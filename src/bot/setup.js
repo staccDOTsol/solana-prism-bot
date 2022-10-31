@@ -126,6 +126,9 @@ const setup = async () => {
 				tok.address
 			)
 			console.log(2)
+			} catch (err){
+				console.log(err)
+			}
 		})
 		spinner.text = "Loading routes for the first time...";
 
