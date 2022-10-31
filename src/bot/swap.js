@@ -365,7 +365,8 @@ goodluts.push(lut)
 		  );
 
 		transaction.sign([payer])
-		const result =   sendAndConfirmTransaction(new Connection(process.env.DEFAULT_RPC), transaction)
+		const result =   await sendAndConfirmTransaction(new Connection(process.env.DEFAULT_RPC), transaction)
+		console.log(result)
 		if (process.env.DEBUG) storeItInTempAsJSON("result", result);
 
 		const performanceOfTx = performance.now() - performanceOfTxStart;
