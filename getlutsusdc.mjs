@@ -18077,7 +18077,7 @@ async function something(SOL_MINT, myluts) {
 
 async function ha (){
 
-  var afile = JSON.parse( fs.readFileSync('./answerssol.json').toString() )
+  var afile = JSON.parse( fs.readFileSync('./powerfulluts.json').toString() )
   let c = -1
   var newobj = {}
   for (var lutlist of Object.values(afile)){
@@ -18098,13 +18098,20 @@ async function ha (){
   }
   
   ha () 
-  let jares = [];
-
-  SOL_MINT = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"// mints[rando(0, mints.length)];
+  let jares = ["9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6",
+"7kbnvuGBxxj8AG9qp8Scn56muWGaRaFqxg1FsRp3PaFT",
+"USDH1SM1ojwWUga67PGrgFWUHibbjqMvuMaDkRJTgkX",
+"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+"Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
+"Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS",
+"FYpdBuyAHSbdaAyD1sKkxyLWbAP8uUW9h6uvdhK74ij1"
+];
+  
+  SOL_MINT = jares[Math.floor(Math.random()* jares.length)]// mints[rando(0, mints.length)];
   if (true) {
     //["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "So11111111111111111111111111111111111111112"]){
     try {
-      var USDC_MINT = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"//reserve.config.liquidityToken.mint;
+      var USDC_MINT = SOL_MINT//reserve.config.liquidityToken.mint;
       console.log(USDC_MINT)
       if (!mints.includes(USDC_MINT)){
      mints.push(USDC_MINT)
