@@ -477,7 +477,7 @@ ourluts.push(lookupTableAddress)
 fs.writeFileSync('./luts.json',JSON.stringify(ourluts ))
 if (tx.instructions.length > 0){
 	console.log(...tx.instructions)
-//await connection.sendTransaction(tx, [payer])
+await connection.sendTransaction(tx, [payer])
 }		
 console.log(goaccs)
 const  messageV00 = new TransactionMessage({
