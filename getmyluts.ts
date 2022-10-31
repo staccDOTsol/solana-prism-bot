@@ -5,7 +5,11 @@ import fs from 'fs'
 setTimeout(async function(){
 // invalid cache. I will recommend using a paid RPC endpoint.
 let  connection = new Connection((process.env.NODE_ENV == 'production' ? 'https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ' : 'https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ'));
-var connection2= connection
+let ALT_RPC_LIST="https://solana-mainnet.g.alchemy.com/v2/1_5YWfzLWXOo_Y_Dm0s89VTlD5T_RKHn,https://solana-mainnet.g.alchemy.com/v2/QlAFXUZhGG-CoVy9r6vYAbsA7iiDnA9-,https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ,https://solana-mainnet.g.alchemy.com/v2/dVWUMrayL_U3UbmCbg0mouE9q4mUZfuc,https://solana-mainnet.g.alchemy.com/v2/dVWUMrayL_U3UbmCbg0mouE9q4mUZfuc,https://solana-mainnet.g.alchemy.com/v2/WM_Gl7ktiws7icLQVxLP5iVHNQTv8RNk,https://solana-mainnet.g.alchemy.com/v2/1_5YWfzLWXOo_Y_Dm0s89VTlD5T_RKHn"
+// @ts-ignore
+let ran = Math.floor(Math.random()*ALT_RPC_LIST?.split(',').length)
+// @ts-ignore
+var connection2= new Connection(ALT_RPC_LIST?.split(',')[ran])
 
 process.env.SEARCHER ? connection = connection2 : connection = connection
 const configOrCommitment: GetProgramAccountsConfig = {
@@ -25,7 +29,9 @@ const configOrCommitment: GetProgramAccountsConfig = {
   }
   let ammIds: any = []
   for (var ammId of ammIdspks){
-    ammIds.push(new PublicKey(ammId))
+    let ammIdpk = new PublicKey(ammId)
+    if (!ammIds.includes(ammIdpk))
+    ammIds.push(ammIdpk)
   }
 console.log(ammIds.length)
 
@@ -33,7 +39,7 @@ let myluts: any = {}
 
     let luts = await connection2.getProgramAccounts(AddressLookupTableProgram.programId)
     console.log(luts.length)
-    await PromisePool.withConcurrency(20)
+    await PromisePool.withConcurrency(200)
     .for(luts)
     // @ts-ignore
     .handleError(async (err, asset) => {
@@ -42,8 +48,10 @@ let myluts: any = {}
     })
     // @ts-ignore
     .process(async (lut: any) => {
+      var connection2= new Connection(ALT_RPC_LIST?.split(',')[ran])
+
       // @ts-ignore
-      let maybemine = await connection2.getAddressLookupTable(lut.pubkey)
+      let maybemine = await market.config.addres.getAddressLookupTable(lut.pubkey)
       
 if(maybemine.value?.state.addresses.length as number > 200){
     // @ts-ignore
@@ -56,6 +64,7 @@ for (var pk of ammIdspks){
 
     } else if ( pk === addypk){
     theluts[pk].push (lut.pubkey.toBase58())
+    console.log(Object.keys(theluts).length)
     //console.log(theluts[pk] .length)
 
        
