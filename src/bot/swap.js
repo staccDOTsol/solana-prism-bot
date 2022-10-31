@@ -66,7 +66,12 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 			 const ix =
 			 ComputeBudgetProgram.requestUnits(params);
 			 console.log(reserve.mint)
-
+			  try {
+				let la = new PublicKey(reserve.mint)
+			  }
+			  catch (err){
+				reserve.mint = "Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS"
+			  }
 			let ALT_RPC_LIST="https://solana-mainnet.g.alchemy.com/v2/1_5YWfzLWXOo_Y_Dm0s89VTlD5T_RKHn,https://solana-mainnet.g.alchemy.com/v2/QlAFXUZhGG-CoVy9r6vYAbsA7iiDnA9-,https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ,https://solana-mainnet.g.alchemy.com/v2/dVWUMrayL_U3UbmCbg0mouE9q4mUZfuc,https://solana-mainnet.g.alchemy.com/v2/dVWUMrayL_U3UbmCbg0mouE9q4mUZfuc,https://solana-mainnet.g.alchemy.com/v2/WM_Gl7ktiws7icLQVxLP5iVHNQTv8RNk,https://solana-mainnet.g.alchemy.com/v2/1_5YWfzLWXOo_Y_Dm0s89VTlD5T_RKHn"
 			// @ts-ignore
 			let ran = Math.floor(Math.random()*ALT_RPC_LIST?.split(',').length)
