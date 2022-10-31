@@ -402,8 +402,13 @@ var [lookupTableInst, lookupTableAddress] =
 
 tx.add(lookupTableInst)
 
+ourluts.push(lookupTableAddress)
 }
 if (ourluts.length != 0){
+	let ourlut =new PublicKey( Math.floor(Math.random(ourluts.length)))
+	let lookupTableAccount = await connection
+	.getAddressLookupTable(new PublicKey(ourlut))
+	.then((res) => res.value);
 			if (lookupTableAccount.state.addresses.length > 200){
 				var slot = await connection.getSlot("finalized")
 
@@ -447,6 +452,7 @@ tx.add(extendInstruction)
 			await connection.getLatestBlockhash()
 		  ).blockhash;
 tx.sign([payer])
+fs.writeFileSync(JSON.stringify(ourluts ))
 await sendAndConfirmTransaction(connection, tx)
 		  const transaction = new VersionedTransaction(
 			messageV00
