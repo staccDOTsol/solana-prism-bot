@@ -227,7 +227,7 @@ checkRoutesResponse(routes);
 				// choose first route
 		const route = routes[0]// await routes.find((r) => r.providers.length  <= 15);
 		//const routes2 = prism2.getRoutes( route.amountOut)
-		const routes2 = prism.getRoutes(route.amountOut)
+		const routes2 = prism2.getRoutes(route.amountOut)
 		const route2 = routes2[0]// await routes.find((r) => r.providers.length  <= 15);
 
 		// count available routes
@@ -390,7 +390,7 @@ console.log(err)
 		}
 
 			cache.swappingRightNow = false;
-			mod = mod / 1.2
+			mod = mod / 1.1
 			
 		printToConsole({
 			date,

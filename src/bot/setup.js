@@ -81,6 +81,9 @@ for (var market of markets){
 	 reserve = market.reserves[Math.floor(Math.random() * market.reserves.length)]
 	 reserve = reserve.config
   MINT = reserve.mint;
+  if (reserve.asset == 'PAI'){
+MINT = "Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS"
+  }
   tokenA ={address: MINT, decimals: reserve.dec, symbol: reserve.asset}
 }
 	
