@@ -428,8 +428,8 @@ const watcher = async (prisms, prisms2, tokenA, tokenB, market, reserve) => {
 			"AFbX8oGjGpmVFywbVouvhQSRmiW2aR1mohfahi4Y2AdB"]
 			let tb = tokenBs[Math.floor(Math.random()*tokenBs.length)]
 
-		let tokens = JSON.parse(fs.readFileSync("./temp/tokens.json"));
-			tokenB = tokens.find((t) => t.address === tb);
+			tokens = JSON.parse(fs.readFileSync("./solana.tokenlist.json"));
+			tokenB = tokens.tokens.find((t) => t.address === tb);
 			await arbitrageStrategy(prisms, prisms2, tokenA, tokenB, market, reserve);
 		}
 	}

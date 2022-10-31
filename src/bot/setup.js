@@ -19,14 +19,14 @@ const {
   } = require( "../solend-sdk/dist/index" );
 const setup = async () => {
 	let spinner, tokens, tokenA, tokenB, wallet;
-	tokens = JSON.parse(fs.readFileSync("./temp/tokens.json"));
+	tokens = JSON.parse(fs.readFileSync("./solana.tokenlist.json"));
 
-	let tokenBs = ["7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj"]/*,"mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So",
+	let tokenBs = ["7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj","mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So",
 "poLisWXnNRwC6oBu1vHiuKQzFjGL4XDSu4g9qjz9qVk",
 "4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R",
 "2FPyTwcZLUg1MDrwsyoP4D6s1tM7hAkHYRjkNb5w6Pxk","FoRGERiW7odcCBGU1bztZi16osPBHjxharvDathL5eds",
 "GENEtH5amGSi8kHAtQoezp1XEXwZJ8vcuePYnXdKrMYz",
-"AFbX8oGjGpmVFywbVouvhQSRmiW2aR1mohfahi4Y2AdB"]*/
+"AFbX8oGjGpmVFywbVouvhQSRmiW2aR1mohfahi4Y2AdB"]
 	let prisms = {}
 	let prisms2 = {}
 	try {
@@ -157,7 +157,7 @@ var connection2= new Connection(ALT_RPC_LIST?.split(',')[ran])
 			})
 			for (var tb of tokenBs){
 console.log(tb)
-				tokenB = tokens.find((t) => t.address === tb);
+				tokenB = tokens.tokens.find((t) => t.address === tb);
 			console.log(1)
 			await prisms[tokenA.address].loadRoutes(
 				tokenA.address,
