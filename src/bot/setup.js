@@ -38,7 +38,7 @@ const setup = async () => {
 			//tokenB = tokenA
 			let tbsa = []
 			cache.config.tokenBs ? tbsa = cache.config.tokenBs : tbsa = 
-			[//"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"]/*,*/
+			["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"]/*,
 			"9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i", 
 			"MangoCzJ36AjZyKwVj3VnYU4GTonjfVEnJmvvWaxLac","7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj",
 			"mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So", 
@@ -126,22 +126,6 @@ const setup = async () => {
 				tok.address
 			)
 			console.log(2)
-			prisms2[tok.address]= await Prism.init({
-				user: wallet,
-				connection,
-				slippage:99,
-				host: {                                          // optional
-					// host platform fee account publickey base58
-					publicKey: "EDfPVAZmGLq1XhKgjpTby1byXMS2HcRqRf5j7zuQYcUg",
-					// fee bps e.g 5 => 0.05%
-					fee: 138,
-				  },
-			})
-			console.log(3)
-			await prisms2[tok.address].loadRoutes(
-				tok.address,
-				tokenA.address
-			)
 			} catch (err){
 				console.log(err)
 			}
