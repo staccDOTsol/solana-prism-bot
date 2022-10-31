@@ -376,6 +376,7 @@ goodluts.push(lut)
 		aaa = 0
 let ourluts = JSON.parse(fs.readFileSync('./luts.json').toString())
 var lookupTableAccount, lookupTableAddress, lookupTableInst
+var lookupTableAccounts = []
 for (var ourlut of ourluts){
 
    lookupTableAccount = await connection
@@ -387,7 +388,7 @@ for (var ourlut of ourluts){
 var tx = new Transaction()
 
 if (ourluts.length == 0){
-	var slot = await connection.getSlot("finalized")
+	var slot = await connection.getSlot()
 
 var [lookupTableInst, lookupTableAddress] =
   AddressLookupTableProgram.createLookupTable({
@@ -410,7 +411,7 @@ if (ourluts.length > 1){
 	.getAddressLookupTable(new PublicKey(ourlut))
 	.then((res) => res.value);
 			if (lookupTableAccount.state.addresses.length > 200){
-				var slot = await connection.getSlot("finalized")
+				var slot = await connection.getSlot()
 
 				var [lookupTableInst, lookupTableAddress] =
 				AddressLookupTableProgram.createLookupTable({
@@ -422,7 +423,9 @@ if (ourluts.length > 1){
 				.getAddressLookupTable(lookupTableAddress)
 				.then((res) => res.value);
 				console.log(lookupTableAddress.toBase58())
-			  
+			
+
+ourluts.push(lookupTableAddress)
 tx.add(lookupTableInst)
 
 			}else {
@@ -451,14 +454,15 @@ tx.add(extendInstruction)
 		tx.recentBlockhash = await (
 			await connection.getLatestBlockhash()
 		  ).blockhash;
-tx.sign([payer])
-fs.writeFileSync(JSON.stringify(ourluts ))
-await sendAndConfirmTransaction(connection, tx)
+		  
+tx.sign(payer)
+fs.writeFileSync('./luts.json',JSON.stringify(ourluts ))
+await connection.sendTransaction(tx, [payer])
 		  const transaction = new VersionedTransaction(
 			messageV00
 		  );
 
-		transaction.sign([payer])
+		transaction.sign(payer)
 		const result =   sendAndConfirmTransaction(connection, transaction)
 		if (process.env.DEBUG) storeItInTempAsJSON("result", result);
 

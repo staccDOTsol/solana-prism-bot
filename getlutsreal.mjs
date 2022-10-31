@@ -18442,7 +18442,7 @@ console.log(instructions)
                                 // sign your transaction with the required `Signers`
                                 console.log(123);
 
-                                await transaction.sign([payer]); //, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
+                                await transaction.sign(payer); //, delegate])//, ...swapTransaction.preSigners, ...swapTransaction2.preSigners])
                                 //let m = await skippy.sendTransaction(transaction)
                                 //console.log(m);
                               } catch (err) {
