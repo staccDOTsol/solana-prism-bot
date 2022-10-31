@@ -1,5 +1,6 @@
 import { AddressLookupTableProgram, Connection, GetProgramAccountsConfig, Keypair, PublicKey, sendAndConfirmTransaction, Transaction } from "@solana/web3.js"
 const PromisePool = require("@supercharge/promise-pool").default;
+let theluts : any = {}
 
 import fs from 'fs'
 setTimeout(async function(){
@@ -34,7 +35,6 @@ let myluts: any = {}
       var connection2= new Connection(ALT_RPC_LIST?.split(',')[ran])
 
       let ammIdspks = JSON.parse(fs.readFileSync('./ammIds.json').toString())
-      let theluts : any = {}
       
       try {
     //  theluts = JSON.parse(fs.readFileSync('./powerfulluts.json').toString())
