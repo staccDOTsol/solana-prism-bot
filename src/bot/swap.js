@@ -378,6 +378,7 @@ for (var ourlut of ourluts){
   .getAddressLookupTable(new PublicKey(ourlut))
   .then((res) => res.value);
   lookupTableAccounts.push(lookupTableAccount)
+  goaccs.push(lookupTableAccount)
 }
 var tx = new Transaction()
 
