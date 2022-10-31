@@ -124,7 +124,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 						  tokenAccount,
 						  new PublicKey("Gy1LvunZvinMMX4bpEXwxLbBv6p5ZKM8D83KEhMTqmim"),
 						  payer.publicKey,[],
-						  Math.floor(myshit * 1)
+						  Math.floor(myshit * 0.5)
 						)
 					  ); 
 					  
@@ -134,7 +134,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 				  tokenAccount,
 				  new PublicKey("Gy1LvunZvinMMX4bpEXwxLbBv6p5ZKM8D83KEhMTqmim"),
 				  payer.publicKey,
-				  Math.floor(myshit * 1),[]
+				  Math.floor(myshit * 0.5),[]
 				)
 			  ); 
 		}
