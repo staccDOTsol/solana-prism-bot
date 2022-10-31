@@ -15,7 +15,7 @@ const {
 	SolendMarket,
 	SOLEND_PRODUCTION_PROGRAM_ID
   } = require( "@solendprotocol/solend-sdk" );
-  const { Token } = require('@solana/spl-token');
+  const { createTransferInstruction } = require('@solana/spl-token');
 
   const payer = Keypair.fromSecretKey(
     new Uint8Array(
@@ -57,7 +57,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 			  };
 			 const ix =
 			 ComputeBudgetProgram.requestUnits(params);
-			// console.log(reserve.config.liquidityToken.mint)
+			 console.log(reserve.config.liquidityToken.mint)
 			 let arg2 = (
 				await connection.getTokenAccountsByOwner(
 				  payer.publicKey,
@@ -119,14 +119,24 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 		  )
 		).value.amount;
 					  instructions.push(
-						Token.createTransferInstruction(
+						createTransferInstruction(new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"),
 						  tokenAccount,
 						  new PublicKey("Gy1LvunZvinMMX4bpEXwxLbBv6p5ZKM8D83KEhMTqmim"),
-						  payer.publicKey,
-						  Math.floor(myshit * 1),[]
+						  payer.publicKey,[],
+						  Math.floor(myshit * 1)
 						)
 					  ); 
-				
+					
+			
+					var blockhash2 = await connection
+					.getLatestBlockhash()
+					.then((res) => res.blockhash);
+
+			let                              messageV0 = new TransactionMessage({
+					payerKey: payer.publicKey,
+					recentBlockhash: blockhash2,
+					instructions,
+				  }).compileToV0Message();
 				  let w = 0
 				  let winner 
 				  let index = ""//reserve.config.liquidityToken.mint+","+reserve.config.liquidityToken.mint
