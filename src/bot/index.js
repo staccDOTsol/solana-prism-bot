@@ -252,6 +252,7 @@ checkRoutesResponse(routes);
 								try {
 												// @ts-ignore 
 				
+												
 								if ((rd2.orcaPool) != undefined){
 									let dothedamnthing = rd2.oracaPool.orcaTokenSwapId
 									if (!ammIdspks.includes(dothedamnthing.toBase58())){
@@ -265,6 +266,17 @@ checkRoutesResponse(routes);
 								if ((rd2.ammId) != undefined){
 									// @ts-ignore
 									let dothedamnthing = new PublicKey(rd2.ammId)
+								// @ts-ignore 
+								if (!ammIdspks.includes(dothedamnthing.toBase58())){
+													// @ts-ignore 
+				
+									ammIdspks.push(dothedamnthing.toBase58())
+									ammIds.push(dothedamnthing)
+								}
+								}
+								if ((rd2.swapAccount) != undefined){
+									// @ts-ignore
+									let dothedamnthing = new PublicKey(rd2.swapAccount)
 								// @ts-ignore 
 								if (!ammIdspks.includes(dothedamnthing.toBase58())){
 													// @ts-ignore 
