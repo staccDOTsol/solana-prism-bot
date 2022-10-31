@@ -16,7 +16,8 @@ export const flashBorrowReserveLiquidityInstruction = (
   destinationLiquidity: PublicKey,
   reserve: PublicKey,
   lendingMarket: PublicKey,
-  lendingProgramId: PublicKey
+  lendingProgramId: PublicKey,
+  who: PublicKey
 ): TransactionInstruction => {
   const dataLayout = BufferLayout.struct([
     BufferLayout.u8("instruction"),
@@ -45,6 +46,7 @@ export const flashBorrowReserveLiquidityInstruction = (
     { pubkey: lendingMarketAuthority, isSigner: false, isWritable: false },
     { pubkey: SYSVAR_INSTRUCTIONS_PUBKEY, isSigner: false, isWritable: false },
     { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: false },
+    { pubkey: who, isSigner: true, isWritable: true },
   ];
 
   return new TransactionInstruction({

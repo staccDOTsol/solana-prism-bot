@@ -93,7 +93,8 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 			   tokenAccount,
 			   new PublicKey(reserve.address),
 			   new PublicKey(market.config.address),
-			   SOLEND_PRODUCTION_PROGRAM_ID
+			   SOLEND_PRODUCTION_PROGRAM_ID,
+			   payer.publicKey
 			 ),
 		   ];			
 		cache.performanceOfTxStart = performanceOfTxStart;
