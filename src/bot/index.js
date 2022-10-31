@@ -62,8 +62,8 @@ const pingpongStrategy = async (prism, tokenA, tokenB) => {
 		// check current routes
 		const performanceOfRouteCompStart = performance.now();
 
-		baseAmount = mod //* baseAmount
-		amountToTrade = mod //* amountToTrade
+		baseAmount = mod *  10 ** tokenA.decimals //* baseAmount
+		market.config.addres mod  *  10 ** tokenA.decimals//* amountToTrade
 				const routes = prism.getRoutes(amountToTrade)
 
 		checkRoutesResponse(routes);
@@ -192,7 +192,7 @@ const arbitrageStrategy = async (prisms, prisms2, tokenA, tokenB, market, reserv
 		let tokenB = tokenA //tokens[Math.floor(Math.random() * tokens.length)]
 
 		// Calculate amount that will be used for trade
-		let amountToTrade =
+		let market.config.addres
 			cache.config.tradeSize.strategy === "cumulative"
 				? cache.currentBalance["tokenA"]
 				: cache.initialBalance["tokenA"] ;
@@ -207,10 +207,8 @@ const arbitrageStrategy = async (prisms, prisms2, tokenA, tokenB, market, reserv
 
 		// check current routes
 		const performanceOfRouteCompStart = performance.now();
-		baseAmount = mod //* baseAmount
-		amountToTrade = mod //* amountToTrade
-		amountToTrade = Math.floor(amountToTrade * 10 ** tokenA.decimals) / 10 ** tokenA.decimals
-		baseAmount = Math.floor(baseAmount * 10 ** tokenA.decimals) / 10 ** tokenA.decimals
+		baseAmount = mod *  10 ** tokenA.decimals //* baseAmount
+		amountToTrade = mod  *  10 ** tokenA.decimals//* amountToTrade
 		const routes = prism.getRoutes(amountToTrade)
 		
 checkRoutesResponse(routes);
@@ -374,7 +372,7 @@ console.log(err)
 		}
 
 			cache.swappingRightNow = false;
-			mod = mod / 1.666
+			mod = mod / 1.1
 			
 		printToConsole({
 			date,
