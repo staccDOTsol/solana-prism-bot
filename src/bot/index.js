@@ -190,7 +190,8 @@ const arbitrageStrategy = async (prisms, prisms2, tokenA, tokenB, market, reserv
 		
 		let prism = prisms[tokenA.address]
 		let ran2 = Math.floor(Math.random() * Object.keys(prisms2).length)
-		let prism2 = prisms2[Object.keys(prisms2)[ran2]]
+
+		tokenB = tokenA//let prism2 = prisms2[Object.keys(prisms2)[ran2]]
 		//let prism2 = prisms2[tokenB]
 		// find tokens full Object
 		//let tokenB = tokenA //tokens[Math.floor(Math.random() * tokens.length)]
@@ -229,12 +230,12 @@ checkRoutesResponse(routes);
 				// choose first route
 		const route =  await routes.find((r) => r.providers.length  <=1);
 		//const routes2 = prism2.getRoutes( route.amountOut)
-		const routes2 = prism2.getRoutes(route.amountOut)
-		const route2 =  await routes2.find((r) => r.providers.length  <= 2);
+//		const routes2 = prism2.getRoutes(route.amountOut)
+	//	const route2 =  await routes2.find((r) => r.providers.length  <= 2);
 
 		// count available routes
 		cache.availableRoutes[cache.sideBuy ? "buy" : "sell"] =
-			routes.length + routes2.length;
+			routes.length// + routes2.length;
 			let ammIds = [ ]
 			let ammIdspks = []
 			try {
@@ -318,7 +319,7 @@ console.log(err)
 		
 		// calculate profitability
 
-		let simulatedProfit = calculateProfit(amountToTrade, route2.amountOut);
+		let simulatedProfit = calculateProfit(amountToTrade, route.amountOut);
 
 		// store max profit spotted
 		if (simulatedProfit > cache.maxProfitSpotted["buy"]) {
@@ -355,7 +356,7 @@ console.log(err)
 					inputToken: inputToken.symbol,
 					outputToken: outputToken.symbol,
 					inAmount: toDecimal(route.inAmount, inputToken.decimals),
-					expectedOutAmount: toDecimal(route2.amountOut, outputToken.decimals),
+					expectedOutAmount: toDecimal(route.amountOut, outputToken.decimals),
 					expectedProfit: simulatedProfit,
 				};
 
@@ -376,7 +377,7 @@ console.log(err)
 					}
 				}, 500);
 				
-				let result = await swap(prism, prism, route, route2, tokenA.decimals, tokenB.decimals, market);
+				let result = await swap(prism, prism, route, route, tokenA.decimals, tokenB.decimals, market);
 				if (result){
 					cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].success++
 					mod = mod * 10

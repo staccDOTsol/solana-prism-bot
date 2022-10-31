@@ -311,9 +311,9 @@ console.log(tb)
 			console.log(1)
 			await prisms[tokenA.address].loadRoutes(
 				tokenA.address,
-				tokenB.address
+				tokenA.address
 			)
-			prisms2[tokenB.address]= await Prism.init({
+/*			prisms2[tokenB.address]= await Prism.init({
 				user: wallet,
 				connection: connection2,
 				slippage:99,
@@ -329,7 +329,7 @@ console.log(tb)
 				tokenB.address,
 				tokenA.address
 			)
-
+*/
 			console.log(2)
 			}
 			good = true 

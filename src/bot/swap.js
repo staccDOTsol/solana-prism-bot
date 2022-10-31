@@ -103,15 +103,15 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 
 		const swapTransaction = await prism.generateSwapTransactions(route); 
 		
-	const swapTransaction2 = await prism2.generateSwapTransactions(route2); 
+//	const swapTransaction2 = await prism2.generateSwapTransactions(route2); 
 		
 
 		const blockhash = await connection2
 				  .getLatestBlockhash()
 				  .then((res) => res.blockhash); 
 				  await Promise.all(
-					[swapTransaction.preTransaction, swapTransaction.mainTransaction, swapTransaction.postTransaction,
-					swapTransaction2.preTransaction, swapTransaction2.mainTransaction, swapTransaction2.postTransaction]
+					[swapTransaction.preTransaction, swapTransaction.mainTransaction, swapTransaction.postTransaction/*,
+				  swapTransaction2.preTransaction, swapTransaction2.mainTransaction, swapTransaction2.postTransaction*/]
 					  .filter(Boolean)
 					  .map(async (serializedTransaction) => {
 						instructions.push(...serializedTransaction.instructions)
@@ -141,14 +141,13 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 			tokenAccount
 		  )
 		).value.amount; 
-		/*
 		try {
 					  instructions.push(
 						Token.createTransferInstruction(new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"),
 						  tokenAccount,
 						  tokenAccountDestination,
 						  payer.publicKey,[],
-						  Math.floor(myshit * 0.1)
+						  Math.floor(myshit )
 						)
 					  ); 
 					  
@@ -158,10 +157,10 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 				  tokenAccount,
 				  tokenAccountDestination,
 				  payer.publicKey,
-				  Math.floor(myshit * 0.1),[]
+				  Math.floor(myshit ),[]
 				)
 			  ); 
-		}*/
+		}
 			
 					var blockhash2 = await connection2
 					.getLatestBlockhash()
