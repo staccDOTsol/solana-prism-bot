@@ -77,7 +77,7 @@ const main = async () => {
   }
 
   const solATA = await getATA(
-    new PublicKey(solReserve.config.liquidityToken.mint),
+    new PublicKey(solreserve.mint),
     payer.publicKey
   );
 
@@ -91,16 +91,16 @@ const main = async () => {
       1e9,
 
       // source liquidity
-      new PublicKey(solReserve.config.liquidityAddress),
+      new PublicKey(solreserve.liquidityAddress),
 
       // destination liquidity
       solATA,
 
       // reserve address
-      new PublicKey(solReserve.config.address),
+      new PublicKey(solreserve.address),
 
       // lending market address
-      new PublicKey(market.config.address),
+      new PublicKey(market.address),
 
       // program id
       SOLEND_BETA_PROGRAM_ID
@@ -116,16 +116,16 @@ const main = async () => {
       solATA,
 
       // destination liquidity
-      new PublicKey(solReserve.config.liquidityAddress),
+      new PublicKey(solreserve.liquidityAddress),
 
       // fee receiver
-      new PublicKey(solReserve.config.liquidityFeeReceiverAddress),
+      new PublicKey(solreserve.liquidityFeeReceiverAddress),
 
       // host fees
       solATA,
 
       // reserve address
-      new PublicKey(solReserve.config.address),
+      new PublicKey(solreserve.address),
 
       // lending market address
       new PublicKey(market.config!.address),

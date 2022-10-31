@@ -60,7 +60,7 @@ export class SolendObligation {
     const deposits = obligation.deposits.map((deposit) => {
       const reserve = reserves.find(
         (reserve) =>
-          reserve.config.address === deposit.depositReserve.toBase58()
+          reserve.address === deposit.depositReserve.toBase58()
       );
       const loanToValue = reserve!.stats!.loanToValueRatio;
       const liqThreshold = reserve!.stats!.liquidationThreshold;
@@ -98,7 +98,7 @@ export class SolendObligation {
 
     const borrows = obligation.borrows.map((borrow) => {
       const reserve = reserves.find(
-        (reserve) => reserve.config.address === borrow.borrowReserve.toBase58()
+        (reserve) => reserve.address === borrow.borrowReserve.toBase58()
       );
 
       const borrowAmount = new BN(

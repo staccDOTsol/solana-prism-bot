@@ -43,9 +43,9 @@ describe("flash loan", () => {
       tx.add(
         flashBorrowReserveLiquidityInstruction(
           100,
-          new PublicKey(reserve.config.liquidityAddress),
+          new PublicKey(reserve.liquidityAddress),
           tokenAccount,
-          new PublicKey(reserve.config.address),
+          new PublicKey(reserve.address),
           new PublicKey(market.config!.address),
           SOLEND_DEVNET_PROGRAM_ID
         ),
@@ -53,10 +53,10 @@ describe("flash loan", () => {
           100,
           0,
           tokenAccount,
-          new PublicKey(reserve.config.liquidityAddress),
-          new PublicKey(reserve.config.liquidityFeeReceiverAddress),
+          new PublicKey(reserve.liquidityAddress),
+          new PublicKey(reserve.liquidityFeeReceiverAddress),
           tokenAccount,
-          new PublicKey(reserve.config.address),
+          new PublicKey(reserve.address),
           new PublicKey(market.config!.address),
           delegate.publicKey,
           SOLEND_DEVNET_PROGRAM_ID

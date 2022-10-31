@@ -335,7 +335,7 @@ export class SolendMarket {
         ...externalRewards
           .filter(
             (externalReward) =>
-              externalReward.reserveID === reserve.config.address &&
+              externalReward.reserveID === reserve.address &&
               externalReward.side === "supply"
           )
           .map((externalReward) => ({
@@ -353,7 +353,7 @@ export class SolendMarket {
         ...externalRewards
           .filter(
             (externalReward) =>
-              externalReward.reserveID === reserve.config.address &&
+              externalReward.reserveID === reserve.address &&
               externalReward.side === "borrow"
           )
           .map((externalReward) => ({
@@ -369,7 +369,7 @@ export class SolendMarket {
 
       return {
         ...acc,
-        [reserve.config.liquidityToken.mint]: {
+        [reserve.mint]: {
           supply,
           borrow,
         },
@@ -385,7 +385,7 @@ export class SolendMarket {
 
   async loadReserves() {
     const addresses = this.reserves.map(
-      (reserve) => new PublicKey(reserve.config.address)
+      (reserve) => new PublicKey(reserve.address)
     );
     const reserveAccounts = await this.connection.getMultipleAccountsInfo(
       addresses,

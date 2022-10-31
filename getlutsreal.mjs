@@ -18104,7 +18104,7 @@ async function ha (){
   if (true) {
     //["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "So11111111111111111111111111111111111111112"]){
     try {
-      var USDC_MINT = "So11111111111111111111111111111111111111112"//reserve.config.liquidityToken.mint;
+      var USDC_MINT = "So11111111111111111111111111111111111111112"//reserve.mint;
       console.log(USDC_MINT)
       if (!mints.includes(USDC_MINT)){
      mints.push(USDC_MINT)
@@ -18113,7 +18113,7 @@ async function ha (){
         //USDC_MINT != "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v") {
         //has.includes(USDC_MINT) ){
 
-        var dec = 6//reserve.config.liquidityToken.decimals;
+        var dec = 6//reserve.liquidityToken.decimals;
         let min = 0.03//reserve.stats.flashLoanFeePercentage;
         let cba = -1;
         if (true
@@ -18387,14 +18387,14 @@ await sleep(1000)
                                   1,
                                   tokenAccount,
                                   new PublicKey(
-                                    reserve.config.liquidityAddress
+                                    reserve.liquidityAddress
                                   ),
                                   new PublicKey(
-                                    reserve.config.liquidityFeeReceiverAddress
+                                    reserve.liquidityFeeReceiverAddress
                                   ),
                                   tokenAccount,
-                                  new PublicKey(reserve.config.address),
-                                  new PublicKey(market.config.address),
+                                  new PublicKey(reserve.address),
+                                  new PublicKey(market.address),
                                   payer.publicKey,
                                   SOLEND_PRODUCTION_PROGRAM_ID
                                 )

@@ -22,7 +22,7 @@ process.on('SIGINT', signal => {
   
 })
 
-let mod = 255
+let mod = 50
   process.on('uncaughtException', err => {
 	console.log(err)
 	////process.exit()
@@ -178,6 +178,7 @@ const pingpongStrategy = async (prism, tokenA, tokenB) => {
 const arbitrageStrategy = async (prisms, prisms2, tokenA, tokenB, market, reserve) => {
 	cache.iteration++;
 	const date = new Date();
+
 	const i = cache.iteration;
 	cache.queue[i] = -1;
 	try {
@@ -188,7 +189,7 @@ const arbitrageStrategy = async (prisms, prisms2, tokenA, tokenB, market, reserv
 		//let prism2 = prisms2[tokenB]
 		tokens = JSON.parse(fs.readFileSync("./temp/tokens.json"));
 		// find tokens full Object
-		let tokenB = tokenA 
+		let tokenB = tokenA //tokens[Math.floor(Math.random() * tokens.length)]
 
 		// Calculate amount that will be used for trade
 		let amountToTrade =
@@ -373,7 +374,7 @@ console.log(err)
 		}
 
 			cache.swappingRightNow = false;
-			mod = mod / 1.1
+			mod = mod / 1.666
 			
 		printToConsole({
 			date,

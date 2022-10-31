@@ -14,12 +14,9 @@ let MINT
 	let reserve	
 const {
 	
-	flashBorrowReserveLiquidityInstruction,
-	flashRepayReserveLiquidityInstruction,
-
 	SolendMarket,
-	SOLEND_PRODUCTION_PROGRAM_ID
-  } = require( "./src/solend-sdk/dist" );
+	
+  } = require( "../solend-sdk/dist/index" );
 const setup = async () => {
 	let spinner, tokens, tokenA, tokenB, wallet;
 	let tokenBs = []
@@ -41,11 +38,13 @@ const setup = async () => {
 			color: "magenta",
 		}).start();
 
+		let good = false
+		if ( true ){
 		// read tokens.json file
 		try {
 			tokens = JSON.parse(fs.readFileSync("./temp/tokens.json"));
 			// find tokens full Object
-			tokenA = tokens.find((t) => t.address === cache.config.tokenA.address);
+			//tokenA = tokens.find((t) => t.address === cache.config.tokenA.address);
 			//tokenB = tokenA
 			let tbsa = []
 		
@@ -73,16 +72,14 @@ let configs = JSON.parse(fs.readFileSync('./configs.json').toString())
   }
 	
 for (var market of markets){
-while (MINT == undefined && MINT != "SoLEao8wTzSfqhuou8rcYsVoLjthVmiXuEjzdNPMnCz"){
 	 reserve = market.reserves[Math.floor(Math.random() * market.reserves.length)]
-  MINT = reserve.config.liquidityToken.mint;
+	 reserve = reserve.config
+  MINT = reserve.mint;
+  tokenB ={address: MINT, decimals: reserve.dec, symbol: reserve.asset}
 }
-	}
-	while (tokenB == undefined){
 	
-				tokenB = tokens.find((t) => t.address === MINT);
+				console.log(tokenB)
 tokenA =  tokenB 
-	}
 			} catch (error) {
 			spinner.text = chalk.black.bgRedBright(
 				`\n	Loading tokens failed!\n	Please try to run the Wizard first using ${chalk.bold(
@@ -130,6 +127,7 @@ tokenA =  tokenB
 			.process(async (i) => {		
 				console.log(is)
 					try {
+						
 			
 			spinner.text = "Loading Prism SDK..." + is.length.toString();
 			
@@ -146,28 +144,29 @@ tokenA =  tokenB
 				  },
 			})
 			console.log(1)
+			console.log(tokenA)
 			await prisms[tokenA.address].loadRoutes(
 				tokenA.address,
 				tokenA.address
 			)
 			console.log(2)
+			good = true 
 			} catch (err){
+				good = false
 				console.log(err)
 			}
 		})
 		spinner.text = "Loading routes for the first time...";
-
 		
 		cache.isSetupDone = true;
 		spinner.succeed("Setup done!");
-
 		return { prisms, prisms2,tokenA, tokenB, market, reserve };
+	}
 	} catch (error) {
 		if (spinner)
 			spinner.fail(
 				chalk.bold.redBright(`Setting up failed!\n 	${spinner.text}`)
 			);
-		logExit(1, error);
 		//process.exitCode = 1;
 		//process.exit()
 	}

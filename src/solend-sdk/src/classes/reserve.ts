@@ -71,20 +71,20 @@ export class SolendReserve {
 
   private calculateBorrowAPR(reserve: ParsedReserve) {
     const currentUtilization = this.calculateUtilizationRatio(reserve);
-    const optimalUtilization = reserve.config.optimalUtilizationRate / 100;
+    const optimalUtilization = reserve.optimalUtilizationRate / 100;
 
     let borrowAPR;
     if (optimalUtilization === 1.0 || currentUtilization < optimalUtilization) {
       const normalizedFactor = currentUtilization / optimalUtilization;
-      const optimalBorrowRate = reserve.config.optimalBorrowRate / 100;
-      const minBorrowRate = reserve.config.minBorrowRate / 100;
+      const optimalBorrowRate = reserve.optimalBorrowRate / 100;
+      const minBorrowRate = reserve.minBorrowRate / 100;
       borrowAPR =
         normalizedFactor * (optimalBorrowRate - minBorrowRate) + minBorrowRate;
     } else {
       const normalizedFactor =
         (currentUtilization - optimalUtilization) / (1 - optimalUtilization);
-      const optimalBorrowRate = reserve.config.optimalBorrowRate / 100;
-      const maxBorrowRate = reserve.config.maxBorrowRate / 100;
+      const optimalBorrowRate = reserve.optimalBorrowRate / 100;
+      const maxBorrowRate = reserve.maxBorrowRate / 100;
       borrowAPR =
         normalizedFactor * (maxBorrowRate - optimalBorrowRate) +
         optimalBorrowRate;

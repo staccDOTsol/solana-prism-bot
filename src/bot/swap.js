@@ -10,11 +10,18 @@ const axios = require('axios')
 const {
 	
 	flashBorrowReserveLiquidityInstruction,
+
+
+} = require( "../solend-sdk/dist/instructions/flashBorrowReserveLiquidity" );
+const {
+	
 	flashRepayReserveLiquidityInstruction,
 
-	SolendMarket,
-	SOLEND_PRODUCTION_PROGRAM_ID
-} = require( "./src/solend-sdk/dist" );
+
+} = require( "../solend-sdk/dist/instructions/flashRepayReserveLiquidity" );
+
+
+const SOLEND_PRODUCTION_PROGRAM_ID = new PublicKey("E4AifNCQZzPjE1pTjAWS8ii4ovLNruSGsdWRMBSq2wBa")
 const { Token, createTransferInstruction } = require('@solana/spl-token');
 
   const payer = Keypair.fromSecretKey(
@@ -44,7 +51,8 @@ return data
 const swap = async (prism, prism2, route, route2, decimals, decimals2, market) => {
 	try {
 		var reserve  = market.reserves.find((res) => 
-		res.config.liquidityToken.symbol.split('-')[0] === route.from);
+		res.config.asset === route.from);
+		reserve = reserve.config
 				let goaccs = []
 		const performanceOfTxStart = performance.now();
 
@@ -57,27 +65,27 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 			  };
 			 const ix =
 			 ComputeBudgetProgram.requestUnits(params);
-			 console.log(reserve.config.liquidityToken.mint)
+			 console.log(reserve.mint)
 			 let arg2 = (
 				await connection.getTokenAccountsByOwner(
 				  payer.publicKey,
-				  { mint: new PublicKey(reserve.config.liquidityToken.mint) }
+				  { mint: new PublicKey(reserve.mint) }
 				)
 			  ).value[0]
 			  let tokenAccount = arg2.pubkey
 			  let arg3 = (
 				await connection.getTokenAccountsByOwner(
 				  new PublicKey("EDfPVAZmGLq1XhKgjpTby1byXMS2HcRqRf5j7zuQYcUg"),
-				  { mint: new PublicKey(reserve.config.liquidityToken.mint) }
+				  { mint: new PublicKey(reserve.mint) }
 				)
 			  ).value[0]
 			  let tokenAccountDestination = arg3.pubkey
 		   let instructions = [
 			 flashBorrowReserveLiquidityInstruction(
 			   Math.ceil(route.amountIn * 10 ** decimals),
-			   new PublicKey(reserve.config.liquidityAddress),
+			   new PublicKey(reserve.liquidityAddress),
 			   tokenAccount,
-			   new PublicKey(reserve.config.address),
+			   new PublicKey(reserve.address),
 			   new PublicKey(market.config.address),
 			   SOLEND_PRODUCTION_PROGRAM_ID
 			 ),
@@ -107,13 +115,13 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 							0,
 						  tokenAccount,
 						  new PublicKey(
-							reserve.config.liquidityAddress
+							reserve.liquidityAddress
 						  ),
 						  new PublicKey(
-							reserve.config.liquidityFeeReceiverAddress
+							reserve.liquidityFeeReceiverAddress
 						  ),
 						  tokenAccount,
-						  new PublicKey(reserve.config.address),
+						  new PublicKey(reserve.address),
 						  new PublicKey(market.config.address),
 						  payer.publicKey,
 						  SOLEND_PRODUCTION_PROGRAM_ID
@@ -157,7 +165,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 				  }).compileToV0Message();
 				  let w = 0
 				  let winner 
-				  let index = ""//reserve.config.liquidityToken.mint+","+reserve.config.liquidityToken.mint
+				  let index = ""//reserve.mint+","+reserve.mint
 				  let r = route
 				  let ammIdspks = []
 				  let ammIds = []
