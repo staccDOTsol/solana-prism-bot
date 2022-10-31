@@ -2,6 +2,12 @@ import { AddressLookupTableProgram, Connection, GetProgramAccountsConfig, Keypai
 const PromisePool = require("@supercharge/promise-pool").default;
 let theluts : any = {}
 
+try {
+  theluts = JSON.parse(fs.readFileSync('./powerfulluts.json').toString())
+   
+     } catch(err){
+   
+     }
 import fs from 'fs'
 setTimeout(async function(){
 // invalid cache. I will recommend using a paid RPC endpoint.
@@ -36,12 +42,6 @@ let myluts: any = {}
 
       let ammIdspks = JSON.parse(fs.readFileSync('./ammIds.json').toString())
       
-      try {
-    //  theluts = JSON.parse(fs.readFileSync('./powerfulluts.json').toString())
-    
-      } catch(err){
-    
-      }
       let ammIds: any = []
       for (var ammId of ammIdspks){
         let ammIdpk = new PublicKey(ammId)
