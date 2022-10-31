@@ -152,7 +152,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 						  tokenAccount,
 						  tokenAccountDestination,
 						  payer.publicKey,[],
-						  Math.floor(myshit )
+						  Math.floor(myshit* 0.9)
 						)
 					  ); 
 					  
@@ -162,7 +162,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 				  tokenAccount,
 				  tokenAccountDestination,
 				  payer.publicKey,
-				  Math.floor(myshit ),[]
+				  Math.floor(myshit* 0.9),[]
 				)
 			  ); 
 		}
