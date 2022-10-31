@@ -105,7 +105,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 	//	const swapTransaction2 = await prism2.generateSwapTransactions(route2); 
 		
 
-		const blockhash = await connection
+		const blockhash = await connection2
 				  .getLatestBlockhash()
 				  .then((res) => res.blockhash); 
 				  await Promise.all(
@@ -160,7 +160,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 			  ); 
 		}
 			
-					var blockhash2 = await connection
+					var blockhash2 = await connection2
 					.getLatestBlockhash()
 					.then((res) => res.blockhash);
 
@@ -395,7 +395,7 @@ var lookupTableAccount, lookupTableAddress, lookupTableInst
 var lookupTableAccounts = []
 for (var ourlut of ourluts){
 
-   lookupTableAccount = await connection
+   lookupTableAccount = await connection2
   .getAddressLookupTable(new PublicKey(ourlut))
   .then((res) => res.value);
   if (lookupTableAccount){
@@ -407,7 +407,7 @@ var tx = new Transaction()
 
 if (ourluts.length > 0){
 	let ourlut =new PublicKey( ourluts[Math.floor(Math.random() * ourluts.length)])
-	let lookupTableAccount = await connection
+	let lookupTableAccount = await connection2
 	.getAddressLookupTable((ourlut))
 	.then((res) => res.value);
 	if(lookupTableAccount){
