@@ -464,7 +464,7 @@ if (tx.instructions.length > 0){
 	console.log(...tx.instructions)
 //await connection.sendTransaction(tx, [payer])
 }		
-
+console.log(goaccs)
 const  messageV00 = new TransactionMessage({
 	payerKey: payer.publicKey,
 	recentBlockhash: blockhash,
