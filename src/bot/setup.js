@@ -131,10 +131,14 @@ tokenA =  tokenB
 			
 			spinner.text = "Loading Prism SDK..." + is.length.toString();
 			
-			
+			let ALT_RPC_LIST="https://solana-mainnet.g.alchemy.com/v2/1_5YWfzLWXOo_Y_Dm0s89VTlD5T_RKHn,https://solana-mainnet.g.alchemy.com/v2/QlAFXUZhGG-CoVy9r6vYAbsA7iiDnA9-,https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ,https://solana-mainnet.g.alchemy.com/v2/dVWUMrayL_U3UbmCbg0mouE9q4mUZfuc,https://solana-mainnet.g.alchemy.com/v2/dVWUMrayL_U3UbmCbg0mouE9q4mUZfuc,https://solana-mainnet.g.alchemy.com/v2/WM_Gl7ktiws7icLQVxLP5iVHNQTv8RNk,https://solana-mainnet.g.alchemy.com/v2/1_5YWfzLWXOo_Y_Dm0s89VTlD5T_RKHn"
+// @ts-ignore
+let ran = Math.floor(Math.random()*ALT_RPC_LIST?.split(',').length)
+// @ts-ignore
+var connection2= new Connection(ALT_RPC_LIST?.split(',')[ran])
 			prisms[tokenA.address]= await Prism.init({
 				user: wallet,
-				connection,
+				connection: connection2,
 				slippage:99,
 				host: {                                          // optional
 					// host platform fee account publickey base58
