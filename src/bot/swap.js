@@ -344,7 +344,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 	if (!goodluts.includes(lut)){
 
 						  let test = (await connection.getAddressLookupTable(new PublicKey(lut))).value
-						  if (!goodluts.includes(lut)){
+						  if (!goodluts.includes(lut) && test){
 goodluts.push(lut)
 							if (!goaccs.includes(test)){
 	goaccs.push(test)
@@ -377,8 +377,10 @@ for (var ourlut of ourluts){
    lookupTableAccount = await connection
   .getAddressLookupTable(new PublicKey(ourlut))
   .then((res) => res.value);
+  if (lookupTableAccount){
   lookupTableAccounts.push(lookupTableAccount)
   goaccs.push(lookupTableAccount)
+  }
 }
 var tx = new Transaction()
 
