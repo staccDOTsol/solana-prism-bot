@@ -19,7 +19,7 @@ const {
 
 	SolendMarket,
 	SOLEND_PRODUCTION_PROGRAM_ID
-  } = require( "@solendprotocol/solend-sdk" );
+  } = require( "../solend-sdk/dist" );
 const setup = async () => {
 	let spinner, tokens, tokenA, tokenB, wallet;
 	let tokenBs = []
@@ -54,7 +54,6 @@ const setup = async () => {
 				  connection,
 			  
 				  "production" // optional environment argument
-				  ,"GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q"
 				)]
 let configs = JSON.parse(fs.readFileSync('./configs.json').toString())
   for (var amarket of configs) {
