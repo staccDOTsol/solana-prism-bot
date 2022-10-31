@@ -455,7 +455,6 @@ ourluts.push(lookupTableAddress)
 			await connection.getLatestBlockhash()
 		  ).blockhash;
 		  
-tx.sign(payer)
 fs.writeFileSync('./luts.json',JSON.stringify(ourluts ))
 if (tx.instructions.length > 0){
 await connection.sendTransaction(tx, [payer])
