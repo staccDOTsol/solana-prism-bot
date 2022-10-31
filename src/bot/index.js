@@ -189,7 +189,7 @@ const arbitrageStrategy = async (prisms, prisms2, tokenA) => {
 		//let prism2 = prisms2[tokenB]
 		tokens = JSON.parse(fs.readFileSync("./temp/tokens.json"));
 		// find tokens full Object
-		tokenB = tokens.find((t) => t.address === tokenB);
+		let tokenB = tokens.find((t) => t.address === tokenB);
 		tokenB = tokenA 
 
 		// Calculate amount that will be used for trade
