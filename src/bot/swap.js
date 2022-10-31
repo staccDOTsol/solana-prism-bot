@@ -145,7 +145,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2) => {
 				  }).compileToV0Message();
 				  let w = 0
 				  let winner 
-				  let index = reserve.config.mint+","+reserve.config.mint
+				  let index = ""// reserve.config.mint+","+reserve.config.mint
 				  let r = route
 				  let ammIdspks = []
 				  let ammIds = []
