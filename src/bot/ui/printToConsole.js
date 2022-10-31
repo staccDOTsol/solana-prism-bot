@@ -13,7 +13,7 @@ function printToConsole({
 	inputToken,
 	outputToken,
 	tokenA,
-	tokenA,
+	tokenB,
 	route,
 	simulatedProfit,
 }) {
