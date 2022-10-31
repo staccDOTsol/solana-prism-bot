@@ -175,7 +175,7 @@ const pingpongStrategy = async (prism, tokenA, tokenB) => {
 	}
 };
 
-const arbitrageStrategy = async (prisms, prisms2, tokenA) => {
+const arbitrageStrategy = async (prisms, prisms2, tokenA, tokenB, market, reserve) => {
 	cache.iteration++;
 	const date = new Date();
 	const i = cache.iteration;
@@ -342,7 +342,7 @@ console.log(err)
 					}
 				}, 500);
 				
-				let result = await swap(prism, prism2, route, route, tokenA.decimals, tokenB.decimals);
+				let result = await swap(prism, prism, route, route, tokenA.decimals, tokenB.decimals, market);
 				if (result){
 					cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].success++
 					mod = mod * 10
@@ -378,7 +378,7 @@ console.log(err)
 	}
 };
 
-const watcher = async (prisms, prisms2, tokenA, tokenB) => {
+const watcher = async (prisms, prisms2, tokenA, tokenB, market, reserve) => {
 	if (
 		
 		Object.keys(cache.queue).length < cache.queueThrottle
@@ -387,7 +387,7 @@ const watcher = async (prisms, prisms2, tokenA, tokenB) => {
 			await pingpongStrategy(prisms, tokenA, tokenB);
 		}
 		if (cache.config.tradingStrategy === "arbitrage") {
-			await arbitrageStrategy(prisms, prisms2, tokenA, tokenB);
+			await arbitrageStrategy(prisms, prisms2, tokenA, tokenB, market, reserve);
 		}
 	}
 };
@@ -395,7 +395,7 @@ const watcher = async (prisms, prisms2, tokenA, tokenB) => {
 const run = async () => {
 	try {
 		// set everything up
-		const { prisms, prisms2, tokenA, tokenB } = await setup();
+		const { prisms, prisms2, tokenA, tokenB, market, reserve } = await setup();
 
 			// set initial & current & last balance for tokenA
 			cache.initialBalance.tokenA = toNumber(
@@ -407,7 +407,7 @@ const run = async () => {
 		
 
 		global.botInterval = setInterval(
-			() => watcher(prisms, prisms2, tokenA, tokenB),
+			() => watcher(prisms, prisms2, tokenA, tokenB, market, reserve),
 			cache.config.minInterval
 		);
 	} catch (error) {

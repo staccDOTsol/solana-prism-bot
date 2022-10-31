@@ -17,6 +17,7 @@ function printToConsole({
 	route,
 	simulatedProfit,
 }) {
+	return
 	try {
 		if (cache.ui.allowClear) {
 			// update max profitability spotted chart
@@ -293,20 +294,20 @@ function printToConsole({
 			);
 
 			ui.div(
-				`${chalk[cache.currentBalance.tokenA > 0 ? "yellowBright" : "gray"](
-					toDecimal(cache.currentBalance.tokenA, tokenA.decimals)
-				)} ${chalk[cache.ui.defaultColor](tokenA.symbol)}`,
+				`${chalk[cache.currentBalance.tokenB > 0 ? "yellowBright" : "gray"](
+					toDecimal(cache.currentBalance.tokenB, tokenB.decimals)
+				)} ${chalk[cache.ui.defaultColor](tokenB.symbol)}`,
 
-				`${chalk[cache.lastBalance.tokenA > 0 ? "yellowBright" : "gray"](
-					toDecimal(cache.lastBalance.tokenA, tokenA.decimals)
-				)} ${chalk[cache.ui.defaultColor](tokenA.symbol)}`,
+				`${chalk[cache.lastBalance.tokenB > 0 ? "yellowBright" : "gray"](
+					toDecimal(cache.lastBalance.tokenB, tokenB.decimals)
+				)} ${chalk[cache.ui.defaultColor](tokenB.symbol)}`,
 
-				`${chalk[cache.initialBalance.tokenA > 0 ? "yellowBright" : "gray"](
-					toDecimal(cache.initialBalance.tokenA, tokenA.decimals)
-				)} ${chalk[cache.ui.defaultColor](tokenA.symbol)}`,
+				`${chalk[cache.initialBalance.tokenB > 0 ? "yellowBright" : "gray"](
+					toDecimal(cache.initialBalance.tokenB, tokenB.decimals)
+				)} ${chalk[cache.ui.defaultColor](tokenB.symbol)}`,
 
-				`${chalk[cache.currentProfit.tokenA > 0 ? "greenBright" : "redBright"](
-					cache.currentProfit.tokenA.toFixed(2)
+				`${chalk[cache.currentProfit.tokenB > 0 ? "greenBright" : "redBright"](
+					cache.currentProfit.tokenB.toFixed(2)
 				)} %`,
 				" "
 			);

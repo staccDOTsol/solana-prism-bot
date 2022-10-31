@@ -10,7 +10,16 @@ const { loadConfigFile } = require("../utils");
 const { intro, listenHotkeys } = require("./ui");
 const cache = require("./cache");
 const PromisePool = require("@supercharge/promise-pool").default;
+let MINT 	
+	let reserve	
+const {
+	
+	flashBorrowReserveLiquidityInstruction,
+	flashRepayReserveLiquidityInstruction,
 
+	SolendMarket,
+	SOLEND_PRODUCTION_PROGRAM_ID
+  } = require( "@solendprotocol/solend-sdk" );
 const setup = async () => {
 	let spinner, tokens, tokenA, tokenB, wallet;
 	let tokenBs = []
@@ -23,6 +32,8 @@ const setup = async () => {
 
 		// load config file and store it in cache
 		cache.config = loadConfigFile({ showSpinner: true });
+
+		const connection = new Connection(cache.config.rpc[Math.floor(Math.random()*cache.config.rpc.length)]);
 
 		spinner = ora({
 			text: "Loading tokens...",
@@ -37,26 +48,44 @@ const setup = async () => {
 			tokenA = tokens.find((t) => t.address === cache.config.tokenA.address);
 			//tokenB = tokenA
 			let tbsa = []
-			cache.config.tokenBs ? tbsa = cache.config.tokenBs : tbsa = 
-			["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"]/*,
-			"9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i", 
-			"MangoCzJ36AjZyKwVj3VnYU4GTonjfVEnJmvvWaxLac","7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj",
-			"mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So", 
-		"JET6zMJWkCN9tpRT2v2jfAmm5VnQFDpUBCyaKojmGtz",
-	"7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU","LFNTYraetVioAPnGJht4yNg2aUZFXR776cMeN9VMjXp",
-"E5ndSkaB17Dm7CsD22dvcjfrYSDLCxFcMd6z8ddCk5wp",
-"C98A4nkJXhpVZNAZdHUA95RpTF3T4whtQubL3YobiUX9",
-"9iLH8T7zoWhY7sBmj1WK9ENbWdS1nL8n9wAxaeRitTa6",
-"PRSMNsEPqhGVCH1TtWiJqPjJyh2cKrLostPZTNy1o5x",
-"DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ",
-"METAewgxyPbgwsseH8T16a39CQ5VyVxZi9zXiDPY18m",
-			"MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey"]//todo:more */
-			for (var addy of tbsa){
-				tokenBs.push(tokens.find((t) => t.address === addy));
-			}
-			if (cache.config.tradingStrategy !== "arbitrage") 
-				tokenB = tokens.find((t) => t.address === cache.config.tokenB.address);
-		} catch (error) {
+		
+			var markets = [
+				await SolendMarket.initialize(
+				  connection,
+			  
+				  "production" // optional environment argument
+				)]
+let configs = JSON.parse(fs.readFileSync('./configs.json').toString())
+  for (var amarket of configs) {
+	if (false){//!amarket.hidden && !amarket.isPermissionless) {
+	  try {
+		let market = await SolendMarket.initialize(
+		  connection,
+  
+		  "production", // optional environment argument'
+		  amarket.address
+		);
+  
+		markets.push(market);
+		console.log(markets.length);
+	  } catch (err) {}
+	}
+  }
+	
+for (var market of markets){
+while (MINT == undefined){
+	 reserve = market.reserves[Math.floor(Math.random() * market.reserves.length)]
+	if (reserve.config.userBorrowCap != null){
+  MINT = reserve.config.liquidityToken.mint;
+	}
+}
+	}
+	while (tokenB == undefined){
+	
+				tokenB = tokens.find((t) => t.address === MINT);
+tokenA =  tokenB 
+	}
+			} catch (error) {
 			spinner.text = chalk.black.bgRedBright(
 				`\n	Loading tokens failed!\n	Please try to run the Wizard first using ${chalk.bold(
 					"`yarn start`"
@@ -103,11 +132,9 @@ const setup = async () => {
 			.process(async (i) => {		
 				console.log(is)
 					try {
-			const connection = new Connection(cache.config.rpc[Math.floor(Math.random()*cache.config.rpc.length)]);
-
+			
 			spinner.text = "Loading Prism SDK..." + is.length.toString();
-			let tok = tokenBs[Math.floor(Math.random()*tokenBs.length)]
-			console.log(tok.address)
+			
 			
 			prisms[tokenA.address]= await Prism.init({
 				user: wallet,
@@ -123,7 +150,7 @@ const setup = async () => {
 			console.log(1)
 			await prisms[tokenA.address].loadRoutes(
 				tokenA.address,
-				tok.address
+				tokenA.address
 			)
 			console.log(2)
 			} catch (err){
@@ -136,7 +163,7 @@ const setup = async () => {
 		cache.isSetupDone = true;
 		spinner.succeed("Setup done!");
 
-		return { prisms, prisms2,tokenA, tokenB };
+		return { prisms, prisms2,tokenA, tokenB, market, reserve };
 	} catch (error) {
 		if (spinner)
 			spinner.fail(

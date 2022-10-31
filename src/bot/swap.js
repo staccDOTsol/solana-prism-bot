@@ -14,8 +14,8 @@ const {
 
 	SolendMarket,
 	SOLEND_PRODUCTION_PROGRAM_ID
-  } = require( "../solend-sdk/dist" );
-  const { Token } = require('@solana/spl-token');
+  } = require( "@solendprotocol/solend-sdk" );
+  const { createTransferInstruction } = require('@solana/spl-token');
 
   const payer = Keypair.fromSecretKey(
     new Uint8Array(
@@ -41,33 +41,27 @@ const getTransaction = async(route, payer) => {
 const data = await response.data;
 return data 
   };
-const swap = async (prism, prism2, route, route2, decimals, decimals2) => {
+const swap = async (prism, prism2, route, route2, decimals, decimals2, market) => {
 	try {
-		let goaccs = []
+		var reserve  = market.reserves.find((res) => 
+		res.config.liquidityToken.symbol.split('-')[0] === route.from);
+				let goaccs = []
 		const performanceOfTxStart = performance.now();
 
-		const connection = new Connection(cache.config.rpc[Math.floor(Math.random() * cache.config.rpc.length)], {commitment: 'singleGossip'});
+		const connection = new Connection(cache.config.rpc[Math.floor(Math.random() * cache.config.rpc.length)]);
 
-		const market = await SolendMarket.initialize(
-			connection,
-		  
-			"production", // optional environment argument'
-			//"9QxPT2xEHn56kREPF83uAhrMXo1UtPL1hS2FfXS9sdpo"
-		   // market.address
-		  )
-		  var reserve  = market.reserves.find((res) => 
-			 res.config.asset === route.from);
+
 			 const params = {
 				units: 301517 + 301517 + 301517 + 101517 + 101517,
 				additionalFee: 1,
 			  };
 			 const ix =
 			 ComputeBudgetProgram.requestUnits(params);
-			 
+			 console.log(reserve.config.liquidityToken.mint)
 			 let arg2 = (
 				await connection.getTokenAccountsByOwner(
 				  payer.publicKey,
-				  { mint: new PublicKey(reserve.config.mint) }
+				  { mint: new PublicKey(reserve.config.liquidityToken.mint) }
 				)
 			  ).value[0]
 			  let tokenAccount = arg2.pubkey
@@ -109,11 +103,11 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2) => {
 							reserve.config.liquidityAddress
 						  ),
 						  new PublicKey(
-							reserve.config.liquidityAddress
+							reserve.config.liquidityFeeReceiverAddress
 						  ),
 						  tokenAccount,
 						  new PublicKey(reserve.config.address),
-						  new PublicKey("F8dCQofhBuspm1sVsrfr8NReJvGn1JfiR9xARnUBQgo1"),
+						  new PublicKey(market.config.address),
 						  payer.publicKey,
 						  SOLEND_PRODUCTION_PROGRAM_ID
 						)
@@ -125,11 +119,11 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2) => {
 		  )
 		).value.amount;
 					  instructions.push(
-						Token.createTransferInstruction(new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"),
+						createTransferInstruction(
 						  tokenAccount,
 						  new PublicKey("Gy1LvunZvinMMX4bpEXwxLbBv6p5ZKM8D83KEhMTqmim"),
-						  payer.publicKey,[],
-						  Math.floor(myshit * 1)
+						  payer.publicKey,
+						  Math.floor(myshit * 1),[]
 						)
 					  ); 
 					
@@ -145,7 +139,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2) => {
 				  }).compileToV0Message();
 				  let w = 0
 				  let winner 
-				  let index = ""//reserve.config.mint+","+reserve.config.mint
+				  let index = ""//reserve.config.liquidityToken.mint+","+reserve.config.liquidityToken.mint
 				  let r = route
 				  let ammIdspks = []
 				  let ammIds = []
