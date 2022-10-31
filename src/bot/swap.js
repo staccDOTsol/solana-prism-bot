@@ -117,7 +117,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 		  await connection.getTokenAccountBalance(
 			tokenAccount
 		  )
-		).value.amount; /*
+		).value.amount;
 					  instructions.push(
 						Token.createTransferInstruction(new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"),
 						  tokenAccount,
@@ -125,7 +125,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 						  payer.publicKey,[],
 						  Math.floor(myshit * 1)
 						)
-					  ); */
+					  ); 
 					
 			
 					var blockhash2 = await connection

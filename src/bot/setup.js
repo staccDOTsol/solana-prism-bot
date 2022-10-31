@@ -54,6 +54,7 @@ const setup = async () => {
 				  connection,
 			  
 				  "production" // optional environment argument
+				  ,"GktVYgkstojYd8nVXGXKJHi7SstvgZ6pkQqQhUPD7y7Q"
 				)]
 let configs = JSON.parse(fs.readFileSync('./configs.json').toString())
   for (var amarket of configs) {
@@ -74,7 +75,7 @@ let configs = JSON.parse(fs.readFileSync('./configs.json').toString())
 	
 for (var market of markets){
 while (MINT == undefined && MINT != "SoLEao8wTzSfqhuou8rcYsVoLjthVmiXuEjzdNPMnCz"){
-	 reserve = market.reserves[Math.floor(Math.random() * market.reserves.length + 1)]
+	 reserve = market.reserves[Math.floor(Math.random() * 7)]
 	if (reserve.config.userBorrowCap != null){
   MINT = reserve.config.liquidityToken.mint;
 	}
