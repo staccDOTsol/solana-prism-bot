@@ -190,7 +190,6 @@ const arbitrageStrategy = async (prisms, prisms2, tokenA, tokenB, market, reserv
 		let prism = prisms[tokenA.address]
 		let prism2 = prisms2[tokenB.address]
 		//let prism2 = prisms2[tokenB]
-		tokens = JSON.parse(fs.readFileSync("./temp/tokens.json"));
 		// find tokens full Object
 		//let tokenB = tokenA //tokens[Math.floor(Math.random() * tokens.length)]
 
@@ -428,6 +427,8 @@ const watcher = async (prisms, prisms2, tokenA, tokenB, market, reserve) => {
 			"GENEtH5amGSi8kHAtQoezp1XEXwZJ8vcuePYnXdKrMYz",
 			"AFbX8oGjGpmVFywbVouvhQSRmiW2aR1mohfahi4Y2AdB"]
 			let tb = tokenBs[Math.floor(Math.random()*tokenBs.length)]
+
+		let tokens = JSON.parse(fs.readFileSync("./temp/tokens.json"));
 			tokenB = tokens.find((t) => t.address === tb);
 			await arbitrageStrategy(prisms, prisms2, tokenA, tokenB, market, reserve);
 		}
