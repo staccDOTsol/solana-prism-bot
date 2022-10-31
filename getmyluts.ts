@@ -64,8 +64,10 @@ for (var pk of ammIdspks){
 
     } else if ( pk === addypk){
     theluts[pk].push (lut.pubkey.toBase58())
+
     console.log(Object.keys(theluts).length)
-    //console.log(theluts[pk] .length)
+    fs.writeFileSync('./powerfulluts.json', JSON.stringify(theluts))
+        //console.log(theluts[pk] .length)
 
        
 }
@@ -77,6 +79,4 @@ for (var pk of ammIdspks){
 }
 
     })
-    console.log(Object.keys(theluts).length)
-    fs.writeFileSync('./powerfulluts.json', JSON.stringify(theluts))
 })
