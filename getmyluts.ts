@@ -56,7 +56,7 @@ for (var pk of ammIdspks){
 
     } else if ( pk === addypk){
     theluts[pk].push (lut.pubkey.toBase58())
-    console.log(theluts[pk] .length)
+    //console.log(theluts[pk] .length)
 
        
 }
