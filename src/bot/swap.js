@@ -145,7 +145,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2) => {
 				  }).compileToV0Message();
 				  let w = 0
 				  let winner 
-				  let index = ""// reserve.config.mint+","+reserve.config.mint
+				  let index = ""//reserve.config.mint+","+reserve.config.mint
 				  let r = route
 				  let ammIdspks = []
 				  let ammIds = []
@@ -365,8 +365,7 @@ goodluts.push(lut)
 		  );
 
 		transaction.sign([payer])
-		const result =   await sendAndConfirmTransaction(new Connection(process.env.DEFAULT_RPC), transaction)
-		console.log(result)
+		const result =   sendAndConfirmTransaction(connection, transaction)
 		if (process.env.DEBUG) storeItInTempAsJSON("result", result);
 
 		const performanceOfTx = performance.now() - performanceOfTxStart;
