@@ -107,7 +107,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 						  ),
 						  tokenAccount,
 						  new PublicKey(reserve.config.address),
-						  new PublicKey(market.address),
+						  new PublicKey(market.config.address),
 						  payer.publicKey,
 						  SOLEND_PRODUCTION_PROGRAM_ID
 						)
