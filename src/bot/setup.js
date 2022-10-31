@@ -103,15 +103,15 @@ const setup = async () => {
 			.process(async (i) => {		
 				console.log(is)
 					try {
-			const connection = new Connection("http://191.101.160.247:8899");
-			
+			const connection = new Connection(cache.config.rpc[Math.floor(Math.random()*cache.config.rpc.length)]);
+
 			spinner.text = "Loading Prism SDK..." + is.length.toString();
 			let tok = tokenBs[Math.floor(Math.random()*tokenBs.length)]
 			console.log(tok.address)
 			
 			prisms[tok.address]= await Prism.init({
 				user: wallet,
-				connection: new Connection("https://solana-mainnet.g.alchemy.com/v2/WM_Gl7ktiws7icLQVxLP5iVHNQTv8RNk"),
+				connection,
 				slippage:99,
 				host: {                                          // optional
 					// host platform fee account publickey base58
@@ -126,7 +126,7 @@ const setup = async () => {
 				tok.address
 			)
 			console.log(2)
-			 /* prisms2[tok.address]= await Prism.init({
+			prisms2[tok.address]= await Prism.init({
 				user: wallet,
 				connection,
 				slippage:99,
@@ -141,10 +141,10 @@ const setup = async () => {
 			await prisms2[tok.address].loadRoutes(
 				tok.address,
 				tokenA.address
-			)*/
+			)
 			} catch (err){
 				console.log(err)
-			} 
+			}
 		})
 		spinner.text = "Loading routes for the first time...";
 
