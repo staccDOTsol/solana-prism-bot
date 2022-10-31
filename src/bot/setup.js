@@ -126,7 +126,7 @@ const setup = async () => {
 				tok.address
 			)
 			console.log(2)
-			prisms2[tok.address]= await Prism.init({
+			 /* prisms2[tok.address]= await Prism.init({
 				user: wallet,
 				connection,
 				slippage:99,
@@ -141,10 +141,10 @@ const setup = async () => {
 			await prisms2[tok.address].loadRoutes(
 				tok.address,
 				tokenA.address
-			)
+			)*/
 			} catch (err){
 				console.log(err)
-			}
+			} 
 		})
 		spinner.text = "Loading routes for the first time...";
 

@@ -185,7 +185,7 @@ const arbitrageStrategy = async (prisms, prisms2, tokenA) => {
 		updateIterationsPerMin(cache);
 		let tokenB = Object.keys(prisms)[Math.floor(Math.random() * Object.keys(prisms).length)]
 		//console.log(tokenB)
-		let prism = prisms[tokenB]
+		let prism = prisms[tokenA]
 		let prism2 = prisms2[tokenB]
 		tokens = JSON.parse(fs.readFileSync("./temp/tokens.json"));
 		// find tokens full Object
