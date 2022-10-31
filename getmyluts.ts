@@ -18,23 +18,6 @@ const configOrCommitment: GetProgramAccountsConfig = {
      
     ],
   };
-  let ammIdspks = JSON.parse(fs.readFileSync('./ammIds.json').toString())
-  let theluts : any = {}
-  
-  try {
-//  theluts = JSON.parse(fs.readFileSync('./powerfulluts.json').toString())
-
-  } catch(err){
-
-  }
-  let ammIds: any = []
-  for (var ammId of ammIdspks){
-    let ammIdpk = new PublicKey(ammId)
-    if (!ammIds.includes(ammIdpk))
-    ammIds.push(ammIdpk)
-  }
-console.log(ammIds.length)
-
 let myluts: any = {}
 
     let luts = await connection2.getProgramAccounts(AddressLookupTableProgram.programId)
@@ -50,6 +33,23 @@ let myluts: any = {}
     .process(async (lut: any) => {
       var connection2= new Connection(ALT_RPC_LIST?.split(',')[ran])
 
+      let ammIdspks = JSON.parse(fs.readFileSync('./ammIds.json').toString())
+      let theluts : any = {}
+      
+      try {
+    //  theluts = JSON.parse(fs.readFileSync('./powerfulluts.json').toString())
+    
+      } catch(err){
+    
+      }
+      let ammIds: any = []
+      for (var ammId of ammIdspks){
+        let ammIdpk = new PublicKey(ammId)
+        if (!ammIds.includes(ammIdpk))
+        ammIds.push(ammIdpk)
+      }
+    console.log(ammIds.length)
+    
       // @ts-ignore
       let maybemine = await connection2.getAddressLookupTable(lut.pubkey)
       
