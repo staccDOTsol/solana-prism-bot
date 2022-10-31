@@ -111,7 +111,7 @@ const setup = async () => {
 			
 			prisms[tok.address]= await Prism.init({
 				user: wallet,
-				connection: new,
+				connection,
 				slippage:99,
 				host: {                                          // optional
 					// host platform fee account publickey base58
