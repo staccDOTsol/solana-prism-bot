@@ -135,7 +135,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 					  );
 
 		let myshit = (
-		  await connection.getTokenAccountBalance(
+		  await connection2.getTokenAccountBalance(
 			tokenAccount
 		  )
 		).value.amount; 
