@@ -387,25 +387,7 @@ for (var ourlut of ourluts){
 }
 var tx = new Transaction()
 
-if (ourluts.length == 0){
-	var slot = await connection.getSlot()
-
-var [lookupTableInst, lookupTableAddress] =
-  AddressLookupTableProgram.createLookupTable({
-    authority: payer.publicKey,
-    payer: payer.publicKey,
-    recentSlot: slot,
-  });
-  let ttt = await connection
-  .getAddressLookupTable(lookupTableAddress)
-  .then((res) => res.value);
-  console.log(lookupTableAddress.toBase58())
-
-tx.add(lookupTableInst)
-
-ourluts.push(lookupTableAddress)
-}
-if (ourluts.length > 1){
+if (ourluts.length > 0){
 	let ourlut =new PublicKey( Math.floor(Math.random(ourluts.length)))
 	let lookupTableAccount = await connection
 	.getAddressLookupTable(new PublicKey(ourlut))
@@ -451,14 +433,35 @@ tx.add(lookupTableInst)
 		
 tx.add(extendInstruction)
 	}
+
+if (ourluts.length == 0){
+	var slot = await connection.getSlot()
+
+var [lookupTableInst, lookupTableAddress] =
+  AddressLookupTableProgram.createLookupTable({
+    authority: payer.publicKey,
+    payer: payer.publicKey,
+    recentSlot: slot,
+  });
+  let ttt = await connection
+  .getAddressLookupTable(lookupTableAddress)
+  .then((res) => res.value);
+  console.log(lookupTableAddress.toBase58())
+
+tx.add(lookupTableInst)
+
+ourluts.push(lookupTableAddress)
+}
 		tx.recentBlockhash = await (
 			await connection.getLatestBlockhash()
 		  ).blockhash;
 		  
 tx.sign(payer)
 fs.writeFileSync('./luts.json',JSON.stringify(ourluts ))
+if (tx.instructions.length > 0){
 await connection.sendTransaction(tx, [payer])
-		  const transaction = new VersionedTransaction(
+}		
+const transaction = new VersionedTransaction(
 			messageV00
 		  );
 
