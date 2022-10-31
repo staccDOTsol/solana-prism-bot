@@ -183,15 +183,15 @@ const arbitrageStrategy = async (prisms, prisms2, tokenA) => {
 	try {
 		// calculate & update iterations per minute
 		updateIterationsPerMin(cache);
-		let tokenB = Object.keys(prisms)[Math.floor(Math.random() * Object.keys(prisms).length)]
+		let tokenA = Object.keys(prisms)[Math.floor(Math.random() * Object.keys(prisms).length)]
 		//console.log(tokenB)
-		tokenB = tokenA 
 		let prism = prisms[tokenA.address]
 		let prism2 = prisms2[tokenB]
 		tokens = JSON.parse(fs.readFileSync("./temp/tokens.json"));
 		// find tokens full Object
 		tokenB = tokens.find((t) => t.address === tokenB);
-		
+		tokenB = tokenA 
+
 		// Calculate amount that will be used for trade
 		let amountToTrade =
 			cache.config.tradeSize.strategy === "cumulative"
