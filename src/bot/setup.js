@@ -111,7 +111,7 @@ const setup = async () => {
 			
 			prisms[tok.address]= await Prism.init({
 				user: wallet,
-				connection: new Connection(",https://solana-mainnet.g.alchemy.com/v2/WM_Gl7ktiws7icLQVxLP5iVHNQTv8RNk,https://solana-mainnet.g.alchemy.com/v2/1_5YWfzLWXOo_Y_Dm0s89VTlD5T_RKHn"),
+				connection: new Connection(",https://solana-mainnet.g.alchemy.com/v2/WM_Gl7ktiws7icLQVxLP5iVHNQTv8RNk"),
 				slippage:99,
 				host: {                                          // optional
 					// host platform fee account publickey base58
