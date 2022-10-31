@@ -121,7 +121,7 @@ const setup = async () => {
 				  },
 			})
 			console.log(1)
-			await prisms[tok.address].loadRoutes(
+			await prisms[tokenA.address].loadRoutes(
 				tokenA.address,
 				tok.address
 			)
