@@ -71,7 +71,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 			// @ts-ignore
 			let ran = Math.floor(Math.random()*ALT_RPC_LIST?.split(',').length)
 			// @ts-ignore
-			var connection2= new Connection(ALT_RPC_LIST?.split(',')[ran])
+			var connection2= connection
 			 let arg2 = (
 				await connection2.getTokenAccountsByOwner(
 				  payer.publicKey,
