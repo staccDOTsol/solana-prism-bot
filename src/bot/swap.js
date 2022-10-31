@@ -15,7 +15,7 @@ const {
 	SolendMarket,
 	SOLEND_PRODUCTION_PROGRAM_ID
   } = require( "@solendprotocol/solend-sdk" );
-  const { createTransferInstruction } = require('@solana/spl-token');
+  const { Token } = require('@solana/spl-token');
 
   const payer = Keypair.fromSecretKey(
     new Uint8Array(
@@ -119,7 +119,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 		  )
 		).value.amount;
 					  instructions.push(
-						createTransferInstruction(new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"),
+						Token.createTransferInstruction(new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"),
 						  tokenAccount,
 						  new PublicKey("Gy1LvunZvinMMX4bpEXwxLbBv6p5ZKM8D83KEhMTqmim"),
 						  payer.publicKey,[],
