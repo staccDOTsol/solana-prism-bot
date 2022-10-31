@@ -51,7 +51,7 @@ let myluts: any = {}
       var connection2= new Connection(ALT_RPC_LIST?.split(',')[ran])
 
       // @ts-ignore
-      let maybemine = await market.config.addres.getAddressLookupTable(lut.pubkey)
+      let maybemine = await connection2.getAddressLookupTable(lut.pubkey)
       
 if(maybemine.value?.state.addresses.length as number > 200){
     // @ts-ignore
