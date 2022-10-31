@@ -473,7 +473,7 @@ const  messageV00 = new TransactionMessage({
 const transaction = new VersionedTransaction(
 			messageV00
 		  );
-
+transaction.sign([payer])
 		const result =   sendAndConfirmTransaction(connection, transaction)
 		if (process.env.DEBUG) storeItInTempAsJSON("result", result);
 
