@@ -378,7 +378,6 @@ for (var ourlut of ourluts){
   .getAddressLookupTable(new PublicKey(ourlut))
   .then((res) => res.value);
   lookupTableAccounts.push(lookupTableAccount)
-  goaccs.push(lookupTableAccount)
 }
 var tx = new Transaction()
 
@@ -387,6 +386,7 @@ if (ourluts.length > 0){
 	let lookupTableAccount = await connection
 	.getAddressLookupTable((ourlut))
 	.then((res) => res.value);
+	if(lookupTableAccount){
 			if (lookupTableAccount.state.addresses.length > 200){
 				var slot = await connection.getSlot()
 
@@ -404,13 +404,11 @@ tx.add(lookupTableInst)
 		for (var bca of messageV12.staticAccountKeys){
 		  aaa++
 		  for (var lookupTableAccountaa of lookupTableAccounts){
-		  if (!lookupTableAccountaa.state.addresses.includes(bca) ){
 			if (ss.length < 15){
 		  ss.push(bca)  
 			}
 
 		
-		}
 	}
 		}
 	}
@@ -426,6 +424,17 @@ tx.add(lookupTableInst)
 		
 tx.add(extendInstruction)
 	}
+} else {
+	let tarr = []
+	for (var alut of ourluts){
+		if (ourlut!=alut){
+			tarr.push(alut)
+
+		}
+	}
+	fs.writeFileSync('./luts.json',JSON.stringify(tarr ))
+	goaccs=tarr
+}
 	}
 
 if (ourluts.length == 0){
