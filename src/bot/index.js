@@ -250,6 +250,7 @@ checkRoutesResponse(routes);
 						// @ts-ignore
 						for(var rd2 of Object.values(rd.routeData)){
 							try {
+								try {
 												// @ts-ignore 
 				
 								if ((rd2.orcaPool) != undefined){
@@ -260,7 +261,8 @@ checkRoutesResponse(routes);
 						ammIdspks.push(dothedamnthing.toBase58())
 						ammIds.push(dothedamnthing)
 					}
-								}
+				}
+								} catch (err){}
 								if ((rd2.ammId) != undefined){
 									// @ts-ignore
 									let dothedamnthing = new PublicKey(rd2.ammId)
