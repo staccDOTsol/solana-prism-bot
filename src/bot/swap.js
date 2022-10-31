@@ -403,6 +403,7 @@ var [lookupTableInst, lookupTableAddress] =
 tx.add(lookupTableInst)
 
 }
+if (ourluts.length != 0){
 			if (lookupTableAccount.state.addresses.length > 200){
 				var slot = await connection.getSlot("finalized")
 
@@ -441,6 +442,7 @@ tx.add(lookupTableInst)
 		});
 		
 tx.add(extendInstruction)
+	}
 		tx.recentBlockhash = await (
 			await connection.getLatestBlockhash()
 		  ).blockhash;
