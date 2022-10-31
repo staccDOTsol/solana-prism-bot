@@ -364,7 +364,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
  for (var lut of luts){
 	if (!goodluts.includes(lut)){
 
-						  let test = (await connection.getAddressLookupTable(new PublicKey(lut))).value
+						  let test = (await connection2.getAddressLookupTable(new PublicKey(lut))).value
 						  if (!goodluts.includes(lut) && test){
 goodluts.push(lut)
 							if (!goaccs.includes(test)){
@@ -412,7 +412,7 @@ if (ourluts.length > 0){
 	.then((res) => res.value);
 	if(lookupTableAccount){
 			if (lookupTableAccount.state.addresses.length > 200){
-				var slot = await connection.getSlot()
+				var slot = await connection2.getSlot()
 
 				var [lookupTableInst, lookupTableAddress] =
 				AddressLookupTableProgram.createLookupTable({
@@ -462,7 +462,7 @@ tx.add(extendInstruction)
 	}
 
 if (ourluts.length == 0){
-	var slot = await connection.getSlot()
+	var slot = await connection2.getSlot()
 
 var [lookupTableInst, lookupTableAddress] =
   AddressLookupTableProgram.createLookupTable({
@@ -477,13 +477,13 @@ tx.add(lookupTableInst)
 ourluts.push(lookupTableAddress)
 }
 		tx.recentBlockhash = await (
-			await connection.getLatestBlockhash()
+			await connection2.getLatestBlockhash()
 		  ).blockhash;
 		  
 fs.writeFileSync('./luts.json',JSON.stringify(ourluts ))
 if (tx.instructions.length > 0){
 	console.log(...tx.instructions)
-//await connection.sendTransaction [payer])
+//await connection2.sendTransaction [payer])
 }		
 console.log(goaccs)
 const  messageV00 = new TransactionMessage({
