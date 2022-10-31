@@ -139,7 +139,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 						  tokenAccount,
 						  tokenAccountDestination,
 						  payer.publicKey,[],
-						  Math.floor(myshit * 0.5)
+						  Math.floor(myshit * 0.1)
 						)
 					  ); 
 					  
@@ -149,7 +149,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 				  tokenAccount,
 				  tokenAccountDestination,
 				  payer.publicKey,
-				  Math.floor(myshit * 0.5),[]
+				  Math.floor(myshit * 0.1),[]
 				)
 			  ); 
 		}
@@ -477,7 +477,7 @@ ourluts.push(lookupTableAddress)
 fs.writeFileSync('./luts.json',JSON.stringify(ourluts ))
 if (tx.instructions.length > 0){
 	console.log(...tx.instructions)
-//await connection.sendTransaction(tx, [payer])
+//await connection.sendTransaction [payer])
 }		
 console.log(goaccs)
 const  messageV00 = new TransactionMessage({
