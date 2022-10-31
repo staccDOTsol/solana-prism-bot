@@ -183,7 +183,6 @@ const arbitrageStrategy = async (prisms, prisms2, tokenA) => {
 	try {
 		// calculate & update iterations per minute
 		updateIterationsPerMin(cache);
-		let tokenA = Object.keys(prisms)[Math.floor(Math.random() * Object.keys(prisms).length)]
 		//console.log(tokenB)
 		let prism = prisms[tokenA.address]
 		//let prism2 = prisms2[tokenB]
