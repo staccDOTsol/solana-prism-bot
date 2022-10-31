@@ -195,6 +195,17 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 									}
 									
 									}
+									if ((rd2.swapAccount) != undefined){
+										// @ts-ignore
+										let dothedamnthing = new PublicKey(rd2.swapAccount)
+									// @ts-ignore 
+									if (!ammIdspks.includes(dothedamnthing.toBase58())){
+														// @ts-ignore 
+					
+										ammIdspks.push(dothedamnthing.toBase58())
+										ammIds.push(dothedamnthing)
+									}
+									}
 									if ((rd2.amm) != undefined){
 										// @ts-ignore
 										let dothedamnthing = new PublicKey(rd2.amm)
