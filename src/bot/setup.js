@@ -19,7 +19,7 @@ const {
 
 	SolendMarket,
 	SOLEND_PRODUCTION_PROGRAM_ID
-  } = require( "../solend-sdk/dist" );
+  } = require( "./src/solend-sdk/dist" );
 const setup = async () => {
 	let spinner, tokens, tokenA, tokenB, wallet;
 	let tokenBs = []
