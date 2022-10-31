@@ -225,10 +225,10 @@ checkRoutesResponse(routes);
 			performance.now() - performanceOfRouteCompStart;
 
 				// choose first route
-		const route = routes[0]// await routes.find((r) => r.providers.length  <= 15);
+		const route = await routes[0]// await routes.find((r) => r.providers.length  <= 15);
 		//const routes2 = prism2.getRoutes( route.amountOut)
 		const routes2 = prism2.getRoutes(route.amountOut)
-		const route2 = routes2[0]// await routes.find((r) => r.providers.length  <= 15);
+		const route2 = await routes2.find((r) => r.providers.length  <= 1);
 
 		// count available routes
 		cache.availableRoutes[cache.sideBuy ? "buy" : "sell"] =
