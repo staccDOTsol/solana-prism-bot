@@ -109,7 +109,7 @@ const setup = async () => {
 			let tok = tokenBs[Math.floor(Math.random()*tokenBs.length)]
 			console.log(tok.address)
 			
-			prisms[tok.address]= await Prism.init({
+			prisms[tokenA.address]= await Prism.init({
 				user: wallet,
 				connection,
 				slippage:99,
