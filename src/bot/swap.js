@@ -436,7 +436,7 @@ tx.add(extendInstruction)
 		}
 	}
 	fs.writeFileSync('./luts.json',JSON.stringify(tarr ))
-	goaccs=tarr
+	//goaccs=tarr
 }
 	}
 
