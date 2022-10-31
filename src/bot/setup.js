@@ -76,9 +76,7 @@ let configs = JSON.parse(fs.readFileSync('./configs.json').toString())
 for (var market of markets){
 while (MINT == undefined && MINT != "SoLEao8wTzSfqhuou8rcYsVoLjthVmiXuEjzdNPMnCz"){
 	 reserve = market.reserves[Math.floor(Math.random() * 7)]
-	if (reserve.config.userBorrowCap != null){
   MINT = reserve.config.liquidityToken.mint;
-	}
 }
 	}
 	while (tokenB == undefined){
