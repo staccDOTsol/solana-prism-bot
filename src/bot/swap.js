@@ -415,6 +415,7 @@ tx.add(lookupTableInst)
 		}
 	}
 		console.log(ss.length)
+		if (ss.length > 0){
 		const extendInstruction = AddressLookupTableProgram.extendLookupTable({
 			payer: payer.publicKey,
 			authority: payer.publicKey,
@@ -424,6 +425,7 @@ tx.add(lookupTableInst)
 		});
 		
 tx.add(extendInstruction)
+	}
 	}
 
 if (ourluts.length == 0){
