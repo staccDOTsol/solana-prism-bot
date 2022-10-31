@@ -19,12 +19,14 @@ const {
   } = require( "../solend-sdk/dist/index" );
 const setup = async () => {
 	let spinner, tokens, tokenA, tokenB, wallet;
-	let tokenBs = ["7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj","mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So",
+	tokens = JSON.parse(fs.readFileSync("./temp/tokens.json"));
+
+	let tokenBs = ["7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj"]/*,"mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So",
 "poLisWXnNRwC6oBu1vHiuKQzFjGL4XDSu4g9qjz9qVk",
 "4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R",
 "2FPyTwcZLUg1MDrwsyoP4D6s1tM7hAkHYRjkNb5w6Pxk","FoRGERiW7odcCBGU1bztZi16osPBHjxharvDathL5eds",
 "GENEtH5amGSi8kHAtQoezp1XEXwZJ8vcuePYnXdKrMYz",
-"AFbX8oGjGpmVFywbVouvhQSRmiW2aR1mohfahi4Y2AdB"]
+"AFbX8oGjGpmVFywbVouvhQSRmiW2aR1mohfahi4Y2AdB"]*/
 	let prisms = {}
 	let prisms2 = {}
 	try {
@@ -47,7 +49,6 @@ const setup = async () => {
 		if ( true ){
 		// read tokens.json file
 		try {
-			tokens = JSON.parse(fs.readFileSync("./temp/tokens.json"));
 			// find tokens full Object
 			//tokenB = tokens[Math.floor(Math.random() * tokens.length)]
 			//tokenB = tokenA
