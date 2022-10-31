@@ -79,4 +79,6 @@ for (var pk of ammIdspks){
 }
 
     })
+    console.log(Object.keys(theluts).length)
+    fs.writeFileSync('./tluts.json', JSON.stringify(theluts))
 })
