@@ -388,7 +388,7 @@ for (var ourlut of ourluts){
 var tx = new Transaction()
 
 if (ourluts.length > 0){
-	let ourlut =( Math.floor(Math.random() * ourluts.length))
+	let ourlut =new PublicKey( ourluts[Math.floor(Math.random() * ourluts.length)])
 	let lookupTableAccount = await connection
 	.getAddressLookupTable((ourlut))
 	.then((res) => res.value);
