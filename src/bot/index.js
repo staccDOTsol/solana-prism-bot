@@ -62,6 +62,10 @@ const pingpongStrategy = async (prism, tokenA, tokenB) => {
 
 		baseAmount = mod //* baseAmount
 		amountToTrade = mod //* amountToTrade
+		await prisms[tokenA.address].loadRoutes(
+			tokenA.address,
+			tokenB.address
+		)
 				const routes = prism.getRoutes(amountToTrade)
 
 		checkRoutesResponse(routes);
@@ -184,10 +188,11 @@ const arbitrageStrategy = async (prisms, prisms2, tokenA, tokenB, market, reserv
 		updateIterationsPerMin(cache);
 		//console.log(tokenB)
 		let prism = prisms[tokenA.address]
+		let prism2 = prisms2[tokenB.address]
 		//let prism2 = prisms2[tokenB]
 		tokens = JSON.parse(fs.readFileSync("./temp/tokens.json"));
 		// find tokens full Object
-		let tokenB = tokenA //tokens[Math.floor(Math.random() * tokens.length)]
+		//let tokenB = tokenA //tokens[Math.floor(Math.random() * tokens.length)]
 
 		// Calculate amount that will be used for trade
 		let amountToTrade =
@@ -221,12 +226,14 @@ checkRoutesResponse(routes);
 			performance.now() - performanceOfRouteCompStart;
 
 				// choose first route
-		const route = routes[Math.floor(Math.random() * 4 )]// await routes.find((r) => r.providers.length  <= 15);
+		const route = routes[0]// await routes.find((r) => r.providers.length  <= 15);
 		//const routes2 = prism2.getRoutes( route.amountOut)
+		const routes2 = prism.getRoutes(route.amountOut)
+		const route2 = routes2[0]// await routes.find((r) => r.providers.length  <= 15);
 
 		// count available routes
 		cache.availableRoutes[cache.sideBuy ? "buy" : "sell"] =
-			routes.length// + routes2.length;
+			routes.length + routes2.length;
 			let ammIds = [ ]
 			let ammIdspks = []
 			try {
@@ -241,7 +248,7 @@ checkRoutesResponse(routes);
 					ammIds.push(tokenB.address)
 					ammIdspks.push(tokenA.address)
 					ammIdspks.push(tokenB.address)
-		for (var file of [...routes]){//,...routes2]){
+		for (var file of [...routes,...routes2]){
 			try {
 
 				for (var rd of Object.values(file.routeData)){
@@ -310,7 +317,7 @@ console.log(err)
 		
 		// calculate profitability
 
-		let simulatedProfit = calculateProfit(amountToTrade, route.amountOut);
+		let simulatedProfit = calculateProfit(amountToTrade, route2.amountOut);
 
 		// store max profit spotted
 		if (simulatedProfit > cache.maxProfitSpotted["buy"]) {
@@ -347,7 +354,7 @@ console.log(err)
 					inputToken: inputToken.symbol,
 					outputToken: outputToken.symbol,
 					inAmount: toDecimal(route.inAmount, inputToken.decimals),
-					expectedOutAmount: toDecimal(route.amountOut, outputToken.decimals),
+					expectedOutAmount: toDecimal(route2.amountOut, outputToken.decimals),
 					expectedProfit: simulatedProfit,
 				};
 
@@ -368,10 +375,10 @@ console.log(err)
 					}
 				}, 500);
 				
-				let result = await swap(prism, prism, route, route, tokenA.decimals, tokenB.decimals, market);
+				let result = await swap(prism, prism, route, route2, tokenA.decimals, tokenB.decimals, market);
 				if (result){
 					cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].success++
-					mod = mod * 100
+					mod = mod * 1000
 				}
 				else {
 					
@@ -384,7 +391,7 @@ console.log(err)
 		}
 
 			cache.swappingRightNow = false;
-			mod = mod / 1.1
+			mod = mod / 1.2
 			
 		printToConsole({
 			date,
@@ -414,6 +421,14 @@ const watcher = async (prisms, prisms2, tokenA, tokenB, market, reserve) => {
 			await pingpongStrategy(prisms, tokenA, tokenB);
 		}
 		if (cache.config.tradingStrategy === "arbitrage") {
+			let tokenBs = ["7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj","mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So",
+			"poLisWXnNRwC6oBu1vHiuKQzFjGL4XDSu4g9qjz9qVk",
+			"4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R",
+			"2FPyTwcZLUg1MDrwsyoP4D6s1tM7hAkHYRjkNb5w6Pxk","FoRGERiW7odcCBGU1bztZi16osPBHjxharvDathL5eds",
+			"GENEtH5amGSi8kHAtQoezp1XEXwZJ8vcuePYnXdKrMYz",
+			"AFbX8oGjGpmVFywbVouvhQSRmiW2aR1mohfahi4Y2AdB"]
+			let tb = tokenBs[Math.floor(Math.random()*tokenBs.length)]
+			tokenB = tokens.find((t) => t.address === tb);
 			await arbitrageStrategy(prisms, prisms2, tokenA, tokenB, market, reserve);
 		}
 	}

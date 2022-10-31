@@ -19,7 +19,12 @@ const {
   } = require( "../solend-sdk/dist/index" );
 const setup = async () => {
 	let spinner, tokens, tokenA, tokenB, wallet;
-	let tokenBs = []
+	let tokenBs = ["7dHbWXmci3dT8UFYWYZweBLXgycu7Y3iL6trKn1Y7ARj","mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So",
+"poLisWXnNRwC6oBu1vHiuKQzFjGL4XDSu4g9qjz9qVk",
+"4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R",
+"2FPyTwcZLUg1MDrwsyoP4D6s1tM7hAkHYRjkNb5w6Pxk","FoRGERiW7odcCBGU1bztZi16osPBHjxharvDathL5eds",
+"GENEtH5amGSi8kHAtQoezp1XEXwZJ8vcuePYnXdKrMYz",
+"AFbX8oGjGpmVFywbVouvhQSRmiW2aR1mohfahi4Y2AdB"]
 	let prisms = {}
 	let prisms2 = {}
 	try {
@@ -44,7 +49,7 @@ const setup = async () => {
 		try {
 			tokens = JSON.parse(fs.readFileSync("./temp/tokens.json"));
 			// find tokens full Object
-			//tokenA = tokens.find((t) => t.address === cache.config.tokenA.address);
+			//tokenB = tokens[Math.floor(Math.random() * tokens.length)]
 			//tokenB = tokenA
 			let tbsa = []
 		
@@ -75,11 +80,10 @@ for (var market of markets){
 	 reserve = market.reserves[Math.floor(Math.random() * market.reserves.length)]
 	 reserve = reserve.config
   MINT = reserve.mint;
-  tokenB ={address: MINT, decimals: reserve.dec, symbol: reserve.asset}
+  tokenA ={address: MINT, decimals: reserve.dec, symbol: reserve.asset}
 }
 	
-				console.log(tokenB)
-tokenA =  tokenB 
+				console.log(tokenA)
 			} catch (error) {
 			spinner.text = chalk.black.bgRedBright(
 				`\n	Loading tokens failed!\n	Please try to run the Wizard first using ${chalk.bold(
@@ -147,13 +151,33 @@ var connection2= new Connection(ALT_RPC_LIST?.split(',')[ran])
 					fee: 138,
 				  },
 			})
+			for (var tb of tokenBs){
+console.log(tb)
+				tokenB = tokens.find((t) => t.address === tb);
 			console.log(1)
-			console.log(tokenA)
 			await prisms[tokenA.address].loadRoutes(
 				tokenA.address,
+				tokenB.address
+			)
+			prisms2[tokenB.address]= await Prism.init({
+				user: wallet,
+				connection: connection2,
+				slippage:99,
+				host: {                                          // optional
+					// host platform fee account publickey base58
+					publicKey: "EDfPVAZmGLq1XhKgjpTby1byXMS2HcRqRf5j7zuQYcUg",
+					// fee bps e.g 5 => 0.05%
+					fee: 138,
+				  },
+			})
+			console.log(1)
+			await prisms2[tokenB.address].loadRoutes(
+				tokenB.address,
 				tokenA.address
 			)
+
 			console.log(2)
+			}
 			good = true 
 			} catch (err){
 				good = false
