@@ -387,7 +387,7 @@ for (var ourlut of ourluts){
 var tx = new Transaction()
 
 if (ourluts.length == 0){
-	var slot = connection.getSlot("finalized")
+	var slot = await connection.getSlot("finalized")
 
 var [lookupTableInst, lookupTableAddress] =
   AddressLookupTableProgram.createLookupTable({
@@ -404,7 +404,7 @@ tx.add(lookupTableInst)
 
 }
 			if (lookupTableAccount.state.addresses.length > 200){
-				var slot = connection.getSlot("finalized")
+				var slot = await connection.getSlot("finalized")
 
 				var [lookupTableInst, lookupTableAddress] =
 				AddressLookupTableProgram.createLookupTable({
