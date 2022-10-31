@@ -390,7 +390,7 @@ var tx = new Transaction()
 if (ourluts.length > 0){
 	let ourlut =new PublicKey( Math.floor(Math.random(ourluts.length)))
 	let lookupTableAccount = await connection
-	.getAddressLookupTable(new PublicKey(ourlut))
+	.getAddressLookupTable((ourlut))
 	.then((res) => res.value);
 			if (lookupTableAccount.state.addresses.length > 200){
 				var slot = await connection.getSlot()
@@ -445,9 +445,6 @@ var [lookupTableInst, lookupTableAddress] =
     payer: payer.publicKey,
     recentSlot: slot,
   });
-  let ttt = await connection
-  .getAddressLookupTable(lookupTableAddress)
-  .then((res) => res.value);
   console.log(lookupTableAddress.toBase58())
 
 tx.add(lookupTableInst)
