@@ -376,7 +376,6 @@ goodluts.push(lut)
 		aaa = 0
 let ourluts = JSON.parse(fs.readFileSync('./luts.json').toString())
 var lookupTableAccount, lookupTableAddress, lookupTableInst
-
 for (var ourlut of ourluts){
 
    lookupTableAccount = await connection
@@ -388,6 +387,7 @@ for (var ourlut of ourluts){
 var tx = new Transaction()
 
 if (ourluts.length == 0){
+	var slot = connection.getSlot("finalized")
 
 var [lookupTableInst, lookupTableAddress] =
   AddressLookupTableProgram.createLookupTable({
@@ -404,6 +404,7 @@ tx.add(lookupTableInst)
 
 }
 			if (lookupTableAccount.state.addresses.length > 200){
+				var slot = connection.getSlot("finalized")
 
 				var [lookupTableInst, lookupTableAddress] =
 				AddressLookupTableProgram.createLookupTable({
