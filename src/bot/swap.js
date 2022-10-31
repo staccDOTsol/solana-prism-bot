@@ -4,7 +4,7 @@ const fetch = require('node-fetch')
 const fs = require('fs')
 const { getSwapResultFromSolscanParser } = require("../services/solscan");
 const { sendAndConfirmTransaction, Connection, Transaction, VersionedTransaction,
-	 TransactionMessage, Keypair, ComputeBudgetProgram, PublicKey } = require("@solana/web3.js");
+	 TransactionMessage, Keypair, ComputeBudgetProgram, PublicKey, AddressLookupTableProgram } = require("@solana/web3.js");
 const bs58 = require("bs58");
 const axios = require('axios')
 const {
@@ -117,7 +117,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 		  await connection.getTokenAccountBalance(
 			tokenAccount
 		  )
-		).value.amount;
+		).value.amount; 
 					  instructions.push(
 						Token.createTransferInstruction(new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"),
 						  tokenAccount,
@@ -354,6 +354,86 @@ goodluts.push(lut)
 			recentBlockhash: blockhash,
 			instructions,
 		}).compileToV0Message(goaccs);
+
+		const  messageV12 = new TransactionMessage({
+			payerKey: payer.publicKey,
+			recentBlockhash: blockhash,
+			instructions: [instructions[1], instructions[instructions.length-1]],
+		}).compileToV0Message(goaccs);
+
+		ss = []
+		aaa = 0
+let ourluts = JSON.parse(fs.readFileSync('./luts.json').toString())
+var lookupTableAccount, lookupTableAddress, lookupTableInst
+
+for (var ourlut of ourluts){
+
+   lookupTableAccount = await connection
+  .getAddressLookupTable(new PublicKey(ourlut))
+  .then((res) => res.value);
+  lookupTableAccounts.push(lookupTableAccount)
+  goaccs.push(lookupTableAccount)
+}
+var tx = new Transaction()
+
+if (ourluts.length == 0){
+
+var [lookupTableInst, lookupTableAddress] =
+  AddressLookupTableProgram.createLookupTable({
+    authority: payer.publicKey,
+    payer: payer.publicKey,
+    recentSlot: slot,
+  });
+  let ttt = await connection
+  .getAddressLookupTable(lookupTableAddress)
+  .then((res) => res.value);
+  console.log(lookupTableAddress.toBase58())
+
+tx.add(lookupTableInst)
+
+}
+			if (lookupTableAccount.state.addresses.length > 200){
+
+				var [lookupTableInst, lookupTableAddress] =
+				AddressLookupTableProgram.createLookupTable({
+				  authority: payer.publicKey,
+				  payer: payer.publicKey,
+				  recentSlot: slot,
+				});
+				let ttt = await connection
+				.getAddressLookupTable(lookupTableAddress)
+				.then((res) => res.value);
+				console.log(lookupTableAddress.toBase58())
+			  
+tx.add(lookupTableInst)
+
+			}else {
+		for (var bca of messageV12.staticAccountKeys){
+		  aaa++
+		  for (var lookupTableAccountaa of lookupTableAccounts){
+		  if (!lookupTableAccountaa.state.addresses.includes(bca.toBase58())){
+		  ss.push(bca)  
+
+		
+		}
+	}
+		}
+	}
+		console.log(ss.length)
+		const extendInstruction = AddressLookupTableProgram.extendLookupTable({
+			payer: payer.publicKey,
+			authority: payer.publicKey,
+			lookupTable: lookupTableAddress,
+			addresses: ss
+			
+		});
+		
+tx.add(extendInstruction)
+		tx.recentBlockhash = await (
+			await connection.getLatestBlockhash()
+		  ).blockhash;
+tx.sign([payer])
+await sendAndConfirmTransaction(connection, tx)
 		  const transaction = new VersionedTransaction(
 			messageV00
 		  );
