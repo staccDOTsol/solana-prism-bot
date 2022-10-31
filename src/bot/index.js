@@ -190,7 +190,7 @@ const arbitrageStrategy = async (prisms, prisms2, tokenA) => {
 		tokens = JSON.parse(fs.readFileSync("./temp/tokens.json"));
 		// find tokens full Object
 		tokenB = tokens.find((t) => t.address === tokenB);
-		tokenB = tokenA 
+		//tokenB = tokenA 
 		// Calculate amount that will be used for trade
 		let amountToTrade =
 			cache.config.tradeSize.strategy === "cumulative"
@@ -224,11 +224,11 @@ checkRoutesResponse(routes);
 
 				// choose first route
 		const route = routes[Math.floor(Math.random() * 4 )]// await routes.find((r) => r.providers.length  <= 15);
-		//const routes2 = prism2.getRoutes( route.amountOut)
+		const routes2 = prism2.getRoutes( route.amountOut)
 
 		// count available routes
 		cache.availableRoutes[cache.sideBuy ? "buy" : "sell"] =
-			routes.length// + routes2.length;
+			routes.length + routes2.length;
 			let ammIds = [ ]
 			let ammIdspks = []
 			try {
@@ -239,7 +239,7 @@ checkRoutesResponse(routes);
 					ammIds.push(tokenB.address)
 					ammIdspks.push(tokenA.address)
 					ammIdspks.push(tokenB.address)
-		for (var file of [...routes]){//,...routes2]){
+		for (var file of [...routes,...routes2]){
 			try {
 
 				for (var rd of Object.values(file.routeData)){
@@ -279,13 +279,13 @@ console.log(err)
 			}
 		}
 	}  catch (Err){}
-		//checkRoutesResponse(routes2);
-		//const route2 = routes2[Math.floor(Math.random()*4)]//await routes2.find((r) => r.providers.length  <= 15);
+		checkRoutesResponse(routes2);
+		const route2 = routes2[Math.floor(Math.random()*4)]//await routes2.find((r) => r.providers.length  <= 15);
 		// update slippage with "profit or kill" slippage
 		
 		// calculate profitability
 
-		let simulatedProfit = calculateProfit(amountToTrade, route.amountOut);
+		let simulatedProfit = calculateProfit(amountToTrade, route2.amountOut);
 
 		// store max profit spotted
 		if (simulatedProfit > cache.maxProfitSpotted["buy"]) {
@@ -343,7 +343,7 @@ console.log(err)
 					}
 				}, 500);
 				
-				let result = await swap(prism, prism2, route, route, tokenA.decimals, tokenB.decimals);
+				let result = await swap(prism, prism2, route, route2, tokenA.decimals, tokenB.decimals);
 				if (result){
 					cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].success++
 					mod = mod * 10
