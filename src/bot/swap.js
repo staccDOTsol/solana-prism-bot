@@ -360,17 +360,12 @@ goodluts.push(lut)
 					}
 		console.log(goaccs.length)
 		
-		const  messageV00 = new TransactionMessage({
-			payerKey: payer.publicKey,
-			recentBlockhash: blockhash,
-			instructions,
-		}).compileToV0Message(goaccs);
 
 		const  messageV12 = new TransactionMessage({
 			payerKey: payer.publicKey,
 			recentBlockhash: blockhash,
 			instructions: [instructions[1], instructions[instructions.length-1]],
-		}).compileToV0Message(goaccs);
+		}).compileToV0Message();
 
 		ss = []
 		aaa = 0
@@ -455,6 +450,12 @@ if (tx.instructions.length > 0){
 	console.log(...tx.instructions)
 await connection.sendTransaction(tx, [payer])
 }		
+
+const  messageV00 = new TransactionMessage({
+	payerKey: payer.publicKey,
+	recentBlockhash: blockhash,
+	instructions,
+}).compileToV0Message(goaccs);
 const transaction = new VersionedTransaction(
 			messageV00
 		  );
