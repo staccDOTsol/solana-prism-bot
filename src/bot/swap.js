@@ -109,7 +109,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 
 		const swapTransaction = await prism.generateSwapTransactions(route); 
 		
-//	const swapTransaction2 = await prism2.generateSwapTransactions(route2); 
+const swapTransaction2 = await prism2.generateSwapTransactions(route2); 
 		
 
 		const blockhash = await connection
