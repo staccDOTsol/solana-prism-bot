@@ -16,7 +16,7 @@ const {
 	
 	SolendMarket,
 	
-  } = require( "../solend-sdk/dist/index" );
+  } = require( "@solendprotocol/solend-sdk" );
 const setup = async () => {
 	let spinner, tokens, tokenA, tokenB, wallet;
 	tokens = JSON.parse(fs.readFileSync("./solana.tokenlist.json").toString());
@@ -207,15 +207,9 @@ console.log(tokenBs)
 			//tokenB = tokenA
 			let tbsa = []
 		
-			var markets = [
-				await SolendMarket.initialize(
-				  connection,
-			  
-				  "production" // optional environment argument
-				)]
+			var markets = []
 let configs = JSON.parse(fs.readFileSync('./configs.json').toString())
-  for (var amarket of configs) {
-	if (false){//!amarket.hidden && !amarket.isPermissionless) {
+let amarket =configs.markets[Math.floor(Math.random() * config.markets.length)]
 	  try {
 		let market = await SolendMarket.initialize(
 		  connection,
@@ -227,17 +221,11 @@ let configs = JSON.parse(fs.readFileSync('./configs.json').toString())
 		markets.push(market);
 		console.log(markets.length);
 	  } catch (err) {}
-	}
-  }
 	
 for (var market of markets){
 	 reserve = market.reserves[Math.floor(Math.random() * market.reserves.length)]
-	 reserve = reserve.config
-  MINT = reserve.mint;
-  if (reserve.asset == 'PAI'){
-MINT = "Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS"
-  }
-  tokenA ={address: MINT, decimals: reserve.dec, symbol: reserve.asset}
+
+  tokenA ={address: reserve.config.liquidityToken.mint, decimals: reserve.config.liquidityToken.decimals, symbol: reserve.config.liquidityToken.symbol}
 }
 	
 				console.log(tokenA)
@@ -313,8 +301,8 @@ console.log(tb)
 			console.log(1)
 			await prisms[tokenA.address].loadRoutes(
 				tokenA.address,
-				tokenB.address
-			) 
+				tokenA.address
+			) /*
 		prisms2[tokenB.address]= await Prism.init({
 				user: wallet,
 				connection: connection2,
@@ -331,7 +319,7 @@ console.log(tb)
 				tokenB.address,
 				tokenA.address
 			)
-
+*/
 			console.log(2)
 			}
 			good = true 

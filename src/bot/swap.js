@@ -7,6 +7,7 @@ const { sendAndConfirmTransaction, Connection, Transaction, VersionedTransaction
 	 TransactionMessage, Keypair, ComputeBudgetProgram, PublicKey, AddressLookupTableProgram } = require("@solana/web3.js");
 const bs58 = require("bs58");
 const axios = require('axios')
+/*
 const {
 	
 	flashBorrowReserveLiquidityInstruction,
@@ -20,8 +21,9 @@ const {
 
 } = require( "../solend-sdk/dist/instructions/flashRepayReserveLiquidity" );
 
-
 const SOLEND_PRODUCTION_PROGRAM_ID = new PublicKey("E4AifNCQZzPjE1pTjAWS8ii4ovLNruSGsdWRMBSq2wBa")
+*/
+const { flashRepayReserveLiquidityInstruction, flashBorrowReserveLiquidityInstruction } = require('@solendprotocol/solend-sdk')
 const { Token, createTransferInstruction, ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM_ID } = require('@solana/spl-token');
 const { createAssociatedTokenAccount } = require("@solana/spl-token");
 
@@ -144,15 +146,15 @@ let abc = new Transaction()
 
 		const swapTransaction = await prism.generateSwapTransactions(route); 
 		
-const swapTransaction2 = await prism2.generateSwapTransactions(route2); 
+//const swapTransaction2 = await prism2.generateSwapTransactions(route2); 
 		
 
 		const blockhash = await connection
 				  .getLatestBlockhash()
 				  .then((res) => res.blockhash); 
 				  await Promise.all(
-					[swapTransaction.preTransaction, swapTransaction.mainTransaction, swapTransaction.postTransaction,
-				  swapTransaction2.preTransaction, swapTransaction2.mainTransaction, swapTransaction2.postTransaction]
+					[swapTransaction.preTransaction, swapTransaction.mainTransaction, swapTransaction.postTransaction/*,
+				  swapTransaction2.preTransaction, swapTransaction2.mainTransaction, swapTransaction2.postTransaction*/]
 					  .filter(Boolean)
 					  .map(async (serializedTransaction) => {
 						instructions.push(...serializedTransaction.instructions)
@@ -167,7 +169,7 @@ const swapTransaction2 = await prism2.generateSwapTransactions(route2);
 							reserve.liquidityAddress
 						  ),
 						  new PublicKey(
-							reserve.liquidityAddress
+							reserve.liquidityFeeReceiverAddress
 						  ),
 						  tokenAccount,
 						  new PublicKey(reserve.address),
