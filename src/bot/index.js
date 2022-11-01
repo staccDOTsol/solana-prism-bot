@@ -389,7 +389,7 @@ console.log(err)
 		}
 
 			cache.swappingRightNow = false;
-			mod = mod / 1.4
+			mod = mod / 1.01
 			
 		printToConsole({
 			date,
