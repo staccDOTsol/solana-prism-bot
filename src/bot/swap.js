@@ -104,7 +104,6 @@ tokenAccount = arg2.pubkey
 			  }
 			   catch (err){
 				let ata = Keypair.generate()
-				tokenAccount = ata.publicKey
 let abc = new Transaction()
 	 // Get the derived address of the destination wallet which will hold the custom token
 	 const associatedDestinationTokenAddr = await Token.getAssociatedTokenAddress(
@@ -113,7 +112,7 @@ let abc = new Transaction()
 		new PublicKey(tokenB),
 		payer.publicKey
 	  );
-	
+	tokenAccount = associatedDestinationTokenAddr
 	  const receiverAccount = await connection.getAccountInfo(associatedDestinationTokenAddr);
 			
 	abc.add(
