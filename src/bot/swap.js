@@ -94,13 +94,7 @@ tokenAccount = arg2.pubkey
 				let ata = Keypair.generate()
 				tokenAccount = ata.publicKey
 let abc = new Transaction()
-			try {
-				abc.add(
-				  Token.createAssociatedTokenAccountInstruction(ASSOCIATED_TOKEN_PROGRAM_ID,TOKEN_PROGRAM_ID,new PublicKey(reserve.config.liquidityToken.mint),ata.publicKey,payer.publicKey, payer.publicKey
-				  )
-				); 
-				
-  } catch (err){
+	
 	abc.add(
 		createAssociatedTokenAccountInstruction(
 			payer.publicKey, // payer
@@ -110,7 +104,6 @@ let abc = new Transaction()
 		  )
 	  
 		); 
-  }	
   abc.recentBlockhash = await (
 	  await connection.getLatestBlockhash()
 	).blockhash;
@@ -129,13 +122,7 @@ let abc = new Transaction()
 			  } catch (err){
 				let ata = Keypair.generate()
 let abc = new Transaction()
-			try {
-				abc.add(
-				  Token.createAssociatedTokenAccountInstruction(ASSOCIATED_TOKEN_PROGRAM_ID,TOKEN_PROGRAM_ID,new PublicKey(reserve.config.liquidityToken.mint),ata.publicKey,new PublicKey("EDfPVAZmGLq1XhKgjpTby1byXMS2HcRqRf5j7zuQYcUg"), payer.publicKey
-				  )
-				); 
-				
-  } catch (err){
+			
 	abc.add(
 		createAssociatedTokenAccountInstruction(
 			payer.publicKey, // payer
@@ -145,7 +132,6 @@ let abc = new Transaction()
 		  )
 	  
 		); 
-  }	
   abc.recentBlockhash = await (
 	  await connection.getLatestBlockhash()
 	).blockhash;
@@ -174,13 +160,7 @@ let abc = new Transaction()
 		  } catch (err){
 let ata = Keypair.generate()
 let abc = new Transaction()
-			try {
-				abc.add(
-				  Token.createAssociatedTokenAccountInstruction(ASSOCIATED_TOKEN_PROGRAM_ID,TOKEN_PROGRAM_ID,new PublicKey(TokenB),ata.publicKey,payer.publicKey, payer.publicKey
-				  )
-				); 
-				
-  } catch (err){
+			
 	abc.add(
 		createAssociatedTokenAccountInstruction(
 			payer.publicKey, // payer
@@ -190,7 +170,6 @@ let abc = new Transaction()
 		  )
 	  
 		); 
-  }	
   abc.recentBlockhash = await (
 	  await connection.getLatestBlockhash()
 	).blockhash;
