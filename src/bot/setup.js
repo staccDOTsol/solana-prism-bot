@@ -221,7 +221,7 @@ let amarket =configs.markets[Math.floor(Math.random() * config.markets.length)]
 		markets.push(market);
 		console.log(markets.length);
 	  } catch (err) {}
-	
+	process.exit()
 for (var market of markets){
 	 reserve = market.reserves[Math.floor(Math.random() * market.reserves.length)]
 
