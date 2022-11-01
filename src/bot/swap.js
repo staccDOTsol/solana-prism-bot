@@ -203,7 +203,7 @@ tokenAccountDestination = ata.publicKey
 			payer.publicKey, // owne
 		  ))
 	}*/
-	
+
 
 	let instructions = [
 		flashBorrowReserveLiquidityInstruction(
@@ -254,7 +254,7 @@ tokenAccountDestination = ata.publicKey
 						  SOLEND_PRODUCTION_PROGRAM_ID
 						)
 					  );
-
+/*
 		let myshit = (
 		  await connection.getTokenAccountBalance(
 			tokenAccount
@@ -279,7 +279,7 @@ tokenAccountDestination = ata.publicKey
 				  Math.floor(myshit* 0.5),[]
 				)
 			  ); 
-		}
+		} */
 			
 				  let w = 0
 				  let winner 
