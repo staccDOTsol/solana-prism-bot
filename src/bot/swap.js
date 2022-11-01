@@ -23,7 +23,7 @@ const {
 
 const SOLEND_PRODUCTION_PROGRAM_ID = new PublicKey("E4AifNCQZzPjE1pTjAWS8ii4ovLNruSGsdWRMBSq2wBa")
 const { Token, createTransferInstruction, ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM_ID } = require('@solana/spl-token');
-const { createAssociatedTokenAccountInstruction } = require("@solana/spl-token");
+const { createAssociatedTokenAccount } = require("@solana/spl-token");
 
   const payer = Keypair.fromSecretKey(
     new Uint8Array(
@@ -123,7 +123,7 @@ let abc = new Transaction()
 				
   } catch (err){
 	abc.add(
-		createAssociatedTokenAccountInstruction(
+		createAssociatedTokenAccount(
 			payer.publicKey, // payer
 			ata.publicKey, // ata
 			payer.publicKey, // owner
