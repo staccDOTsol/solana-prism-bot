@@ -106,7 +106,7 @@ let abc = new Transaction()
   abc.recentBlockhash = await (
 	  await connection.getLatestBlockhash()
 	).blockhash;
-	abc.sign(payer)
+	abc.sign([payer])
 	sendAndConfirmTransaction(connection,abc)
 			   }
 			  let arg3 = (
@@ -134,7 +134,7 @@ let abc = new Transaction()
   abc.recentBlockhash = await (
 	  await connection.getLatestBlockhash()
 	).blockhash;
-	abc.sign(payer)
+	abc.sign([payer])
 	sendAndConfirmTransaction(connection,abc)
 			  }
 		   let instructions = [
@@ -172,7 +172,7 @@ let abc = new Transaction()
   abc.recentBlockhash = await (
 	  await connection.getLatestBlockhash()
 	).blockhash;
-	abc.sign(payer)
+	abc.sign([payer])
 	sendAndConfirmTransaction(connection,abc)
 	}
 		cache.performanceOfTxStart = performanceOfTxStart;
