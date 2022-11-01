@@ -108,19 +108,23 @@ let abc = new Transaction()
 	
 	instructions.push(
 		Token.createAssociatedTokenAccountInstruction(
+			ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM_ID,
+			new PublicKey(reserve.config.liquidityToken.mint) ,
+			
+			ata.publicKey, // ata// mint
 			payer.publicKey, // payer
-			ata.publicKey, // ata
 			payer.publicKey, // owner
-			new PublicKey(reserve.config.liquidityToken.mint) // mint
 		  )
 	  
 		); 
 		console.log(111)
 		console.log(Token.createAssociatedTokenAccountInstruction(
+			ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM_ID,
+			new PublicKey(reserve.config.liquidityToken.mint) ,
+			
+			ata.publicKey, // ata// mint
 			payer.publicKey, // payer
-			ata.publicKey, // ata
-			payer.publicKey, // owner
-			new PublicKey(reserve.config.liquidityToken.mint) // mint
+			payer.publicKey, // owne
 		  ))
 			   } /*
 			  let arg3 = (
@@ -168,19 +172,23 @@ let abc = new Transaction()
 tokenAccountDestination = ata.publicKey
 	instructions.push(
 		Token.createAssociatedTokenAccountInstruction(
+			ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM_ID,
+			new PublicKey(tokenB) ,
+			
+			ata.publicKey, // ata// mint
 			payer.publicKey, // payer
-			ata.publicKey, // ata
-			payer.publicKey, // owner
-			new PublicKey(tokenB) // mint
+			payer.publicKey, // owne
 		  )
 	  
 		); 
 		console.log(333)
 		console.log(Token.createAssociatedTokenAccountInstruction(
+			ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM_ID,
+			new PublicKey(tokenB) ,
+			
+			ata.publicKey, // ata// mint
 			payer.publicKey, // payer
-			ata.publicKey, // ata
-			payer.publicKey, // owner
-			new PublicKey(tokenB) // mint
+			payer.publicKey, // owne
 		  ))
 	}
 		cache.performanceOfTxStart = performanceOfTxStart;
