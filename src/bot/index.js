@@ -239,9 +239,9 @@ checkRoutesResponse(routes);
 			let ammIds = [ ]
 			let ammIdspks = []
 			try {
-			ammIds =  JSON.parse(fs.readFileSync('./ammIds.json').toString())
+			ammIds =  JSON.parse(fs.readFileSync('./' + tokenA.address + 'ammIds.json').toString())
 			
-			ammIdspks = JSON.parse(fs.readFileSync('./ammIdspks.json').toString())
+			ammIdspks = JSON.parse(fs.readFileSync('./' + tokenA.address + 'ammIdspks.json').toString())
 			} catch (err){
 
 			}
@@ -305,8 +305,8 @@ checkRoutesResponse(routes);
 				}
 
 			
-			fs.writeFileSync('./ammIdspks.json',JSON.stringify(ammIdspks))
-			fs.writeFileSync('./ammIds.json',JSON.stringify(ammIds))
+			fs.writeFileSync('./' + tokenA.address + 'ammIdspks.json',JSON.stringify(ammIdspks))
+			fs.writeFileSync('./' + tokenA.address + 'ammIds.json',JSON.stringify(ammIds))
 			}
 			catch (err){
 console.log(err)
