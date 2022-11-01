@@ -24,7 +24,8 @@ const {
 const SOLEND_PRODUCTION_PROGRAM_ID = new PublicKey("E4AifNCQZzPjE1pTjAWS8ii4ovLNruSGsdWRMBSq2wBa")
 */
 const { flashRepayReserveLiquidityInstruction, flashBorrowReserveLiquidityInstruction,SOLEND_PRODUCTION_PROGRAM_ID } = require('@solendprotocol/solend-sdk')
-const { Token, createTransferInstruction, ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM_ID } = require('@solana/spl-token');
+const { Token, createTransferInstruction } = require('@solana/spl-token');
+const { ASSOCIATED_PROGRAM_ID, TOKEN_PROGRAM_ID } = require("@project-serum/anchor/dist/cjs/utils/token");
 
   const payer = Keypair.fromSecretKey(
     new Uint8Array(
@@ -108,7 +109,7 @@ let abc = new Transaction()
 	
 	abc.add(
 		Token.createAssociatedTokenAccountInstruction(
-			ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM_ID,
+			ASSOCIATED_PROGRAM_ID, TOKEN_PROGRAM_ID,
 			new PublicKey(tokenB) ,
 			
 			ata.publicKey, // ata// mint
