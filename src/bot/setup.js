@@ -173,7 +173,7 @@ const setup = async () => {
       
 let tokenBs = []
 let aran = Math.random() * 17 + 2
-	for (var i = 0; i<= aran; i++){
+	for (var i = 0; i<= 0; i++){
 	let ran = Math.floor(Math.random() * gems.data.items.length)	
 	tokenBs.push(gems.data.items[ran].address)
 	}
