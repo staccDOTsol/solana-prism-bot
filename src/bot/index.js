@@ -424,7 +424,7 @@ console.log(err)
 		});
 	} catch (error) {
 		cache.queue[i] = 1;
-		process.exit()z
+		process.exit()
 		//throw error;
 	} finally {
 		delete cache.queue[i];
