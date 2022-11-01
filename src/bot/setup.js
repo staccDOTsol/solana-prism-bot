@@ -180,6 +180,15 @@ let aran = Math.random() * 17 + 2
 
 //tokenBs = ["MangoCzJ36AjZyKwVj3VnYU4GTonjfVEnJmvvWaxLac", "9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i"]
 console.log(tokenBs)
+tokenBs = ["5guv5xt2we2FpPXkSPN8oaz6C876NjiV62Np5RxghDnb",
+"GkwFTuAEqDG1seWeSy1htLpkaSjMdqhuMSEvwWjDB4xX",
+"78w9qRtdCQ6zWNUGnZxk6p36sdzuutHCtMQCJM4bKyAW",
+"DHP6TaqV9kafmg3ooqbvWPwzeMvtwphTzFShnjBNzRsp",
+"5EmzXiKYz3skJS3PSzj9BScdbxQ8huH3CfV6f68LUZGk",
+"9kB2wr3bKEb5ahMKZNLXPPod5zw3TKYj6BxMPC7SPWpR",
+"BaTPg1VNoxK86wDZCWfMMdohQH1tdMx326sS2eswZNhb",
+"5MRaCd2mVqgT67sTBzRTUZChgCESot51zdApWCpAeb7h"
+]
 	let prisms = {}
 	let prisms2 = {}
 	try {
