@@ -231,7 +231,7 @@ checkRoutesResponse(routes);
 
 		// count available routes
 		cache.availableRoutes[cache.sideBuy ? "buy" : "sell"] =
-			routes.length+ routes2.length;	
+			routes.length//+ routes2.length;	
 			try {
 			} catch (err){
 
