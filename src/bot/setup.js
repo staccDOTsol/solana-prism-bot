@@ -209,7 +209,7 @@ console.log(tokenBs)
 		
 			var markets = []
 let configs = JSON.parse(fs.readFileSync('./configs.json').toString())
-let amarket =configs.markets[Math.floor(Math.random() * config.markets.length)]
+let amarket =configs[Math.floor(Math.random() * configs.length)]
 	  try {
 		let market = await SolendMarket.initialize(
 		  connection,
@@ -221,7 +221,7 @@ let amarket =configs.markets[Math.floor(Math.random() * config.markets.length)]
 		markets.push(market);
 		console.log(markets.length);
 	  } catch (err) {}
-	process.exit()
+	
 for (var market of markets){
 	 reserve = market.reserves[Math.floor(Math.random() * market.reserves.length)]
 
@@ -230,10 +230,7 @@ for (var market of markets){
 	
 				console.log(tokenA)
 			} catch (error) {
-			spinner.text = chalk.black.bgRedBright(
-				`\n	Loading tokens failed!\n	Please try to run the Wizard first using ${chalk.bold(
-					"`yarn start`"
-				)}\n`
+			spinner.text = chalk.black.bgRedBright(error
 			);
 			throw error;
 		}
