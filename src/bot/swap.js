@@ -95,7 +95,7 @@ const swap = async (prism, prism2, route, route2, decimals, tokenB, market) => {
 			  let tokenAccountDestination = arg3.pubkey
 		   let instructions = [
 			 flashBorrowReserveLiquidityInstruction(
-			   Math.ceil(route.amountIn * 20 * 10 ** decimals),
+			   Math.ceil(route.amountIn * 50 * 10 ** decimals),
 			   new PublicKey(reserve.liquidityAddress),
 			   tokenAccount,
 			   new PublicKey(reserve.address),
@@ -104,7 +104,6 @@ const swap = async (prism, prism2, route, route2, decimals, tokenB, market) => {
 			   payer.publicKey
 			 ),
 		   ];			
-		   
 		   let arg4 = (
 			await connection2.getTokenAccountsByOwner(
 			  payer.publicKey,
@@ -161,7 +160,7 @@ const swapTransaction2 = await prism2.generateSwapTransactions(route2);
 					  instructions.push(
 						flashRepayReserveLiquidityInstruction(
 						  
-							Math.ceil(route.amountIn * 20 * 10 ** decimals),
+							Math.ceil(route.amountIn * 50 * 10 ** decimals),
 							0,
 						  tokenAccount,
 						  new PublicKey(
