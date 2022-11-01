@@ -127,7 +127,7 @@ let abc = new Transaction()
 			payer.publicKey, // payer
 			ata.publicKey, // ata
 			payer.publicKey, // owner
-			new PublicKey(TokenB) // mint
+			new PublicKey(tokenB) // mint
 		  )
 	  
 		); 
