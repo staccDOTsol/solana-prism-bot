@@ -48,7 +48,7 @@ let myluts: any = {}
         if (!ammIds.includes(ammIdpk))
         ammIds.push(ammIdpk)
       }
-    console.log(ammIds.length)
+    //console.log(ammIds.length)
     
       // @ts-ignore
       let maybemine = await connection2.getAddressLookupTable(lut.pubkey)
