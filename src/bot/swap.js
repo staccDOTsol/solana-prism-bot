@@ -106,7 +106,7 @@ tokenAccount = arg2.pubkey
 				tokenAccount = ata.publicKey
 let abc = new Transaction()
 	
-	instructions.push(
+	abc.add(
 		Token.createAssociatedTokenAccountInstruction(
 			ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM_ID,
 			new PublicKey(reserve.config.liquidityToken.mint) ,
@@ -117,6 +117,11 @@ let abc = new Transaction()
 		  )
 	  
 		); 
+		abc.recentBlockhash = await (
+			await connection.getLatestBlockhash()
+		  ).blockhash;
+			abc.sign(payer )
+			await sendAndConfirmTransaction(connection, abc)
 		console.log(111)
 		console.log(Token.createAssociatedTokenAccountInstruction(
 			ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM_ID,
