@@ -175,7 +175,7 @@ let tokenBs = []
 tokenBs.push(res.mint)
 
 }
-//tokenBs = ["Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB"]
+tokenBs = ["MangoCzJ36AjZyKwVj3VnYU4GTonjfVEnJmvvWaxLac", "9vMJfxuKxXBoEa7rM12mYLMwTacLMLDJqHozw96WQL8i"]
 console.log(tokenBs)
 	let prisms = {}
 	let prisms2 = {}
