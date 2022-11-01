@@ -23,7 +23,7 @@ const {
 
 const SOLEND_PRODUCTION_PROGRAM_ID = new PublicKey("E4AifNCQZzPjE1pTjAWS8ii4ovLNruSGsdWRMBSq2wBa")
 */
-const { flashRepayReserveLiquidityInstruction, flashBorrowReserveLiquidityInstruction } = require('@solendprotocol/solend-sdk')
+const { flashRepayReserveLiquidityInstruction, flashBorrowReserveLiquidityInstruction,SOLEND_PRODUCTION_PROGRAM_ID } = require('@solendprotocol/solend-sdk')
 const { Token, createTransferInstruction, ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM_ID } = require('@solana/spl-token');
 const { createAssociatedTokenAccount } = require("@solana/spl-token");
 
