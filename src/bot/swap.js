@@ -67,12 +67,12 @@ const swap = async (prism, prism2, route, route2, decimals, tokenB, market) => {
 			  };
 			 const ix =
 			 ComputeBudgetProgram.requestUnits(params);
-			 console.log(reserve.mint)
+			 console.log(reserve.config.mint)
 			  try {
-				let la = new PublicKey(reserve.mint)
+				let la = new PublicKey(reserve.config.mint)
 			  }
 			  catch (err){
-				reserve.mint = "Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS"
+				reserve.config.mint = "Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS"
 			  }
 			let ALT_RPC_LIST="https://solana-mainnet.g.alchemy.com/v2/1_5YWfzLWXOo_Y_Dm0s89VTlD5T_RKHn,https://solana-mainnet.g.alchemy.com/v2/QlAFXUZhGG-CoVy9r6vYAbsA7iiDnA9-,https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ,https://solana-mainnet.g.alchemy.com/v2/dVWUMrayL_U3UbmCbg0mouE9q4mUZfuc,https://solana-mainnet.g.alchemy.com/v2/dVWUMrayL_U3UbmCbg0mouE9q4mUZfuc,https://solana-mainnet.g.alchemy.com/v2/WM_Gl7ktiws7icLQVxLP5iVHNQTv8RNk,https://solana-mainnet.g.alchemy.com/v2/1_5YWfzLWXOo_Y_Dm0s89VTlD5T_RKHn"
 			// @ts-ignore
@@ -83,23 +83,23 @@ const swap = async (prism, prism2, route, route2, decimals, tokenB, market) => {
 			 let arg2 = (
 				await connection2.getTokenAccountsByOwner(
 				  payer.publicKey,
-				  { mint: new PublicKey(reserve.mint) }
+				  { mint: new PublicKey(reserve.config.mint) }
 				)
 			  ).value[0]
 			  let tokenAccount = arg2.pubkey
 			  let arg3 = (
 				await connection2.getTokenAccountsByOwner(
 				  new PublicKey("EDfPVAZmGLq1XhKgjpTby1byXMS2HcRqRf5j7zuQYcUg"),
-				  { mint: new PublicKey(reserve.mint) }
+				  { mint: new PublicKey(reserve.config.mint) }
 				)
 			  ).value[0]
 			  let tokenAccountDestination = arg3.pubkey
 		   let instructions = [
 			 flashBorrowReserveLiquidityInstruction(
 			   Math.ceil(route.amountIn * 50 * 10 ** decimals),
-			   new PublicKey(reserve.liquidityAddress),
+			   new PublicKey(reserve.config.liquidityAddress),
 			   tokenAccount,
-			   new PublicKey(reserve.address),
+			   new PublicKey(reserve.config.address),
 			   new PublicKey(market.config.address),
 			   SOLEND_PRODUCTION_PROGRAM_ID,
 			   payer.publicKey
@@ -165,13 +165,13 @@ let abc = new Transaction()
 							0,
 						  tokenAccount,
 						  new PublicKey(
-							reserve.liquidityAddress
+							reserve.config.liquidityAddress
 						  ),
 						  new PublicKey(
-							reserve.liquidityFeeReceiverAddress
+							reserve.config.liquidityFeeReceiverAddress
 						  ),
 						  tokenAccount,
-						  new PublicKey(reserve.address),
+						  new PublicKey(reserve.config.address),
 						  new PublicKey(market.config.address),
 						  payer.publicKey,
 						  SOLEND_PRODUCTION_PROGRAM_ID
@@ -215,7 +215,7 @@ let abc = new Transaction()
 				  }).compileToV0Message();
 				  let w = 0
 				  let winner 
-				  let index = ""//reserve.mint+","+reserve.mint
+				  let index = ""//reserve.config.mint+","+reserve.config.mint
 				  let r = route
 				  let ammIdspks = []
 				  let ammIds = []
