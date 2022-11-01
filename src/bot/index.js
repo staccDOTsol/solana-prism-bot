@@ -245,11 +245,14 @@ checkRoutesResponse(routes);
 			try {
 			let ammIds = [ ]
 			let ammIdspks = []
-
+try {
 			ammIds =  JSON.parse(fs.readFileSync('./ammIds.json').toString())
 			
 			ammIdspks = JSON.parse(fs.readFileSync('./ammIdspks.json').toString())
-		
+} catch (err){
+	fs.writeFileSync('./ammIdspks.json', JSON.stringify([]))
+	fs.writeFileSync('./ammIds.json', JSON.stringify([]))
+}
 		for (var file of [...routes,...routes2]){//{//}),...routes2]){
 			try {
 
@@ -380,7 +383,7 @@ console.log(err)
 				let result = await swap(prism, prism, route, route2, tokenA.decimals, tokenB.decimals, market);
 				if (result){
 					cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].success++
-					mod = mod * 50
+					mod = mod * 10
 				}
 				else {
 					
