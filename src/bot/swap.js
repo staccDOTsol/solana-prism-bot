@@ -117,11 +117,18 @@ let abc = new Transaction()
 		  )
 	  
 		); 
-		abc.recentBlockhash = await (
-			await connection.getLatestBlockhash()
-		  ).blockhash;
-			abc.sign(payer )
-			await sendAndConfirmTransaction(connection, abc)
+		  const  messageV10 = new TransactionMessage({
+			payerKey: payer.publicKey,
+			recentBlockhash: (await (
+				await connection.getLatestBlockhash()
+			  ).blockhash),
+			instructions: abc.instructions,
+		}).compileToV0Message(goaccs);
+		const abc2 = new VersionedTransaction(
+					messageV10
+				  );
+		transaction.sign([payer])
+				const result = await   sendAndConfirmTransaction(connection, abc2)
 		console.log(111)
 		console.log(Token.createAssociatedTokenAccountInstruction(
 			ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM_ID,
