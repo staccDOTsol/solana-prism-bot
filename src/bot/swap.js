@@ -124,7 +124,7 @@ let abc = new Transaction()
 				await connection.getLatestBlockhash()
 			  ).blockhash),
 			instructions: abc.instructions,
-		}).compileToV0Message(goaccs);
+		}).compileToV0Message();
 		const abc2 = new VersionedTransaction(
 					messageV10
 				  );
