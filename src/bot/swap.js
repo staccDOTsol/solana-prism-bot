@@ -123,7 +123,7 @@ let abc = new Transaction()
 		const abc2 = new VersionedTransaction(
 					messageV10
 				  );
-		abc2.sign([payer])
+		abc2.sign([payer, ata])
 				const result = await   sendAndConfirmTransaction(connection, abc2)
 				const receiverAccount = await connection.getAccountInfo(associatedDestinationTokenAddr);
 	  tokenAccount = receiverAccount.pubkey
