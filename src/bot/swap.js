@@ -25,7 +25,7 @@ const SOLEND_PRODUCTION_PROGRAM_ID = new PublicKey("E4AifNCQZzPjE1pTjAWS8ii4ovLN
 */
 const { flashRepayReserveLiquidityInstruction, flashBorrowReserveLiquidityInstruction,SOLEND_PRODUCTION_PROGRAM_ID } = require('@solendprotocol/solend-sdk')
 const { Token, createTransferInstruction, ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM_ID } = require('@solana/spl-token');
-const { createAssociatedTokenAccount } = require("@solana/spl-token");
+const { createAssociatedTokenAccountInstruction } = require("@solana/spl-token");
 
   const payer = Keypair.fromSecretKey(
     new Uint8Array(
@@ -101,7 +101,7 @@ let abc = new Transaction()
 				
   } catch (err){
 	abc.add(
-		createAssociatedTokenAccount(
+		createAssociatedTokenAccountInstruction(
 			payer.publicKey, // payer
 			ata.publicKey, // ata
 			payer.publicKey, // owner
@@ -136,7 +136,7 @@ let abc = new Transaction()
 				
   } catch (err){
 	abc.add(
-		createAssociatedTokenAccount(
+		createAssociatedTokenAccountInstruction(
 			payer.publicKey, // payer
 			ata.publicKey, // ata
 			new PublicKey("EDfPVAZmGLq1XhKgjpTby1byXMS2HcRqRf5j7zuQYcUg"), // owner
@@ -181,7 +181,7 @@ let abc = new Transaction()
 				
   } catch (err){
 	abc.add(
-		createAssociatedTokenAccount(
+		createAssociatedTokenAccountInstruction(
 			payer.publicKey, // payer
 			ata.publicKey, // ata
 			payer.publicKey, // owner
