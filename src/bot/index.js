@@ -22,7 +22,7 @@ process.on('SIGINT', signal => {
   
 })
 
-let mod = 100
+let mod = 0.1
   process.on('uncaughtException', err => {
 	console.log(err)
 
