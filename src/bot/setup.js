@@ -207,15 +207,9 @@ console.log(tokenBs)
 			//tokenB = tokenA
 			let tbsa = []
 		
-			var markets = [
-				await SolendMarket.initialize(
-				  connection,
-			  
-				  "production" // optional environment argument
-				)]
+			var markets = [)]
 let configs = JSON.parse(fs.readFileSync('./configs.json').toString())
-  for (var amarket of configs) {
-	if (false){//!amarket.hidden && !amarket.isPermissionless) {
+let amarket = configs[Math.floor(Math.random() * configs.length)]
 	  try {
 		let market = await SolendMarket.initialize(
 		  connection,
@@ -227,8 +221,7 @@ let configs = JSON.parse(fs.readFileSync('./configs.json').toString())
 		markets.push(market);
 		console.log(markets.length);
 	  } catch (err) {}
-	}
-  }
+
 	
 for (var market of markets){
 	 reserve = market.reserves[Math.floor(Math.random() * market.reserves.length)]
@@ -237,7 +230,7 @@ for (var market of markets){
   if (reserve.asset == 'PAI'){
 MINT = "Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS"
   }
-  tokenA ={address: MINT, decimals: reserve.dec, symbol: reserve.asset}
+  tokenA ={address: reserve.config.liquidityMint.mint, decimals: reserve.config.decimals, symbol: reserve.config.symbol}
 }
 	
 				console.log(tokenA)
