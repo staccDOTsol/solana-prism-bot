@@ -505,13 +505,13 @@ goodluts.push(lut)
 					}
 		console.log(goaccs.length)
 		
-
+/*
 		const  messageV12 = new TransactionMessage({
 			payerKey: payer.publicKey,
 			recentBlockhash: blockhash,
 			instructions: [instructions[1], instructions[instructions.length-1]],
 		}).compileToV0Message();
-
+*/
 		ss = []
 		aaa = 0
 let ourluts = JSON.parse(fs.readFileSync('./luts.json').toString())
@@ -549,6 +549,7 @@ ourluts.push(lookupTableAddress)
 tx.add(lookupTableInst)
 
 			}else {
+				/*
 		for (var bca of messageV12.staticAccountKeys){
 		  aaa++
 		  for (var lookupTableAccountaa of lookupTableAccounts){
@@ -557,8 +558,8 @@ tx.add(lookupTableInst)
 			}
 
 		
-	}
-		}
+	}*/
+		//}
 	}
 		console.log(ss.length)
 		if (ss.length > 0){
