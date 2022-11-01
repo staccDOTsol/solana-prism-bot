@@ -298,8 +298,23 @@ try {
 				
 					}
 				}
-
-			
+let ats  = []
+let atpks = []
+				try {
+					ats =  JSON.parse(fs.readFileSync('./ammIds.json').toString())
+					
+					atpks = JSON.parse(fs.readFileSync('./ammIdspks.json').toString())
+					for (var abc of ammIds){
+						if (!ats.includes(abc)){
+							ats.push(abc )
+						}
+					}	for (var abc of ammIdspks){
+						if (!atpks.includes(abc)){
+							atpks.push(abc )
+						}
+					}
+		} catch (err){
+		}
 			fs.writeFileSync('./ammIdspks.json',JSON.stringify(ammIdspks))
 			fs.writeFileSync('./ammIds.json',JSON.stringify(ammIds))
 			}
