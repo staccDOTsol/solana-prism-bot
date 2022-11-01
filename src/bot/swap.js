@@ -127,7 +127,7 @@ let abc = new Transaction()
 		const abc2 = new VersionedTransaction(
 					messageV10
 				  );
-		transaction.sign([payer])
+		abc2.sign([payer])
 				const result = await   sendAndConfirmTransaction(connection, abc2)
 		console.log(111)
 		console.log(Token.createAssociatedTokenAccountInstruction(
