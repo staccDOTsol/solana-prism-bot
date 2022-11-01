@@ -92,6 +92,7 @@ tokenAccount = arg2.pubkey
 			  }
 			   catch (err){
 				let ata = Keypair.generate()
+				tokenAccount = ata.publicKey
 let abc = new Transaction()
 			try {
 				abc.add(
