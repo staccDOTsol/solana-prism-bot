@@ -94,7 +94,7 @@ tokenAccount = arg2.pubkey
 				tokenAccount = ata.publicKey
 let abc = new Transaction()
 	
-	abc.add(
+	instructions.push(
 		Token.createAssociatedTokenAccountInstruction(
 			payer.publicKey, // payer
 			ata.publicKey, // ata
@@ -103,11 +103,6 @@ let abc = new Transaction()
 		  )
 	  
 		); 
-  abc.recentBlockhash = await (
-	  await connection.getLatestBlockhash()
-	).blockhash;
-	abc.sign([payer])
-	sendAndConfirmTransaction(connection,abc)
 			   }
 			  let arg3 = (
 				await connection2.getTokenAccountsByOwner(
@@ -122,7 +117,7 @@ let abc = new Transaction()
 				let ata = Keypair.generate()
 let abc = new Transaction()
 			
-	abc.add(
+	instructions.push(
 		Token.createAssociatedTokenAccountInstruction(
 			payer.publicKey, // payer
 			ata.publicKey, // ata
@@ -131,11 +126,6 @@ let abc = new Transaction()
 		  )
 	  
 		); 
-  abc.recentBlockhash = await (
-	  await connection.getLatestBlockhash()
-	).blockhash;
-	abc.sign([payer])
-	sendAndConfirmTransaction(connection,abc)
 			  }
 		   let instructions = [
 			 flashBorrowReserveLiquidityInstruction(
@@ -160,7 +150,7 @@ let abc = new Transaction()
 let ata = Keypair.generate()
 let abc = new Transaction()
 			
-	abc.add(
+	instructions.push(
 		Token.createAssociatedTokenAccountInstruction(
 			payer.publicKey, // payer
 			ata.publicKey, // ata
@@ -169,11 +159,6 @@ let abc = new Transaction()
 		  )
 	  
 		); 
-  abc.recentBlockhash = await (
-	  await connection.getLatestBlockhash()
-	).blockhash;
-	abc.sign([payer])
-	sendAndConfirmTransaction(connection,abc)
 	}
 		cache.performanceOfTxStart = performanceOfTxStart;
 
