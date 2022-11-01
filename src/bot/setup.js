@@ -170,7 +170,7 @@ const setup = async () => {
           ]
         }
       
-	let tokenBs = []
+//	let tokenBs = []
 	for (var res of configs2.reserves){
 tokenBs.push(res.mint)
 
@@ -313,7 +313,7 @@ console.log(tb)
 				tokenA.address,
 				tokenA.address
 			)
-/*			prisms2[tokenB.address]= await Prism.init({
+		prisms2[tokenB.address]= await Prism.init({
 				user: wallet,
 				connection: connection2,
 				slippage:99,
@@ -329,7 +329,7 @@ console.log(tb)
 				tokenB.address,
 				tokenA.address
 			)
-*/
+
 			console.log(2)
 			}
 			good = true 
