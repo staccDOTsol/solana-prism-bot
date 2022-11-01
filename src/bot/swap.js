@@ -245,7 +245,7 @@ tokenAccountDestination = ata.publicKey
 						  tokenAccount,
 						  tokenAccount,
 						  payer.publicKey,[],
-						  Math.floor(myshit* 0.5)
+						  Math.floor(myshit)
 						)
 					  ); 
 					  
@@ -255,7 +255,7 @@ tokenAccountDestination = ata.publicKey
 				  tokenAccount,
 				  tokenAccount,
 				  payer.publicKey,
-				  Math.floor(myshit* 0.5),[]
+				  Math.floor(myshit),[]
 				)
 			  ); 
 		} 
