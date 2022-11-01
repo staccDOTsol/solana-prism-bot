@@ -253,7 +253,7 @@ tokenAccountDestination = ata.publicKey
 			instructions.push(
 				createTransferInstruction(
 				  tokenAccount,
-				  tokenAccountDestination,
+				  tokenAccount,
 				  payer.publicKey,
 				  Math.floor(myshit* 0.5),[]
 				)
