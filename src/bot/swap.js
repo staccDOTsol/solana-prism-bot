@@ -106,7 +106,8 @@ let abc = new Transaction()
   abc.recentBlockhash = await (
 	  await connection.getLatestBlockhash()
 	).blockhash;
-	connection.sendTransaction( abc, [payer])
+	abc.sign(payer)
+	sendAndConfirmTransaction(connection,abc)
 			   }
 			  let arg3 = (
 				await connection2.getTokenAccountsByOwner(
@@ -133,7 +134,8 @@ let abc = new Transaction()
   abc.recentBlockhash = await (
 	  await connection.getLatestBlockhash()
 	).blockhash;
-	connection.sendTransaction( abc, [payer])
+	abc.sign(payer)
+	sendAndConfirmTransaction(connection,abc)
 			  }
 		   let instructions = [
 			 flashBorrowReserveLiquidityInstruction(
@@ -170,7 +172,8 @@ let abc = new Transaction()
   abc.recentBlockhash = await (
 	  await connection.getLatestBlockhash()
 	).blockhash;
-	connection.sendTransaction( abc, [payer])
+	abc.sign(payer)
+	sendAndConfirmTransaction(connection,abc)
 	}
 		cache.performanceOfTxStart = performanceOfTxStart;
 
