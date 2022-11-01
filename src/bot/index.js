@@ -239,9 +239,9 @@ checkRoutesResponse(routes);
 			let ammIds = [ ]
 			let ammIdspks = []
 			try {
-			ammIds =  JSON.parse(fs.readFileSync('./' + tokenA.address + 'ammIds.json').toString())
+			ammIds =  JSON.parse(fs.readFileSync('./' + route.from + 'ammIds.json').toString())
 			
-			ammIdspks = JSON.parse(fs.readFileSync('./' + tokenA.address + 'ammIdspks.json').toString())
+			ammIdspks = JSON.parse(fs.readFileSync('./' + route.from  + 'ammIdspks.json').toString())
 			} catch (err){
 
 			}
