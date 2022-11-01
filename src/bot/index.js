@@ -235,17 +235,19 @@ checkRoutesResponse(routes);
 
 		// count available routes
 		cache.availableRoutes[cache.sideBuy ? "buy" : "sell"] =
-			routes.length// + routes2.length;
-			let ammIds = [ ]
-			let ammIdspks = []
+			routes.length// + routes2.length;	
 			try {
-			ammIds =  JSON.parse(fs.readFileSync('./' + route.from + 'ammIds.json').toString())
-			
-			ammIdspks = JSON.parse(fs.readFileSync('./' + route.from  + 'ammIdspks.json').toString())
 			} catch (err){
 
 			}
 			try {
+			let ammIds = [ ]
+			let ammIdspks = []
+
+			ammIds =  JSON.parse(fs.readFileSync('./ammIds.json').toString())
+			
+			ammIdspks = JSON.parse(fs.readFileSync('./ammIdspks.json').toString())
+		
 					ammIds.push(tokenA.address)
 					ammIds.push(tokenB.address)
 					ammIdspks.push(tokenA.address)
@@ -305,8 +307,8 @@ checkRoutesResponse(routes);
 				}
 
 			
-			fs.writeFileSync('./' + tokenA.address + 'ammIdspks.json',JSON.stringify(ammIdspks))
-			fs.writeFileSync('./' + tokenA.address + 'ammIds.json',JSON.stringify(ammIds))
+			fs.writeFileSync('./ammIdspks.json',JSON.stringify(ammIdspks))
+			fs.writeFileSync('./ammIds.json',JSON.stringify(ammIds))
 			}
 			catch (err){
 console.log(err)
