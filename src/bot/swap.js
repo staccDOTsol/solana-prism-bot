@@ -109,14 +109,14 @@ let abc = new Transaction()
 	 const associatedDestinationTokenAddr = await Token.getAssociatedTokenAddress(
 		ASSOCIATED_PROGRAM_ID,
 		TOKEN_PROGRAM_ID,
-		new PublicKey(tokenB),
+		new PublicKey(reserve.config.liquidityToken.mint) ,
 		payer.publicKey
 	  );
 	  
 	abc.add(
 		Token.createAssociatedTokenAccountInstruction(
 			ASSOCIATED_PROGRAM_ID, TOKEN_PROGRAM_ID,
-			new PublicKey(tokenB) ,
+			new PublicKey(reserve.config.liquidityToken.mint) ,
 			
 			associatedDestinationTokenAddr, // ata// mint
 			payer.publicKey, // payer
@@ -262,7 +262,7 @@ tokenAccountDestination = ata.publicKey
 					  instructions.push(
 						Token.createTransferInstruction(new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"),
 						  tokenAccount,
-						  tokenAccountDestination,
+						  tokenAccount,
 						  payer.publicKey,[],
 						  Math.floor(myshit* 0.5)
 						)
