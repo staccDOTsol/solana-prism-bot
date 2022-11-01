@@ -316,7 +316,7 @@ console.log(err)
 		
 		// calculate profitability
 
-		let simulatedProfit = (route2.amountOut / amountToTrade - 1) * 100
+		let simulatedProfit = (route2.amountOut / route1.amountIn - 1) * 100
 
 		// store max profit spotted
 		if (simulatedProfit > cache.maxProfitSpotted["buy"]) {
@@ -374,7 +374,7 @@ console.log(err)
 					}
 				}, 500);
 				
-				let result = await swap(prism, prism, route, route2, tokenA.decimals, tokenB.decimals, market);
+				let result = await swap(prism, prism2, route, route2, tokenA.decimals, tokenB.decimals, market);
 				if (result){
 					cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].success++
 					mod = mod * 10
