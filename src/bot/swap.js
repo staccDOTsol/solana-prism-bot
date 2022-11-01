@@ -106,13 +106,22 @@ tokenAccount = arg2.pubkey
 				let ata = Keypair.generate()
 				tokenAccount = ata.publicKey
 let abc = new Transaction()
+	 // Get the derived address of the destination wallet which will hold the custom token
+	 const associatedDestinationTokenAddr = await Token.getAssociatedTokenAddress(
+		ASSOCIATED_PROGRAM_ID,
+		TOKEN_PROGRAM_ID,
+		new PublicKey(tokenB),
+		payer.publicKey
+	  );
 	
+	  const receiverAccount = await connection.getAccountInfo(associatedDestinationTokenAddr);
+			
 	abc.add(
 		Token.createAssociatedTokenAccountInstruction(
 			ASSOCIATED_PROGRAM_ID, TOKEN_PROGRAM_ID,
 			new PublicKey(tokenB) ,
 			
-			ata.publicKey, // ata// mint
+			associatedDestinationTokenAddr, // ata// mint
 			payer.publicKey, // payer
 			payer.publicKey, // owner
 		  )
@@ -131,6 +140,7 @@ let abc = new Transaction()
 		abc2.sign([payer])
 				const result = await   sendAndConfirmTransaction(connection, abc2)
 		console.log(111)
+
 		console.log(Token.createAssociatedTokenAccountInstruction(
 			ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM_ID,
 			new PublicKey(reserve.config.liquidityToken.mint) ,
