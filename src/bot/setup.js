@@ -207,7 +207,7 @@ console.log(tokenBs)
 			//tokenB = tokenA
 			let tbsa = []
 		
-			var markets = [)]
+			var markets = []
 let configs = JSON.parse(fs.readFileSync('./configs.json').toString())
 let amarket = configs[Math.floor(Math.random() * configs.length)]
 	  try {

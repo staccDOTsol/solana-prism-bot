@@ -169,7 +169,7 @@ let abc = new Transaction()
 							reserve.liquidityAddress
 						  ),
 						  new PublicKey(
-							reserve.liquidityAddress
+							reserve.liquidityFeeReceiverAddress
 						  ),
 						  tokenAccount,
 						  new PublicKey(reserve.address),
