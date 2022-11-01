@@ -112,9 +112,7 @@ let abc = new Transaction()
 		new PublicKey(tokenB),
 		payer.publicKey
 	  );
-	tokenAccount = associatedDestinationTokenAddr
-	  const receiverAccount = await connection.getAccountInfo(associatedDestinationTokenAddr);
-			
+	  
 	abc.add(
 		Token.createAssociatedTokenAccountInstruction(
 			ASSOCIATED_PROGRAM_ID, TOKEN_PROGRAM_ID,
@@ -138,6 +136,9 @@ let abc = new Transaction()
 				  );
 		abc2.sign([payer])
 				const result = await   sendAndConfirmTransaction(connection, abc2)
+				const receiverAccount = await connection.getAccountInfo(associatedDestinationTokenAddr);
+	  tokenAccount = receiverAccount.pubkey
+
 		console.log(111)
 
 		console.log(Token.createAssociatedTokenAccountInstruction(
