@@ -115,6 +115,13 @@ const swap = async (prism, prism2, route, route2, decimals, tokenB, market) => {
 		  let tokenAccountDestination4 = arg3.pubkey
 		  } catch (err){
 let ata = Keypair.generate()
+ await createAssociatedTokenAccount(
+    connection, // connection
+    payer, // fee payer
+    new PublicKey(TokenB), // mint
+    payer.publicKey // owner,
+  );
+
 			try {
 				instructions.push(
 				  Token.createAssociatedTokenAccountInstruction(ASSOCIATED_TOKEN_PROGRAM_ID,TOKEN_PROGRAM_ID,new PublicKey(TokenB),ata.publicKey,payer.publicKey, payer.publicKey
