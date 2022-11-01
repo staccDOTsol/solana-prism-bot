@@ -316,7 +316,7 @@ console.log(err)
 		
 		// calculate profitability
 
-		let simulatedProfit = (route2.amountOut / route1.amountIn - 1) * 100
+		let simulatedProfit = (route2.amountOut / route.amountIn - 1) * 100
 
 		// store max profit spotted
 		if (simulatedProfit > cache.maxProfitSpotted["buy"]) {
