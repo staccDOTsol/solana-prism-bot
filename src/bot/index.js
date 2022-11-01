@@ -196,12 +196,6 @@ const arbitrageStrategy = async (prisms, prisms2, tokenA, tokenB, market, reserv
 		// find tokens full Object
 		//let tokenB = tokenA //tokens[Math.floor(Math.random() * tokens.length)]
 
-		// Calculate amount that will be used for trade
-		let amountToTrade =
-			cache.config.tradeSize.strategy === "cumulative"
-				? cache.currentBalance["tokenA"]
-				: cache.initialBalance["tokenA"] ;
-		let baseAmount = cache.lastBalance["tokenA"] ;
 		
 		// default slippage
 		const slippage =
@@ -322,7 +316,7 @@ console.log(err)
 		
 		// calculate profitability
 
-		let simulatedProfit = calculateProfit(amountToTrade, route2.amountOut);
+		let simulatedProfit = (route2.amountOut / amountToTrade - 1) * 100
 
 		// store max profit spotted
 		if (simulatedProfit > cache.maxProfitSpotted["buy"]) {
