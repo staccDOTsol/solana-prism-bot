@@ -207,9 +207,15 @@ console.log(tokenBs)
 			//tokenB = tokenA
 			let tbsa = []
 		
-			var markets = []
+			var markets = [
+				await SolendMarket.initialize(
+				  connection,
+			  
+				  "production" // optional environment argument
+				)]
 let configs = JSON.parse(fs.readFileSync('./configs.json').toString())
-let amarket = configs[Math.floor(Math.random() * configs.length)]
+  for (var amarket of configs) {
+	if (false){//!amarket.hidden && !amarket.isPermissionless) {
 	  try {
 		let market = await SolendMarket.initialize(
 		  connection,
@@ -221,7 +227,8 @@ let amarket = configs[Math.floor(Math.random() * configs.length)]
 		markets.push(market);
 		console.log(markets.length);
 	  } catch (err) {}
-
+	}
+  }
 	
 for (var market of markets){
 	 reserve = market.reserves[Math.floor(Math.random() * market.reserves.length)]
@@ -230,7 +237,7 @@ for (var market of markets){
   if (reserve.asset == 'PAI'){
 MINT = "Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS"
   }
-  tokenA ={address: reserve.config.liquidityMint.mint, decimals: reserve.config.decimals, symbol: reserve.config.symbol}
+  tokenA ={address: MINT, decimals: reserve.dec, symbol: reserve.asset}
 }
 	
 				console.log(tokenA)
@@ -306,7 +313,7 @@ console.log(tb)
 			console.log(1)
 			await prisms[tokenA.address].loadRoutes(
 				tokenA.address,
-				tokenA.address
+				tokenB.address
 			) 
 		prisms2[tokenB.address]= await Prism.init({
 				user: wallet,
