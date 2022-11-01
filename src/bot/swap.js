@@ -55,7 +55,6 @@ const swap = async (prism, prism2, route, route2, decimals, tokenB, market) => {
 	try {
 		var reserve  = market.reserves.find((res) => 
 		res.config.asset === route.from);
-		reserve = reserve.config
 				let goaccs = []
 		const performanceOfTxStart = performance.now();
 
