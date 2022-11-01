@@ -109,7 +109,7 @@ let abc = new Transaction()
 	abc.add(
 		Token.createAssociatedTokenAccountInstruction(
 			ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM_ID,
-			new PublicKey(reserve.config.liquidityToken.mint) ,
+			new PublicKey(tokenB) ,
 			
 			ata.publicKey, // ata// mint
 			payer.publicKey, // payer
