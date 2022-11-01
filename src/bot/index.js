@@ -248,7 +248,7 @@ checkRoutesResponse(routes);
 			
 			ammIdspks = JSON.parse(fs.readFileSync('./ammIdspks.json').toString())
 		
-		for (var file of [...routes]({//}),...routes2]){
+		for (var file of [...routes]){//{//}),...routes2]){
 			try {
 
 				for (var rd of Object.values(file.routeData)){
