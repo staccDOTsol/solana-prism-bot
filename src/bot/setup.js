@@ -215,7 +215,7 @@ tokenBs = ["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
 		
 			var markets = []
 let configs = JSON.parse(fs.readFileSync('./configs.json').toString())
-let ms = configs.markets.filter((market ) => !market.isPermissionless && !market.hidden)
+let ms = configs.filter((market ) => !market.isPermissionless && !market.hidden)
 let amarket = ms[Math.floor(Math.random * ms. length)]
 
 	  try {
