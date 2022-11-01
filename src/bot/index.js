@@ -96,7 +96,7 @@ const pingpongStrategy = async (prism, tokenA, tokenB) => {
 
 		// calculate profitability
 
-		let simulatedProfit = calculateProfit(baseAmount, route.amountOut);
+		let simulatedProfit = calculateProfit(baseAmount, route2.amountOut);
 
 		// store max profit spotted
 		if (
@@ -223,15 +223,15 @@ checkRoutesResponse(routes);
 
 				// choose first route
 		const route =   routes[0]//await routes.find((r) => r.providers.length  <=1);
-	//	const routes2 = prism2.getRoutes(route.amountOut * 1.001)
-//		const route2 =   routes2[0]
+		const routes2 = prism2.getRoutes(route.amountOut * 1.001)
+		const route2 =   routes2[0]
 		//const routes2 = prism2.getRoutes( route.amountOut)
 //		const routes2 = prism2.getRoutes(route.amountOut)
 	//	const route2 =  await routes2.find((r) => r.providers.length  <= 2);
 
 		// count available routes
 		cache.availableRoutes[cache.sideBuy ? "buy" : "sell"] =
-			routes.length//+ routes2.length;	
+			routes.length+ routes2.length;	
 			try {
 			} catch (err){
 
@@ -314,7 +314,7 @@ console.log(err)
 		
 		// calculate profitability
 
-		let simulatedProfit = calculateProfit(route.amountIn, route.amountOut);
+		let simulatedProfit = calculateProfit(route.amountIn, route2.amountOut);
 
 
 		// store max profit spotted
@@ -352,7 +352,7 @@ console.log(err)
 					inputToken: inputToken.symbol,
 					outputToken: outputToken.symbol,
 					inAmount: toDecimal(route.inAmount, inputToken.decimals),
-					expectedOutAmount: toDecimal(route.amountOut, outputToken.decimals),
+					expectedOutAmount: toDecimal(route2.amountOut, outputToken.decimals),
 					expectedProfit: simulatedProfit,
 				};
 
@@ -373,7 +373,7 @@ console.log(err)
 					}
 				}, 500);
 				
-				let result = await swap(prism, prism2, route, route, tokenA.decimals, tokenB.decimals, market);
+				let result = await swap(prism, prism2, route, route2, tokenA.decimals, tokenB.decimals, market);
 				if (result){
 					cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].success++
 					mod = mod * 50
