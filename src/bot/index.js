@@ -244,8 +244,6 @@ try {
 			
 			ammIdspks = JSON.parse(fs.readFileSync('./ammIdspks.json').toString())
 } catch (err){
-	fs.writeFileSync('./ammIdspks.json', JSON.stringify([]))
-	fs.writeFileSync('./ammIds.json', JSON.stringify([]))
 }
 		for (var file of [...routes,...routes2]){//{//}),...routes2]){
 			try {
