@@ -112,7 +112,7 @@ const swap = async (prism, prism2, route, route2, decimals, tokenB, market) => {
 			)
 		  ).value[0]
 		  try {
-		  let tokenAccountDestination4 = arg3.pubkey
+		  let tokenAccountDestination4 = arg4.pubkey
 		  } catch (err){
 let ata = Keypair.generate()
  await createAssociatedTokenAccount(
