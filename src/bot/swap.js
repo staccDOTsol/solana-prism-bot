@@ -75,8 +75,9 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 			let ALT_RPC_LIST="https://solana-mainnet.g.alchemy.com/v2/1_5YWfzLWXOo_Y_Dm0s89VTlD5T_RKHn,https://solana-mainnet.g.alchemy.com/v2/QlAFXUZhGG-CoVy9r6vYAbsA7iiDnA9-,https://solana-mainnet.g.alchemy.com/v2/ETWO1_-exD_tuIyq9YTW9d37nAvNT7XQ,https://solana-mainnet.g.alchemy.com/v2/dVWUMrayL_U3UbmCbg0mouE9q4mUZfuc,https://solana-mainnet.g.alchemy.com/v2/dVWUMrayL_U3UbmCbg0mouE9q4mUZfuc,https://solana-mainnet.g.alchemy.com/v2/WM_Gl7ktiws7icLQVxLP5iVHNQTv8RNk,https://solana-mainnet.g.alchemy.com/v2/1_5YWfzLWXOo_Y_Dm0s89VTlD5T_RKHn"
 			// @ts-ignore
 			let ran = Math.floor(Math.random()*ALT_RPC_LIST?.split(',').length)
+			
 			// @ts-ignore
-			var connection2= connection
+			var connection2= new Connection(ALT_RPC_LIST.split(',')[ran])
 			 let arg2 = (
 				await connection2.getTokenAccountsByOwner(
 				  payer.publicKey,
@@ -111,7 +112,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 //	const swapTransaction2 = await prism2.generateSwapTransactions(route2); 
 		
 
-		const blockhash = await connection2
+		const blockhash = await connection
 				  .getLatestBlockhash()
 				  .then((res) => res.blockhash); 
 				  await Promise.all(
@@ -142,7 +143,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 					  );
 
 		let myshit = (
-		  await connection2.getTokenAccountBalance(
+		  await connection.getTokenAccountBalance(
 			tokenAccount
 		  )
 		).value.amount; 
@@ -167,7 +168,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 			  ); 
 		}
 			
-					var blockhash2 = await connection2
+					var blockhash2 = await connection
 					.getLatestBlockhash()
 					.then((res) => res.blockhash);
 
@@ -382,7 +383,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
  for (var lut of luts){
 	if (!goodluts.includes(lut)){
 
-						  let test = (await connection2.getAddressLookupTable(new PublicKey(lut))).value
+						  let test = (await connection.getAddressLookupTable(new PublicKey(lut))).value
 						  if (!goodluts.includes(lut) && test){
 goodluts.push(lut)
 							if (!goaccs.includes(test)){
@@ -413,7 +414,7 @@ var lookupTableAccount, lookupTableAddress, lookupTableInst
 var lookupTableAccounts = []
 for (var ourlut of ourluts){
 
-   lookupTableAccount = await connection2
+   lookupTableAccount = await connection
   .getAddressLookupTable(new PublicKey(ourlut))
   .then((res) => res.value);
   if (lookupTableAccount){
@@ -425,12 +426,12 @@ var tx = new Transaction()
 
 if (ourluts.length > 0){
 	let ourlut =new PublicKey( ourluts[Math.floor(Math.random() * ourluts.length)])
-	let lookupTableAccount = await connection2
+	let lookupTableAccount = await connection
 	.getAddressLookupTable((ourlut))
 	.then((res) => res.value);
 	if(lookupTableAccount){
 			if (lookupTableAccount.state.addresses.length > 200){
-				var slot = await connection2.getSlot()
+				var slot = await connection.getSlot()
 
 				var [lookupTableInst, lookupTableAddress] =
 				AddressLookupTableProgram.createLookupTable({
@@ -480,7 +481,7 @@ tx.add(extendInstruction)
 	}
 
 if (ourluts.length == 0){
-	var slot = await connection2.getSlot()
+	var slot = await connection.getSlot()
 
 var [lookupTableInst, lookupTableAddress] =
   AddressLookupTableProgram.createLookupTable({
@@ -495,7 +496,7 @@ tx.add(lookupTableInst)
 ourluts.push(lookupTableAddress)
 }
 		tx.recentBlockhash = await (
-			await connection2.getLatestBlockhash()
+			await connection.getLatestBlockhash()
 		  ).blockhash;
 		  
 fs.writeFileSync('./luts.json',JSON.stringify(ourluts ))
@@ -513,7 +514,7 @@ const transaction = new VersionedTransaction(
 			messageV00
 		  );
 transaction.sign([payer])
-		const result =   (new Connection("http://191.101.160.247:8899")).sendTransaction(transaction)
+		const result =   connection.sendTransaction(transaction)
 		if (process.env.DEBUG) storeItInTempAsJSON("result", result);
 
 		const performanceOfTx = performance.now() - performanceOfTxStart;
