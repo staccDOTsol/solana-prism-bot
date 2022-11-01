@@ -121,24 +121,7 @@ let ata = Keypair.generate()
     new PublicKey(TokenB), // mint
     payer.publicKey // owner,
   );
-
-			try {
-				instructions.push(
-				  Token.createAssociatedTokenAccountInstruction(ASSOCIATED_TOKEN_PROGRAM_ID,TOKEN_PROGRAM_ID,new PublicKey(TokenB),ata.publicKey,payer.publicKey, payer.publicKey
-				  )
-				); 
-				
-  } catch (err){
-	  instructions.push(
-		createAssociatedTokenAccountInstruction(
-			payer.publicKey, // payer
-			ata.publicKey, // ata
-			payer.publicKey, // owner
-			new PublicKey(TokenB) // mint
-		  )
-	  
-		); 
-  }		}
+ }
 		cache.performanceOfTxStart = performanceOfTxStart;
 
 //		if (process.env.DEBUG) storeItInTempAsJSON("routeInfoBeforeSwap", route);
