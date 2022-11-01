@@ -448,7 +448,8 @@ const run = async () => {
 			cache.config.minInterval
 		);
 	} catch (error) {
-		logExit(error);
+		console.log(error)
+		//logExit(error);
 		//process.exitCode = 1;
 	}
 };

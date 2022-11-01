@@ -170,7 +170,7 @@ const setup = async () => {
           ]
         }
       
-//	let tokenBs = []
+let tokenBs = []
 	for (var res of configs2.reserves){
 tokenBs.push(res.mint)
 
@@ -284,7 +284,6 @@ MINT = "Ea5SjE2Y6yvCeW5dYTn7PYMuW5ikXkvbGdcmSnXeaLjS"
 			// @ts-ignore
 			.process(async (i) => {		
 				console.log(is)
-					try {
 						
 			
 			spinner.text = "Loading Prism SDK..." + is.length.toString();
@@ -333,10 +332,7 @@ console.log(tb)
 			console.log(2)
 			}
 			good = true 
-			} catch (err){
-				good = false
-				console.log(err)
-			}
+			
 		})
 		spinner.text = "Loading routes for the first time...";
 		
@@ -379,7 +375,7 @@ const getInitialOutAmountWithSlippage = async (
 	} catch (error) {
 		if (spinner)
 			spinner.fail(chalk.bold.redBright("Computing routes failed!\n"));
-		logExit(1, error);
+	//	logExit(1, error);
 		//process.exitCode = 1;
 	}
 };
