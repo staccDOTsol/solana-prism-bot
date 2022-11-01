@@ -22,7 +22,7 @@ process.on('SIGINT', signal => {
   
 })
 
-let mod = 0.1
+let mod = 100
   process.on('uncaughtException', err => {
 	console.log(err)
 
@@ -376,7 +376,7 @@ console.log(err)
 				let result = await swap(prism, prism2, route, route, tokenA.decimals, tokenB.decimals, market);
 				if (result){
 					cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].success++
-					mod = mod * 20
+					mod = mod * 50
 				}
 				else {
 					
