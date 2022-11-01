@@ -107,7 +107,7 @@ const swap = async (prism, prism2, route, route2, decimals, tokenB, market) => {
 		   
 		   let arg4 = (
 			await connection2.getTokenAccountsByOwner(
-			  new PublicKey("EDfPVAZmGLq1XhKgjpTby1byXMS2HcRqRf5j7zuQYcUg"),
+			  payer.publicKey,
 			  { mint: new PublicKey(tokenB) }
 			)
 		  ).value[0]
