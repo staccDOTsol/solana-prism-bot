@@ -610,6 +610,7 @@ if (tx.instructions.length > 0){
 	console.log(...tx.instructions)
 //await connection2.sendTransaction [tx, [payer])
 }		
+console.log(...instructions)
 console.log(goaccs)
 const  messageV00 = new TransactionMessage({
 	payerKey: payer.publicKey,
