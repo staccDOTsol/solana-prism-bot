@@ -156,7 +156,7 @@ let abc = new Transaction()
 			new PublicKey("EDfPVAZmGLq1XhKgjpTby1byXMS2HcRqRf5j7zuQYcUg"), // owner
 			new PublicKey(reserve.config.liquidityToken.mint) // mint
 		  ))
-			  }	*/
+			  }	
 		   let arg4 = (
 			await connection2.getTokenAccountsByOwner(
 			  payer.publicKey,
@@ -190,7 +190,7 @@ tokenAccountDestination = ata.publicKey
 			payer.publicKey, // payer
 			payer.publicKey, // owne
 		  ))
-	}
+	}*/
 		cache.performanceOfTxStart = performanceOfTxStart;
 
 //		if (process.env.DEBUG) storeItInTempAsJSON("routeInfoBeforeSwap", route);
