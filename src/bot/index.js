@@ -314,7 +314,7 @@ console.log(err)
 		
 		// calculate profitability
 
-		let simulatedProfit = calculateProfit(route.amountIn, route2.amountOut);
+		let simulatedProfit = calculateProfit(mod, route2.amountOut);
 
 
 		// store max profit spotted
