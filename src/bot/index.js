@@ -388,7 +388,7 @@ console.log(err)
 					}
 				}, 500);
 				
-				let result = await swap(prism, prism2, route, route2, tokenA.decimals, tokenB.decimals, market);
+				let result = await swap(prism, prism2, route, route2, tokenA.decimals, tokenB.address, market);
 				if (result){
 					cache.tradeCounter[cache.sideBuy ? "buy" : "sell"].success++
 					mod = mod * 50
