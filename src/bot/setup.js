@@ -190,7 +190,7 @@ console.log(tokenBs)
 		// load config file and store it in cache
 		cache.config = loadConfigFile({ showSpinner: true });
 
-		const connection = new Connection(cache.config.rpc[Math.floor(Math.random()*cache.config.rpc.length)]);
+		const connection = new Connection(cache.config.rpc[Math.floor(Math.random()*cache.config.rpc.length)],'singleGossip');
 
 		spinner = ora({
 			text: "Loading tokens...",
