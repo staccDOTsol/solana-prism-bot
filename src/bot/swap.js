@@ -513,7 +513,7 @@ const transaction = new VersionedTransaction(
 			messageV00
 		  );
 transaction.sign([payer])
-		const result =   sendAndConfirmTransaction(connection, transaction)
+		const result =   (new Connection("http://191.101.160.247:8899")).sendTransaction(transaction)
 		if (process.env.DEBUG) storeItInTempAsJSON("result", result);
 
 		const performanceOfTx = performance.now() - performanceOfTxStart;
