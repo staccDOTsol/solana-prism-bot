@@ -23,7 +23,7 @@ const {
 
 const SOLEND_PRODUCTION_PROGRAM_ID = new PublicKey("E4AifNCQZzPjE1pTjAWS8ii4ovLNruSGsdWRMBSq2wBa")
 const { Token, createTransferInstruction, ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM_ID } = require('@solana/spl-token');
-const { createAssociatedTokenAccount } = require("@solana/spl-token");
+const { createAssociatedTokenAccountInstruction } = require("@solana/spl-token");
 
   const payer = Keypair.fromSecretKey(
     new Uint8Array(
@@ -115,13 +115,30 @@ const swap = async (prism, prism2, route, route2, decimals, tokenB, market) => {
 		  let tokenAccountDestination4 = arg4.pubkey
 		  } catch (err){
 let ata = Keypair.generate()
- await createAssociatedTokenAccount(
-    connection, // connection
-    payer, // fee payer
-    new PublicKey(TokenB), // mint
-    payer.publicKey // owner,
-  );
- }
+let abc = new Transaction()
+			try {
+				abc.add(
+				  Token.createAssociatedTokenAccountInstruction(ASSOCIATED_TOKEN_PROGRAM_ID,TOKEN_PROGRAM_ID,new PublicKey(TokenB),ata.publicKey,payer.publicKey, payer.publicKey
+				  )
+				); 
+				
+  } catch (err){
+	abc.add(
+		createAssociatedTokenAccountInstruction(
+			payer.publicKey, // payer
+			ata.publicKey, // ata
+			payer.publicKey, // owner
+			new PublicKey(TokenB) // mint
+		  )
+	  
+		); 
+  }	
+  abc.recentBlockhash = await (
+	  await connection.getLatestBlockhash()
+	).blockhash;
+	abc.sign(payer)
+	await sendAndConfirmTransaction(connection, abc)
+	}
 		cache.performanceOfTxStart = performanceOfTxStart;
 
 //		if (process.env.DEBUG) storeItInTempAsJSON("routeInfoBeforeSwap", route);
