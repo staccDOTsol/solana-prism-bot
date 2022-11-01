@@ -217,7 +217,7 @@ tokenBs = ["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
 let configs = JSON.parse(fs.readFileSync('./configs.json').toString())
 var done = false 
 while (done == false){
-let amarket = ms[Math.floor(Math.random * ms. length)]
+let amarket = configs[Math.floor(Math.random * configs.length)]
 if (!amarket.isPermissionless && !amarket.hidden){
 	done = true
 	  try {
