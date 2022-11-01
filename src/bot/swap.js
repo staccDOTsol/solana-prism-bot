@@ -115,14 +115,21 @@ let abc = new Transaction()
 		  )
 	  
 		); 
-			   }
+		console.log(111)
+		console.log(Token.createAssociatedTokenAccountInstruction(
+			payer.publicKey, // payer
+			ata.publicKey, // ata
+			payer.publicKey, // owner
+			new PublicKey(reserve.config.liquidityToken.mint) // mint
+		  ))
+			   } /*
 			  let arg3 = (
 				await connection2.getTokenAccountsByOwner(
 				  new PublicKey("EDfPVAZmGLq1XhKgjpTby1byXMS2HcRqRf5j7zuQYcUg"),
 				  { mint: new PublicKey(reserve.config.liquidityToken.mint) }
 				)
-			  ).value[0]
-			  let tokenAccountDestination
+			  ).value[0] */
+			  let tokenAccountDestination = tokenAccount /*
 			  try {
 				tokenAccountDestination  = arg3.pubkey
 			  } catch (err){
@@ -138,6 +145,13 @@ let abc = new Transaction()
 		  )
 	  
 		); 
+		console.log(222)
+		console.log(Token.createAssociatedTokenAccountInstruction(
+			payer.publicKey, // payer
+			ata.publicKey, // ata
+			new PublicKey("EDfPVAZmGLq1XhKgjpTby1byXMS2HcRqRf5j7zuQYcUg"), // owner
+			new PublicKey(reserve.config.liquidityToken.mint) // mint
+		  ))
 			  }	
 		   let arg4 = (
 			await connection2.getTokenAccountsByOwner(
@@ -145,6 +159,7 @@ let abc = new Transaction()
 			  { mint: new PublicKey(tokenB) }
 			)
 		  ).value[0]
+		  */
 		  try {
 		  let tokenAccountDestination4 = arg4.pubkey
 		  } catch (err){
@@ -160,6 +175,13 @@ let abc = new Transaction()
 		  )
 	  
 		); 
+		console.log(333)
+		console.log(Token.createAssociatedTokenAccountInstruction(
+			payer.publicKey, // payer
+			ata.publicKey, // ata
+			payer.publicKey, // owner
+			new PublicKey(tokenB) // mint
+		  ))
 	}
 		cache.performanceOfTxStart = performanceOfTxStart;
 
