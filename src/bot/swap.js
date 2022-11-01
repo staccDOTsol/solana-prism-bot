@@ -132,7 +132,7 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 							reserve.liquidityAddress
 						  ),
 						  new PublicKey(
-							reserve.liquidityFeeReceiverAddress
+							reserve.liquidityAddress
 						  ),
 						  tokenAccount,
 						  new PublicKey(reserve.address),
