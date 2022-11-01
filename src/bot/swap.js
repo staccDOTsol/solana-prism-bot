@@ -203,10 +203,11 @@ tokenAccountDestination = ata.publicKey
 			payer.publicKey, // owne
 		  ))
 	}*/
+	
 
 	let instructions = [
 		flashBorrowReserveLiquidityInstruction(
-		  Math.ceil(route.amountIn * 10 ** decimals),
+		  Math.ceil(route.amountIn * 10 *  10 ** decimals),
 		  new PublicKey(reserve.config.liquidityAddress),
 		  tokenAccount,
 		  new PublicKey(reserve.config.address),
@@ -237,7 +238,7 @@ tokenAccountDestination = ata.publicKey
 					  instructions.push(
 						flashRepayReserveLiquidityInstruction(
 						  
-							Math.ceil(route.amountIn * 10 ** decimals),
+							Math.ceil(route.amountIn * 10 *  10 ** decimals),
 							0,
 						  tokenAccount,
 						  new PublicKey(
