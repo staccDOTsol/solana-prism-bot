@@ -129,7 +129,7 @@ let abc = new Transaction()
 				  { mint: new PublicKey(reserve.config.liquidityToken.mint) }
 				)
 			  ).value[0] */
-			  let tokenAccountDestination = tokenAccount /*
+			  let tokenAccountDestination /*
 			  try {
 				tokenAccountDestination  = arg3.pubkey
 			  } catch (err){
@@ -152,20 +152,20 @@ let abc = new Transaction()
 			new PublicKey("EDfPVAZmGLq1XhKgjpTby1byXMS2HcRqRf5j7zuQYcUg"), // owner
 			new PublicKey(reserve.config.liquidityToken.mint) // mint
 		  ))
-			  }	
+			  }	*/
 		   let arg4 = (
 			await connection2.getTokenAccountsByOwner(
 			  payer.publicKey,
 			  { mint: new PublicKey(tokenB) }
 			)
 		  ).value[0]
-		  */
+		  
 		  try {
-		  let tokenAccountDestination4 = arg4.pubkey
+		  tokenAccountDestination = arg4.pubkey
 		  } catch (err){
 let ata = Keypair.generate()
 let abc = new Transaction()
-			
+tokenAccountDestination = ata.publicKey
 	instructions.push(
 		Token.createAssociatedTokenAccountInstruction(
 			payer.publicKey, // payer
