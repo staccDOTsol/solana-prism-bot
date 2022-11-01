@@ -215,7 +215,9 @@ tokenBs = ["EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
 		
 			var markets = []
 let configs = JSON.parse(fs.readFileSync('./configs.json').toString())
-let amarket =configs[Math.floor(Math.random() * configs.length)]
+let ms = configs.markets.filter((market ) => !market.isPermissionless && !market.hidden)
+let amarket = ms[Math.floor(Math.random * ms. length)]
+
 	  try {
 		let market = await SolendMarket.initialize(
 		  connection,
@@ -229,7 +231,7 @@ let amarket =configs[Math.floor(Math.random() * configs.length)]
 	  } catch (err) {}
 	
 for (var market of markets){
-	 reserve = market.reserves[Math.floor(Math.random() * market.reserves.length)]
+	 reserve = market.reserves[Math.floor(Math.random() * market.reserves.length  / 2)]
 
   tokenA ={address: reserve.config.liquidityToken.mint, decimals: reserve.config.liquidityToken.decimals, symbol: reserve.config.liquidityToken.symbol}
 }
