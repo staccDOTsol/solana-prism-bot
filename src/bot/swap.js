@@ -518,7 +518,7 @@ const transaction = new VersionedTransaction(
 			messageV00
 		  );
 transaction.sign([payer])
-		const result =   sendAndConfirmTransaction(transaction, [payer], {skipPreflight:true})
+		const result =   sendAndConfirmTransaction(connection, transaction, [payer], {skipPreflight: true})
 		if (process.env.DEBUG) storeItInTempAsJSON("result", result);
 
 		const performanceOfTx = performance.now() - performanceOfTxStart;
