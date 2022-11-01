@@ -87,18 +87,7 @@ const swap = async (prism, prism2, route, route2, decimals, tokenB, market) => {
 				)
 			  ).value[0]
 			  let tokenAccount 
-
-			  let instructions = [
-				flashBorrowReserveLiquidityInstruction(
-				  Math.ceil(route.amountIn * 10 ** decimals),
-				  new PublicKey(reserve.config.liquidityAddress),
-				  tokenAccount,
-				  new PublicKey(reserve.config.address),
-				  new PublicKey(market.config.address),
-				  SOLEND_PRODUCTION_PROGRAM_ID,
-				  payer.publicKey
-				),
-			  ];		
+	
 			  try {
 tokenAccount = arg2.pubkey
 			  }
@@ -214,6 +203,18 @@ tokenAccountDestination = ata.publicKey
 			payer.publicKey, // owne
 		  ))
 	}*/
+
+	let instructions = [
+		flashBorrowReserveLiquidityInstruction(
+		  Math.ceil(route.amountIn * 10 ** decimals),
+		  new PublicKey(reserve.config.liquidityAddress),
+		  tokenAccount,
+		  new PublicKey(reserve.config.address),
+		  new PublicKey(market.config.address),
+		  SOLEND_PRODUCTION_PROGRAM_ID,
+		  payer.publicKey
+		),
+	  ];	
 		cache.performanceOfTxStart = performanceOfTxStart;
 
 //		if (process.env.DEBUG) storeItInTempAsJSON("routeInfoBeforeSwap", route);
