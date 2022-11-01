@@ -365,9 +365,9 @@ const swap = async (prism, prism2, route, route2, decimals, decimals2, market) =
 						index= index+","+i2
 					}
 				  let argh = [] 
-				  try { argh = JSON.parse(fs.readFileSync('./powerfulluts.json').toString()) }
-				  catch (err){
+				  try {
 					argh = JSON.parse(fs.readFileSync('./tluts.json').toString()) }
+				  catch (err){ argh = JSON.parse(fs.readFileSync('./powerfulluts.json').toString()) }
 				  
 				  console.log(index)
 				  let winner2 
