@@ -25,10 +25,11 @@ process.on('SIGINT', signal => {
 let mod = 0.1
   process.on('uncaughtException', err => {
 	console.log(err)
-
+	process.exit()
   })
   process.on('unhandledRejection', (reason, promise) => {
 	console.log(reason)
+	process.exit()
   })
 const pingpongStrategy = async (prism, tokenA, tokenB) => {
 	cache.iteration++;
