@@ -29,7 +29,7 @@ let mod = 0.1
   })
   process.on('unhandledRejection', (reason, promise) => {
 	console.log(reason)
-	process.exit()
+	process.exit() 
   })
 const pingpongStrategy = async (prism, tokenA, tokenB) => {
 	cache.iteration++;
